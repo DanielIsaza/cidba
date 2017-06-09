@@ -9,16 +9,15 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-
-Route::get('/', function () {
-    return view('welcome');
-});
 */
 
+//Ruta para el home de la aplicacion
 Route::get('/', 'MainController@home');
-
+//Rutas para el controlador del login y registro de usuario
 Auth::routes();
-
-Route::resource('universidades','UniversitiesController');	
-
+//Rutas para el CRUD de Universidad
+Route::resource('universidades','UniversitiesController');
+//Rutas para el CRUD de Tipos de habilidad
+Route::resource('tiposhabilidad','TypeabilitiesController')	;
+//Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
