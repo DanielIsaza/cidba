@@ -13,7 +13,7 @@ class CreateTipoHabilidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeAbilities', function (Blueprint $table) {
+        Schema::create('typeabilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTipoHabilidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeAbilities');
+        Schema::dropIfExists('typeabilities');
     }
 }

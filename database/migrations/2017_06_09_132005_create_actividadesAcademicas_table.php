@@ -13,7 +13,7 @@ class CreateActividadesAcademicasTable extends Migration
      */
     public function up()
     {
-        Schema::create('activityAcademics', function (Blueprint $table) {
+        Schema::create('activityacademics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateActividadesAcademicasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activityAcademics');
+        Schema::dropIfExists('activityacademics');
     }
 }
