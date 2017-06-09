@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\University;
+
+class UniversitiesController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $universidades = University::all();
+        return view("universities.index",["universidades"=>$universidades]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $universidad = new University;
+        return view("universities.create",["universidad"=> $universidad]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $universidad = new University;
+        $universidad->nombre = $request->nombre;
+
+        if($universidad->save()){
+            return redirect("/universidades");
+        }else{
+            return view("universidades.create");
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $universidad = University::find($id);
+        return view("universities.edit",["universidad"=> $universidad]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $universidad = University::find($id);
+        $universidad->nombre = $request->nombre;
+
+        if($universidad->save()){
+            return redirect("/universidades");
+        }else{
+            return view("universidades.edit",["universidad" => $universidad]);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        University::destroy($id);
+
+        return redirect('/universidades');
+    }
+}

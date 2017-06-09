@@ -1,0 +1,10 @@
+{!!Form::open(['url'=> $url,'method' => $method]) !!}
+	<div class="form-group">
+		{{ Form::text('nombre',$universidad->nombre,['class' => 'form-control',
+		'placeholder'=>'Nombre de la Universidad']) }}
+	</div>
+	<div class="form-group text-	">
+		<a href="{{url('/universidades')}}">Regresar al listado de Universidades</a>
+		<input type="submit" value="Guardar" class="btn btn-success">
+	</div>
+{!! Form::close() !!}
