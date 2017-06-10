@@ -15,7 +15,7 @@ class TypeabilitiesController extends Controller
     public function index()
     {
         $tiposHabilidades = Typeability::all();
-        return view("Typeabilities.index",["tiposHabilidades"=>$tiposHabilidades]);
+        return view("typeabilities.index",["tiposHabilidades"=>$tiposHabilidades]);
     }
 
     /**

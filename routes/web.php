@@ -18,6 +18,16 @@ Auth::routes();
 //Rutas para el CRUD de Universidad
 Route::resource('universidades','UniversitiesController');
 //Rutas para el CRUD de Tipos de habilidad
-Route::resource('tiposhabilidad','TypeabilitiesController')	;
+Route::resource('tiposhabilidad','TypeabilitiesController');
+//Rutas para el CRUD de roles
+Route::resource('roles','RolesController');
+//Rutas para el CRUD de naturaleza
+Route::resource('naturaleza','NaturesController');
+//Rutas para el CRUD de tipo de metodologia
+Route::resource('tiposmetodologias','TypemethodologiesController');
+//Rutas para el CRUD de tipo de evaluacion
+Route::resource('tiposevaluaciones','TypeevaluationsController');
+//Rutas para el CRUD de actividades academicas
+Route::resource('actividadesacademicas','ActivityacademicsController');
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
