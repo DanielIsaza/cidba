@@ -16,10 +16,7 @@ class CreateSemestresTable extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('academicplan_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('academicplan_id')->references('id')->on('academicplans');
         });
     }
 
