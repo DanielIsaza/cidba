@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Typeability;
+use App\Faculty;
+use App\University;
 
-class TypeabilitiesController extends Controller
+class FacultiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class TypeabilitiesController extends Controller
      */
     public function index()
     {
-        $tiposHabilidades = Typeability::all();
-        return view("typeabilities.index",["tiposHabilidades"=>$tiposHabilidades]);
+        $facultades = Faculty::all();
+        return view("faculties.index",["facultades"=>$facultades]);
     }
 
     /**
@@ -25,8 +26,9 @@ class TypeabilitiesController extends Controller
      */
     public function create()
     {
-        $tiposhabilidad = new Typeability;
-        return view("typeabilities.create",["tiposhabilidad" => $tiposhabilidad]);
+        $universidades = University::pluck('nombre','id');
+        $facultad = new Faculty;
+        return view("faculties.create",["facultad"=> $facultad,"universidades" => $universidades]);
     }
 
     /**
@@ -37,13 +39,13 @@ class TypeabilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoHabilidad = new Typeability;
-        $tipoHabilidad->nombre = $request->nombre;
-
-        if($tipoHabilidad->save()){
-            return redirect('/tiposhabilidad');
+        $facultad = new Faculty;
+        $facultad->nombre = $request->nombre;
+        $facultad->university_id = $request->university_id;
+        if($facultad->save()){
+            return redirect("/facultades");
         }else{
-            return view("typeabilities.create");
+            return view("faculties.create");
         }
     }
 
@@ -66,8 +68,9 @@ class TypeabilitiesController extends Controller
      */
     public function edit($id)
     {
-        $tiposhabilidad = Typeability::find($id);
-        return view("typeabilities.edit",["tiposhabilidad"=>$tiposhabilidad]);
+        $facultad = Faculty::find($id);
+        $universidades = University::pluck('nombre','id');
+        return view("faculties.edit",["facultad"=> $facultad,"universidades"=>$universidades]);
     }
 
     /**
@@ -79,13 +82,13 @@ class TypeabilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tiposhabilidad = Typeability::find($id);
-        $tiposhabilidad->nombre = $request->nombre;
-
-        if($tiposhabilidad->save()){
-            return redirect('/tiposhabilidad');
+        $facultad = Faculty::find($id);
+        $facultad->nombre = $request->nombre;
+        $facultad->university_id = $request->university_id;
+        if($facultad->save()){
+            return redirect("/facultades");
         }else{
-            return view("typeabilities.edit",["tiposhabilidad"=>$tiposhabilidad]);  
+            return view("faculties.edit",["facultad" => $facultad]);
         }
     }
 
@@ -97,7 +100,7 @@ class TypeabilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Typeability::destroy($id);
-        return redirect('/tiposhabilidad');
+        Faculty::destroy($id);
+        return redirect('/facultades');
     }
 }

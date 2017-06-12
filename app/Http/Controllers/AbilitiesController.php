@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ability;
 use App\Typeability;
 
-class TypeabilitiesController extends Controller
+class AbilitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class TypeabilitiesController extends Controller
      */
     public function index()
     {
-        $tiposHabilidades = Typeability::all();
-        return view("typeabilities.index",["tiposHabilidades"=>$tiposHabilidades]);
+        $habilidades = Ability::all();
+        return view("abilities.index",["habilidades"=>$habilidades]);
     }
 
     /**
@@ -25,8 +26,9 @@ class TypeabilitiesController extends Controller
      */
     public function create()
     {
-        $tiposhabilidad = new Typeability;
-        return view("typeabilities.create",["tiposhabilidad" => $tiposhabilidad]);
+        $tiposh = Typeability::pluck('nombre','id');
+        $habilidad = new Ability;
+        return view("abilities.create",["habilidad"=> $habilidad,"tiposh" => $tiposh]);
     }
 
     /**
@@ -37,13 +39,13 @@ class TypeabilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoHabilidad = new Typeability;
-        $tipoHabilidad->nombre = $request->nombre;
-
-        if($tipoHabilidad->save()){
-            return redirect('/tiposhabilidad');
+        $habilidad = new Ability;
+        $habilidad->nombre = $request->nombre;
+        $habilidad->typeability_id = $request->typeability_id;
+        if($habilidad->save()){
+            return redirect("/habilidades");
         }else{
-            return view("typeabilities.create");
+            return view("abilities.create");
         }
     }
 
@@ -66,8 +68,9 @@ class TypeabilitiesController extends Controller
      */
     public function edit($id)
     {
-        $tiposhabilidad = Typeability::find($id);
-        return view("typeabilities.edit",["tiposhabilidad"=>$tiposhabilidad]);
+        $habilidad = Ability::find($id);
+        $tiposh = Typeability::pluck('nombre','id');
+        return view("abilities.edit",["habilidad"=> $habilidad,"tiposh"=>$tiposh]);
     }
 
     /**
@@ -79,14 +82,14 @@ class TypeabilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tiposhabilidad = Typeability::find($id);
-        $tiposhabilidad->nombre = $request->nombre;
-
-        if($tiposhabilidad->save()){
-            return redirect('/tiposhabilidad');
+        $habilidad = Ability::find($id);
+        $habilidad->nombre = $request->nombre;
+        $habilidad->typeability_id = $request->typeability_id;
+        if($habilidad->save()){
+            return redirect("/habilidades");
         }else{
-            return view("typeabilities.edit",["tiposhabilidad"=>$tiposhabilidad]);  
-        }
+            return view("abilities.edit",["habilidad" => $habilidad]);
+        }   
     }
 
     /**
@@ -97,7 +100,7 @@ class TypeabilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Typeability::destroy($id);
-        return redirect('/tiposhabilidad');
+        Ability::destroy($id);
+        return redirect('/habilidades');
     }
 }

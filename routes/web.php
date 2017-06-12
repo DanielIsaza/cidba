@@ -31,5 +31,11 @@ Route::resource('tiposevaluaciones','TypeevaluationsController');
 Route::resource('actividadesacademicas','ActivityacademicsController');
 //Rustas para el CRUD de semestres
 Route::resource('semestres','SemestersController');
+//Rutas para el CRUD de facultades
+Route::resource('facultades','FacultiesController');
+//Rutas para el CRUD de los programas academicos
+Route::resource('programasacademicos','AcademicprogramsController');
+//Rutas para el CRUD de las habilidades
+Route::resource('habilidades','AbilitiesController');
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
