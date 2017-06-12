@@ -37,5 +37,7 @@ Route::resource('facultades','FacultiesController');
 Route::resource('programasacademicos','AcademicprogramsController');
 //Rutas para el CRUD de las habilidades
 Route::resource('habilidades','AbilitiesController');
+//Rutas para el CRUD de los planes academicos
+Route::resource('planesacademicos','AcademicplansController');
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+
     <!-- Scripts -->
     <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
@@ -28,7 +30,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
 
@@ -46,10 +48,76 @@
                     </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <div class="navbar-collapse collapse navbar-responsive-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Contexto <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/universidades') }}">Universidades</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/facultades') }}">Facultades</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/programasacademicos') }}">Programas académicos</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/semestres') }}">Semestres</a>
+                                    </li>
+                               </ul>
+                        </li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Dominio <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/tiposhabilidad') }}">Tipos de habilidad</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/naturaleza') }}">Tipos de naturaleza</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/tiposmetodologias') }}">Tipos de metodologías</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/tiposevaluaciones') }}">Tipos de evaluación</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/habilidades') }}">Habilidades</a>
+                                    </li>
+                               </ul>
+                        </li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Usuarios <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/register') }}">Creación usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/roles') }}">Roles</a>
+                                    </li>
+                               </ul>
+                        </li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Materias <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/planesacademicos') }}">Planes académicos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Espacios académicos</a>
+                                    </li>
+                               </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -84,12 +152,13 @@
         src="http://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
     <script>
         $.material.init();
     </script>
-    <script src=" url('/js/app.js')"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
