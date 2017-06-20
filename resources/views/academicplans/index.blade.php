@@ -5,9 +5,12 @@
 		<h1>Planes académicos</h1>
 	</div>
 	<div class="container">
-		{{!! Form::open(['class'=>'form']) !!}}
-			{{!! Field::select('faculy_id') !!}}	
-		{{!! Form::close() !!}}
+		{!! Form::open(['method'=>'GET','class'=>'form','id'=>'search']) !!}
+
+			{!! Field::select('faculty_id',$facultades) !!}
+			{!! Field::select('academicprogram_id',$programas) !!}
+
+		{!! Form::close() !!}
 		<table class="table table-bordered">
 			<thead>
 				<tr>

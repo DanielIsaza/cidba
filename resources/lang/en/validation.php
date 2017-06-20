@@ -114,6 +114,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'faculty_id' => 'Facultad',
+        'academicprogram_id' => 'Programa académico',
+    ],
 
 ];

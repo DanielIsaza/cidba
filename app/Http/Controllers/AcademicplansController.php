@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Academicplan;
-use App\AcademicProgram;
+use App\Academicprogram;
 use App\Faculty;
 
 
@@ -18,7 +18,9 @@ class AcademicplansController extends Controller
     public function index()
     {
         $planes = Academicplan::all();
-        return view("academicplans.index",["planes"=>$planes]);
+        $facultades = Faculty::pluck('nombre','id','university_id')->toArray();
+        $programas = AcademicProgram::pluck('nombre','id','faculty_id')->toArray();
+        return view("academicplans.index",["planes"=>$planes,"facultades"=>$facultades,"programas"=>$programas]);
     }
 
     /**
