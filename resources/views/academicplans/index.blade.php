@@ -5,7 +5,7 @@
 		<h1>Planes académicos</h1>
 	</div>
 	<div class="container">
-		{!! Form::open(['method'=>'GET','class'=>'form','id'=>'search']) !!}
+		{!! Form::model($makeForm,['method'=>'GET','class'=>'form','id'=>'search']) !!}
 
 			{!! Field::select('faculty_id',$facultades) !!}
 			{!! Field::select('academicprogram_id',$programas) !!}

@@ -19,7 +19,7 @@ class AcademicplansController extends Controller
     {
         $planes = Academicplan::all();
         $facultades = Faculty::pluck('nombre','id','university_id')->toArray();
-        $programas = AcademicProgram::pluck('nombre','id','faculty_id')->toArray();
+        $programas = array();
         return view("academicplans.index",["planes"=>$planes,"facultades"=>$facultades,"programas"=>$programas]);
     }
 

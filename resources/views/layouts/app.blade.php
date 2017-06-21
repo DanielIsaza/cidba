@@ -162,11 +162,11 @@
         $(document).ready(function(){
             $('#search select').change(function () {
                 $('#search').submit();
+            $.material.init();
             });
         });
     </script>
     <script>
-        $.material.init();
     </script>
     <script src="/js/app.js"></script>
 </body>
