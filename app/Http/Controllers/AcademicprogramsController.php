@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Academicprogram;
 use App\Faculty;
+use App\University;
 
 class AcademicprogramsController extends Controller
 {
@@ -26,9 +27,9 @@ class AcademicprogramsController extends Controller
      */
     public function create()
     {
-        $facultades = Faculty::pluck('nombre','id');
+        $universidades = University::pluck('nombre','id')->toArray();
         $programa = new Academicprogram;
-        return view("academicprograms.create",["programa"=> $programa,"facultades" => $facultades]);
+        return view("academicprograms.create",["programa"=> $programa,"universidades" => $universidades]);
     }
 
     /**

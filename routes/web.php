@@ -39,5 +39,15 @@ Route::resource('programasacademicos','AcademicprogramsController');
 Route::resource('habilidades','AbilitiesController');
 //Rutas para el CRUD de los planes academicos
 Route::resource('planesacademicos','AcademicplansController');
+//Ruta que retorna todas las facultades
+Route::get('facultad/{university_id}',function($university_id){
+	return App\Faculty::where('university_id',$university_id)
+	->select('id as value', 'nombre as text')->get();
+});
+//Ruta que retorna todas los programas academicos
+Route::get('programa/{faculty_id}',function($faculty_id){
+	return App\Academicprogram::where('faculty_id',$faculty_id)
+	->select('id as value','nombre as text')->get();
+});
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

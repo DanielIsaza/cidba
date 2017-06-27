@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Academicplan;
 use App\Academicprogram;
 use App\Faculty;
+use App\University;
 
 
 class AcademicplansController extends Controller
@@ -17,10 +18,8 @@ class AcademicplansController extends Controller
      */
     public function index()
     {
-        $planes = Academicplan::all();
-        $facultades = Faculty::pluck('nombre','id','university_id')->toArray();
-        $programas = array();
-        return view("academicplans.index",["planes"=>$planes,"facultades"=>$facultades,"programas"=>$programas]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        return view("academicplans.index2",["universidades"=>$universidades]);
     }
 
     /**
