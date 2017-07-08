@@ -18,9 +18,12 @@ class CreateHabilidadesTable extends Migration
             $table->string('nombre');
             $table->integer('peso')->unsigned();
             $table->integer('typeability_id')->unsigned();
+            $table->integer('profile_id')->unsigned();
+
             $table->timestamps();
 
             $table->foreign('typeability_id')->references('id')->on('typeabilities');
+            $table->foreign('profile_id')->references('id')->on('profiles');
         });
     }
 
