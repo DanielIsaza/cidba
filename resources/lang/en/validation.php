@@ -117,6 +117,7 @@ return [
     'attributes' => [
         'faculty_id' => 'Facultad',
         'academicprogram_id' => 'Programa académico',
+        'university_id' => 'Universidad',
     ],
 
 ];

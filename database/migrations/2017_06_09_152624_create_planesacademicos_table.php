@@ -17,9 +17,12 @@ class CreatePlanesacademicosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('academicprogram_id')->unsigned();
+            $table->integer('state_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('academicprogram_id')->references('id')->on('academicprograms');
+            $table->foreign('state_id')->references('id')->on('state');
+
         });
     }
 

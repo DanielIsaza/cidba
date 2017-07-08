@@ -179,7 +179,7 @@
                     $('#faculty_id').empty().change();
                     $('#academicprogram_id').empty().change();
                 }else{
-                    $.getJSON('/facultad/'+universidad,null,function(values){
+                    $.getJSON('facultad/'+universidad,null,function(values){
                         $('#faculty_id').populateSelect(values);
                     });
                 }

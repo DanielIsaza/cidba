@@ -4,24 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePesoTable extends Migration
+class CreateObjetivos extends Migration
 {
-   /**
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('weights', function (Blueprint $table) {
+        Schema::create('objectives', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('peso');
-            $table->tinyInteger('tipo')->unsigned();
-            $table->integer('objectiveEspace_id')->unsigned();
+            $table->string('nombre');
+            $table->integer('peso')->unsigned();
             $table->integer('ability_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('objectiveEspace_id')->references('id')->on('objectiveEspaces');
             $table->foreign('ability_id')->references('id')->on('abilities');
         });
     }
@@ -33,6 +31,6 @@ class CreatePesoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weights');
+        Schema::dropIfExists('objectives');
     }
 }
