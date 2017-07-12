@@ -5,10 +5,6 @@
 		<h1>Programas académicos</h1>
 	</div>
 	<div class="container">
-		{!! Field::select('university_id',$universidades,null) !!}
-
-		{!! Field::select('faculty_id') !!}
-
 		<table class="table table-bordered">
 			<thead>
 				<tr>

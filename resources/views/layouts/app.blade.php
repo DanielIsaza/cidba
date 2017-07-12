@@ -160,21 +160,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
             $.fn.populateSelect = function (values) {
                 var options = '';
                 options += '<option value = "'+-1+'"> Seleccione una opción </option>';
                 $.each(values, function (key, row) {
                     options += '<option value="' + row.value + '">' + row.text + '</option>';
                 });
-
                 $(this).html(options);
             }
 
+            $.fn.populateTable = function (values) {
+                var options = '';
+                options += '<option value = "'+-1+'"> Seleccione una opción </option>';
+                $.each(values, function (key, row) {
+                    options += '<option value="' + row.value + '">' + row.text + '</option>';
+                });
+                $(this).html(options);
+            }
+            
             $('#university_id').change(function(){
                 $('#academicprogram_id').empty().change();
                 var universidad = $(this).val();
-
                 if(universidad == ''){
                     $('#faculty_id').empty().change();
                     $('#academicprogram_id').empty().change();
@@ -184,11 +190,9 @@
                     });
                 }
             });
-
             $('#faculty_id').change(function(){
                 $('#academicprogram_id').empty().change();
                 var facultad = $(this).val();
-
                 if(facultad == -1){
                     $('#academicprogram_id').empty().change();
                 }else{

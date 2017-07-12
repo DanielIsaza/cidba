@@ -16,8 +16,9 @@ class AcademicprogramsController extends Controller
      */
     public function index()
     {
-        $programas = Academicprogram::all();
-        return view("academicprograms.index",["programas"=>$programas]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        $programas  = array();
+        return view("academicprograms.index",["programas"=>$programas, "universidades"=>$universidades]);
     }
 
     /**
