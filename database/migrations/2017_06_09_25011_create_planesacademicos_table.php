@@ -13,6 +13,7 @@ class CreatePlanesacademicosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('academicplans');
         Schema::create('academicplans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
