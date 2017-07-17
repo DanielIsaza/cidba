@@ -144,9 +144,9 @@
             </div>
         </nav>
 
-        @yield('content')
     </div>
-
+    <!-- En está parte se ingresan los form -->
+        @yield('content')
     <!-- Scripts -->
     <script
         src="http://code.jquery.com/jquery-3.2.1.min.js"

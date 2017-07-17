@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoHabilidadTable extends Migration
+class CreateProgramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateTipoHabilidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeabilities', function (Blueprint $table) {
+        Schema::create('academicprograms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->integer('faculty_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('faculty_id')->references('id')->on('faculties');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateTipoHabilidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeabilities');
+        Schema::dropIfExists('academicprograms');
     }
 }

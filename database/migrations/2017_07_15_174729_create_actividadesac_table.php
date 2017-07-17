@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoEvaluacionTable extends Migration
+class CreateActividadesacTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTipoEvaluacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeevaluations', function (Blueprint $table) {
+        Schema::create('activityacademics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTipoEvaluacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeevaluations');
+        Schema::dropIfExists('activityacademics');
     }
 }

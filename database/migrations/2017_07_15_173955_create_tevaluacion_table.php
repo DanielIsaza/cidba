@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Universidades extends Migration
+class CreateTevaluacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Universidades extends Migration
      */
     public function up()
     {
-        Schema::create('universities', function (Blueprint $table) {
+        Schema::create('typeevaluations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class Universidades extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('universities');
+        Schema::dropIfExists('typeevaluations');
     }
 }

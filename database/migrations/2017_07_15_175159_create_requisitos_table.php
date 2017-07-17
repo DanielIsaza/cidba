@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEspacioobtetivo extends Migration
+class CreateRequisitosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,19 @@ class CreateEspacioobtetivo extends Migration
      */
     public function up()
     {
-        Schema::create('objectiveEspaces', function (Blueprint $table) {
+        Schema::create('requirements', function (Blueprint $table) {
             $table->increments('id');
+            // Espacio academico principal
+            $table->integer('academicspaceD_id')->unsigned();
+            //Espacio academico que define el corequisito o prerequisito
             $table->integer('academicspace_id')->unsigned();
-            $table->integer('objective_id')->unsigned();
+            // 1 para prerequisito 2 para corequisito
+            $table->integer('tipo');
+
             $table->timestamps();
 
+            $table->foreign('academicspaceD_id')->references('id')->on('academicspaces');
             $table->foreign('academicspace_id')->references('id')->on('academicspaces');
-            $table->foreign('objective_id')->references('id')->on('objectives');
         });
     }
 
@@ -31,6 +36,6 @@ class CreateEspacioobtetivo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objectiveEspaces');
+        Schema::dropIfExists('requirements');
     }
 }

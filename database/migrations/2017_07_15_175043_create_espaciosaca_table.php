@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEspaciosacademicosTable extends Migration
+class CreateEspaciosacaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -35,6 +35,7 @@ class CreateEspaciosacademicosTable extends Migration
             $table->string('contenidoProcedimental',700);
             $table->string('contenidoActitudinal',700);
             $table->string('procesosIntegrativos',700);
+            $table->string('unidades',9000);
 
             $table->integer('semester_id')->unsigned();
             $table->integer('academicprograms_id')->unsigned();
