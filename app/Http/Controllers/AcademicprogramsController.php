@@ -30,7 +30,7 @@ class AcademicprogramsController extends Controller
     {
         $universidades = University::pluck('nombre','id')->toArray();
         $programa = new Academicprogram;
-        return view("academicprograms.create",["programa"=> $programa,"universidades" => $universidades]);
+        return view("academicprograms.create",["universidades" => $universidades]);
     }
 
     /**

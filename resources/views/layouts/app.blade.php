@@ -185,7 +185,7 @@
                     $('#faculty_id').empty().change();
                     $('#academicprogram_id').empty().change();
                 }else{
-                    $.getJSON('facultad/'+universidad,null,function(values){
+                    $.getJSON('{{ route('facultad/' )}}/'+universidad,null,function(values){
                         $('#faculty_id').populateSelect(values);
                     });
                 }
@@ -196,7 +196,7 @@
                 if(facultad == -1){
                     $('#academicprogram_id').empty().change();
                 }else{
-                    $.getJSON('programa/'+facultad,null,function(values){
+                    $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
                         $('#academicprogram_id').populateSelect(values);
                     });
                 }

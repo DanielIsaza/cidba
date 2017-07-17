@@ -1,12 +1,12 @@
 @extends("layouts.app");
 
 @section("content")
-	{!!Form::model(['url'=> '/programasacademicos/','method' => 'POST']) !!}
+	{!!Form::open(['url'=> '/programasacademicos/','method' => 'POST']) !!}
 		<div class="container white">
 			<h1 align="center">Crear un programa académico</h1>
 				{!! Field::select('university_id',$universidades,null) !!}
 				{!! Field::select('faculty_id') !!}
-				{{ Form::text('nombre',$programa->nombre,['class' => 'form-control',
+				{{ Form::text('nombre',null,['class' => 'form-control',
 					'placeholder'=>'Nombre del programa académico ']) }}
 		
 			<div class="form-group">
