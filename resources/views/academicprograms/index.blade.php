@@ -9,7 +9,7 @@
 
 		{!! Field::select('faculty_id') !!}
 
-		<table class="table table-bordered">
+		<table id = "programas" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>Id</td>
@@ -17,19 +17,7 @@
 					<td>Acciones</td>
 				</tr>
 			</thead>
-			<tbody>
-				@foreach($programas as $programa)
-					<tr>
-						<td>{{ $programa->id }}</td>
-						<td>{{ $programa->nombre }}</td>
-						<td> 
-							<a href="{{url('/programasacademicos/'.$programa->id.'/edit')}}">
-							Editar</a>
-							@include('academicprograms.delete',['programa'=>$programa])
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
+			
 		</table>
 	</div>
 	<div class="floating">

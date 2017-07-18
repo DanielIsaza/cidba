@@ -170,12 +170,16 @@
             }
 
             $.fn.populateTable = function (values) {
-                var options = '';
-                options += '<option value = "'+-1+'"> Seleccione una opción </option>';
+                var options = '<tbody>';
                 $.each(values, function (key, row) {
-                    options += '<option value="' + row.value + '">' + row.text + '</option>';
+                    console.log(options);
+                    options += '<tr> <td>' + row.value + '</td>';
+                    options += '<td>' + row.text + '</td>';
+                    options += '<td>'+ "<a href= {{ url('/programasacademicos/" +1+ "/edit')}}> Editar </a>";
+                    options += '</td>'+'</tr>';
                 });
-                $(this).html(options);
+                options += '</tbody>';
+                $(this).append(options);
             }
             
             $('#university_id').change(function(){
@@ -196,9 +200,16 @@
                 if(facultad == -1){
                     $('#academicprogram_id').empty().change();
                 }else{
-                    $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
+                      if( $('#academicprogram_id').length ){
+                        $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
                         $('#academicprogram_id').populateSelect(values);
-                    });
+                        });    
+                      }else{
+                        $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
+                        $('#programas').populateTable(values);
+                        });
+                      }
+                    
                 }
             });       
             $.material.init();
