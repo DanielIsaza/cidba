@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
     <!-- Scripts -->
     <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
@@ -152,12 +154,16 @@
         src="http://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+
+
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $.fn.populateSelect = function (values) {
@@ -172,10 +178,10 @@
             $.fn.populateTable = function (values) {
                 var options = '<tbody>';
                 $.each(values, function (key, row) {
-                    console.log(options);
                     options += '<tr> <td>' + row.value + '</td>';
                     options += '<td>' + row.text + '</td>';
-                    options += '<td>'+ "<a href= {{ url('/programasacademicos/" +1+ "/edit')}}> Editar </a>";
+                   // options += '<td>'+ "<a href= {{ url('/programasacademicos/"+row.value+"/edit') }}> Editar </a>";
+                    options += '<td> <a href="http://localhost/cidba/public/programasacademicos/'+row.value+'/edit"> Editar </a>';
                     options += '</td>'+'</tr>';
                 });
                 options += '</tbody>';
@@ -205,8 +211,8 @@
                         $('#academicprogram_id').populateSelect(values);
                         });    
                       }else{
-                        $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
-                        $('#programas').populateTable(values);
+                        $.get('{{ route('data')}}/'+facultad,null,function(){
+                        $('#programas').Tabla(facultad);
                         });
                       }
                     
@@ -215,7 +221,21 @@
             $.material.init();
         });
     </script>
-    <script>
+    <script type="text/javascript">
+    $.fn.Tabla = function(id){
+        $('#programas').DataTable({
+            processing  :true,
+            serverSide  :true,
+            ajax        :"{{ URL::asset('data')}}/"+id,
+            columns     :[
+                { data: 'id', name:'id' },
+                { data: 'nombre', name:'nombre' },
+                {"render": function () {
+                    return "<a href='{{ URL::asset('programasacademicos') }}/"+id+"/edit'>Editar</a>";
+                }},
+            ]
+        });
+    }
     </script>
     <script src="/js/app.js"></script>
 </body>

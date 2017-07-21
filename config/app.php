@@ -181,6 +181,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
 
+        //Tablas dinamicas para el manejo de informacion
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
     ],
 
     /*
@@ -231,6 +234,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
 
 

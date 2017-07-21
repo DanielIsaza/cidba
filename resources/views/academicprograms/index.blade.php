@@ -17,7 +17,7 @@
 					<td>Acciones</td>
 				</tr>
 			</thead>
-			
+			<tbody></tbody>
 		</table>
 	</div>
 	<div class="floating">

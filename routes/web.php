@@ -49,5 +49,6 @@ Route::get('programa/{faculty_id?}',["as" => "programa/",function($faculty_id){
 	return App\Academicprogram::where('faculty_id',$faculty_id)
 	->select('id as value','nombre as text')->get();
 }]);
+Route::get('data/{faculty_id?}',['as'=>'data', 'uses' =>'AcademicprogramsController@data']);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

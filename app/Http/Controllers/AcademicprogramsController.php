@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Academicprogram;
 use App\Faculty;
 use App\University;
+use Yajra\Datatables\Datatables;
 
 class AcademicprogramsController extends Controller
 {
@@ -19,6 +20,15 @@ class AcademicprogramsController extends Controller
         $universidades = University::pluck('nombre','id')->toArray();
         $programas  = array();
         return view("academicprograms.index",["programas"=>$programas, "universidades"=>$universidades]);
+    }
+    /**
+    *
+    */
+    public function data ($faculty_id)
+    {
+        //return Datatables::of(App\Academicprogram::where('faculty_id',$id)
+          //  ->select('id','nombre'))->make(true); 
+        return Datatables::of(Academicprogram::all()->where('faculty_id',$faculty_id))->make(true);
     }
 
     /**
