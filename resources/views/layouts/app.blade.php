@@ -174,20 +174,23 @@
                 });
                 $(this).html(options);
             }
-
-            $.fn.populateTable = function (values) {
-                var options = '<tbody>';
-                $.each(values, function (key, row) {
-                    options += '<tr> <td>' + row.value + '</td>';
-                    options += '<td>' + row.text + '</td>';
-                   // options += '<td>'+ "<a href= {{ url('/programasacademicos/"+row.value+"/edit') }}> Editar </a>";
-                    options += '<td> <a href="http://localhost/cidba/public/programasacademicos/'+row.value+'/edit"> Editar </a>';
-                    options += '</td>'+'</tr>';
-                });
-                options += '</tbody>';
-                $(this).append(options);
-            }
             
+            $.fn.populateTable = function (values){
+                var rows = '';
+                rows += '<tbody>';
+                $.each(values, function(key,row){
+                    rows += '<td>'+row.value+'</td>';
+                    rows += '<td>'+row.text+'</td>';
+                    rows += '<td>'+"<a href='{{ URL::asset('programasacademicos') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += "<form action='{{ URL::asset('programasacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
+                    "<input name='_method' type='hidden' value='DELETE'>"+
+                    "<input name='_token' type='hidden' value='B2k035qqC6uPnr1hMxmrdSBW8Q2OyRkFgM0uUfpF'>"+
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                });
+                rows += '</tbody>';
+                $(this).append(rows);
+            }
+
             $('#university_id').change(function(){
                 $('#academicprogram_id').empty().change();
                 var universidad = $(this).val();
@@ -202,17 +205,18 @@
             });
             $('#faculty_id').change(function(){
                 $('#academicprogram_id').empty().change();
+                $('#programas').dataTable().fnDestroy();
                 var facultad = $(this).val();
                 if(facultad == -1){
                     $('#academicprogram_id').empty().change();
                 }else{
                       if( $('#academicprogram_id').length ){
                         $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
-                        $('#academicprogram_id').populateSelect(values);
+                            $('#academicprogram_id').populateSelect(values);
                         });    
                       }else{
-                        $.get('{{ route('data')}}/'+facultad,null,function(){
-                        $('#programas').Tabla(facultad);
+                        $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
+                            $('#tabla').populateTable(values);
                         });
                       }
                     
@@ -221,22 +225,7 @@
             $.material.init();
         });
     </script>
-    <script type="text/javascript">
-    $.fn.Tabla = function(id){
-        $('#programas').DataTable({
-            processing  :true,
-            serverSide  :true,
-            ajax        :"{{ URL::asset('data')}}/"+id,
-            columns     :[
-                { data: 'id', name:'id' },
-                { data: 'nombre', name:'nombre' },
-                {"render": function () {
-                    return "<a href='{{ URL::asset('programasacademicos') }}/"+id+"/edit'>Editar</a>";
-                }},
-            ]
-        });
-    }
-    </script>
+    @yield('tabla')
     <script src="/js/app.js"></script>
 </body>
 </html>

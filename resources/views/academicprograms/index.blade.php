@@ -9,7 +9,7 @@
 
 		{!! Field::select('faculty_id') !!}
 
-		<table id = "programas" class="table table-bordered">
+		<table id = "tabla" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>Id</td>
@@ -26,3 +26,4 @@
 		</a>
 	</div>
 @endsection
+
