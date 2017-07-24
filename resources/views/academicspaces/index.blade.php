@@ -13,8 +13,7 @@
 		<div class="col-md-6">{!! Field::select('academicprogram_id') !!}</div>
 		<div class="col-md-6">{!! Field::select('academicplan_id') !!}</div>
 	</div>
-		{!! Field::select('semester_id') !!}
-
+		{!! Field::select('semester_id',$semestres) !!}
 
 		<table id = "tabla" class="table table-bordered">
 			<thead>
@@ -32,4 +31,7 @@
 			<i class="material-icons">add</i>
 		</a>
 	</div>
+@endsection
+@section("tabla")
+	
 @endsection

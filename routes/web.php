@@ -60,8 +60,12 @@ Route::get('planes/{program_id?}',["as" => "planes/",function($program_id){
 	->where('academicplans.academicprogram_id',$program_id)
 	->select('academicplans.id as value','academicplans.nombre as text','states.nombre as estado')->get();
 }]);
-//
-Route::get('',["as"=>"habilidad/",function($profile_id){
+Route::get('perfiles/{academicplan_id?}',["as"=>"perfiles/",function($academicplan_id){
+	return App\Profile::where('academicplan_id',$academicplan_id)
+			->select('id as value','descripcion as text')->get();
+}]);
+//Ruta que retorna las habilidades definidas en un perfil
+Route::get('habilidad/{profile_id?}',["as"=>"habilidad/",function($profile_id){
 	return App\Ability::where('profile_id',$profile_id)
 	->select('id as value','nombre as text','peso as peso')->get();
 }]);

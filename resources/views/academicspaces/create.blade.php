@@ -1,25 +1,25 @@
 @extends("layouts.app");
 
 @section("content")
-	{!!Form::open(['url'=> '/programasacademicos/','method' => 'POST']) !!}
+	{!!Form::open(['url'=> '/espaciosacademicos/','method' => 'POST']) !!}
 
 		<div class="container white">
 			<h1 align="center">Crear un espacio académico</h1>
 
 	<div class="row">
-   		<div class="col-md-4">{!! Field::select('university_id') !!}</div>
+   		<div class="col-md-4">{!! Field::select('university_id',$universidades) !!}</div>
     	<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
     	<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div> 
   	</div>
   	<div class="row">
   		<div class="col-md-4">{!! Field::select('academicplan_id') !!}	</div>
-  		<div class="col-md-4">{!! Field::select('semester_id') !!}</div>
-  		<div class="col-md-4">{!! Field::select('activityacademic_id') !!}</div>
+  		<div class="col-md-4">{!! Field::select('semester_id',$semestres) !!}</div>
+  		<div class="col-md-4">{!! Field::select('activityacademic_id',$actividadesAca) !!}</div>
   	</div>
   	<div class="row">
-  		<div class="col-md-4">{!! Field::select('typeevaluation_id') !!}</div>
-  		<div class="col-md-4">{!! Field::select('typemethodology_id') !!}</div>
-  		<div class="col-md-4">{!! Field::select('nature_id') !!}</div>
+  		<div class="col-md-4">{!! Field::select('typeevaluation_id',$tipoEvaluaciones) !!}</div>
+  		<div class="col-md-4">{!! Field::select('typemethodology_id',$tipoMetodologias) !!}</div>
+  		<div class="col-md-4">{!! Field::select('nature_id',$naturalezas) !!}</div>
   	</div>
   	<div class="row">
   		<div class="col-md-3">
@@ -69,13 +69,17 @@
   		</div>
   		<div class="col-md-3">
   			{{ Form::label('Habilitable?')}}
-				{{ Form::checkbox('habilitable') }}
+			{{ Form::checkbox('habilitable') }}
+		</div>
+		<div class="col-md-3">
   			{{ Form::label('Validable?')}}
-				{{ Form::checkbox('validable') }}
+			{{ Form::checkbox('validable') }}
+		</div>
+		<div class="col-md-3">
   			{{ Form::label('Homologable')}}
-				{{ Form::checkbox('homologable') }}
-  		</div>
-	</div>				
+			{{ Form::checkbox('homologable') }}
+		</div>
+  	</div>				
 	
 	<div class="row">
 		<div class="col-md-6">

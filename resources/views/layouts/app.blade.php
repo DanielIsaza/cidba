@@ -215,15 +215,16 @@
                 if($('#academicprogram_id').length){
                     $('#tabla > tbody').remove();
                 }
+                $('#academicplan_id').empty().change();
                 var programa = $(this).val();
+                if(programa != null){
+
                 if(programa == -1){
                     $('#tabla > tbody').remove();
-                    $('#tablah > tbody').remove();
-
                 }else{
                     if($('#academicplan_id').length){
                         $.getJSON('{{ route('planes/') }}/'+programa,null,function(values){
-                            $('#tabla').populateSelect(values);
+                            $('#academicplan_id').populateSelect(values);
                         });
                     }else {
                         $.getJSON('{{ route('planes/') }}/'+programa,null,function(values){
@@ -231,7 +232,47 @@
                         });
                     }    
                 }
-            });     
+                }
+            });  
+
+            $('#academicplan_id').change(function(){
+                $('#tabla > tbody').remove();
+                var plan = $(this).val();
+                if(plan != null){
+                    if(plan == -1){
+                        $('#tabla > tbody').remove();
+                        $('#profile_id').empty().change();
+                    }
+                else{
+                    if(!$('#tabla').length){
+
+                        $.getJSON('{{ route('perfiles/') }}/'+plan,null,function(values){
+                            $('#profile_id').populateSelect(values);
+                        });
+                    }
+                }
+            }
+            });
+
+            $('#profile_id').change(function(){
+                $('#tabla > tbody').remove();
+                var perfil = $(this).val();
+                if(perfil != null){
+                    if(perfil == -1){
+                        $('#tabla > tbody').remove();
+                        $('#profile_id').empty.change();
+                    }else{
+                        $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
+                            $('#tabla').populateTable(values);
+                        });
+                    }
+                }
+            });
+
+            $('#semester_id').change(function(){
+                
+            });
+
             $.material.init();
         });
     </script>

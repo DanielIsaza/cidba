@@ -124,7 +124,8 @@ return [
         'activityacademic_id' => 'Actividad académica',
         'typeevaluation' => 'Tipo de evaluación',
         'typemethodology_id' => 'Tipo de metodología',
-        'nature_id' => 'Naturaleza'
+        'nature_id' => 'Naturaleza',
+        'profile_id' => 'Perfil',
     ],
 
 ];
