@@ -118,6 +118,13 @@ return [
         'faculty_id' => 'Facultad',
         'academicprogram_id' => 'Programa académico',
         'university_id' => 'Universidad',
+        'state_id' => 'Estado',
+        'academicplan_id' => 'Plan académico',
+        'semester_id' => 'Semestre',
+        'activityacademic_id' => 'Actividad académica',
+        'typeevaluation' => 'Tipo de evaluación',
+        'typemethodology_id' => 'Tipo de metodología',
+        'nature_id' => 'Naturaleza'
     ],
 
 ];

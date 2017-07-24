@@ -2,7 +2,7 @@
 
 @section("content")
 	<div class="big-padding text-center blue-grey white-text">
-		<h1>Roles</h1>
+		<h1>Naturaleza de los espacios académicos</h1>
 	</div>
 	<div class="container">
 		<table class="table table-bordered">

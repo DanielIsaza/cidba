@@ -17,6 +17,8 @@ Route::get('/', 'MainController@home');
 Auth::routes();
 //Rutas para el CRUD de Universidad
 Route::resource('universidades','UniversitiesController');
+//Rutas para el CRUD de Estados
+Route::resource('estados','StatesController');
 //Rutas para el CRUD de Tipos de habilidad
 Route::resource('tiposhabilidad','TypeabilitiesController');
 //Rutas para el CRUD de roles
@@ -39,6 +41,8 @@ Route::resource('programasacademicos','AcademicprogramsController');
 Route::resource('habilidades','AbilitiesController');
 //Rutas para el CRUD de los planes academicos
 Route::resource('planesacademicos','AcademicplansController');
+//Rutas para el CRUD de los espacios academicos
+Route::resource('espaciosacademicos','AcademicspacesController');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
@@ -49,6 +53,17 @@ Route::get('programa/{faculty_id?}',["as" => "programa/",function($faculty_id){
 	return App\Academicprogram::where('faculty_id',$faculty_id)
 	->select('id as value','nombre as text')->get();
 }]);
-Route::get('data/{faculty_id?}',['as'=>'data', 'uses' =>'AcademicprogramsController@data']);
+// Ruta que permite obtener la informacion necesaria para mostrar en la tabla de planes
+Route::get('planes/{program_id?}',["as" => "planes/",function($program_id){
+	return	DB::table('academicplans')
+	->join('states','states.id','=','academicplans.state_id')
+	->where('academicplans.academicprogram_id',$program_id)
+	->select('academicplans.id as value','academicplans.nombre as text','states.nombre as estado')->get();
+}]);
+//
+Route::get('',["as"=>"habilidad/",function($profile_id){
+	return App\Ability::where('profile_id',$profile_id)
+	->select('id as value','nombre as text','peso as peso')->get();
+}]);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

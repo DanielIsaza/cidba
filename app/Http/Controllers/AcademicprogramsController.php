@@ -22,16 +22,6 @@ class AcademicprogramsController extends Controller
         return view("academicprograms.index",["programas"=>$programas, "universidades"=>$universidades]);
     }
     /**
-    *
-    */
-    public function data ($faculty_id)
-    {
-        //return Datatables::of(App\Academicprogram::where('faculty_id',$id)
-          //  ->select('id','nombre'))->make(true); 
-        return Datatables::of(Academicprogram::all()->where('faculty_id',$faculty_id))->make(true);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -80,9 +70,10 @@ class AcademicprogramsController extends Controller
      */
     public function edit($id)
     {
-        $programa = Academicprogram::find($id);
-        $facultades = Faculty::pluck('nombre','id');
-        return view("academicprograms.edit",["programa"=> $programa,"facultades"=>$facultades]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        $facultades = Faculty::pluck('nombre','id')->toArray();
+        $programa = Academicprogram::find($id);   
+        return view("academicprograms.edit",["programa"=> $programa,"universidades"=>$universidades,"facultades"=>$facultades]);
     }
 
     /**

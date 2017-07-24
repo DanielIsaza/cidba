@@ -5,17 +5,20 @@
 		<h1>Planes académicos</h1>
 	</div>
 	<div class="container">
-		{!! Form::model($makeForm,['method'=>'GET','class'=>'form','id'=>'search']) !!}
+		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
-			{!! Field::select('faculty_id',$facultades) !!}
-			{!! Field::select('academicprogram_id',$programas) !!}
+			{!! Field::select('university_id',$universidades) !!}
+			{!! Field::select('faculty_id') !!}
+			{!! Field::select('academicprogram_id') !!}
 
 		{!! Form::close() !!}
-		<table class="table table-bordered">
+		
+		<table id="tabla" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>Id</td>
 					<td>Nombre</td>
+					<td>Estado</td>
 					<td>Acciones</td>
 				</tr>
 			</thead>
@@ -29,4 +32,27 @@
 			<i class="material-icons">add</i>
 		</a>
 	</div>
+@endsection
+
+@section("tabla")
+<script type="text/javascript">
+	$.fn.populateTable = function (values){
+                var rows = '';
+                rows += '<tbody>';
+                $.each(values, function(key,row){
+                	rows += '<tr>';
+                    rows += '<td>'+row.value+'</td>';
+                    rows += '<td>'+row.text+'</td>';
+                    rows += '<td>'+row.estado+'</td>'
+                    rows += '<td>'+"<a href='{{ URL::asset('planesacademicos') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += "<form action='{{ URL::asset('planesacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
+                    "<input name='_method' type='hidden' value='DELETE'>"+
+                    "<input name='_token' type='hidden' value='B2k035qqC6uPnr1hMxmrdSBW8Q2OyRkFgM0uUfpF'>"+
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                });
+                rows += '</tr>';
+                rows += '</tbody>';
+                $(this).append(rows);
+            }
+</script>
 @endsection

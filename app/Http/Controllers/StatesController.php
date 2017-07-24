@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ability;
-use App\Typeability;
-use App\University;
+use App\State;
 
-class AbilitiesController extends Controller
+class StatesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class AbilitiesController extends Controller
      */
     public function index()
     {
-        $universidades = University::pluck('nombre','id')->toArray();
-        return view("abilities.index",["universidades"=>$universidades]);
+        $estados = State::all();
+        return view("states.index",["estados"=>$estados]);
     }
 
     /**
@@ -27,9 +25,8 @@ class AbilitiesController extends Controller
      */
     public function create()
     {
-        $tiposh = Typeability::pluck('nombre','id');
-        $habilidad = new Ability;
-        return view("abilities.create",["habilidad"=> $habilidad,"tiposh" => $tiposh]);
+        $estado = new State;
+        return view("states.create",["estado"=> $estado]);
     }
 
     /**
@@ -40,13 +37,13 @@ class AbilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $habilidad = new Ability;
-        $habilidad->nombre = $request->nombre;
-        $habilidad->typeability_id = $request->typeability_id;
-        if($habilidad->save()){
-            return redirect("/habilidades");
+        $estado = new State;
+        $estado->nombre = $request->nombre;
+
+        if($estado->save()){
+            return redirect("/estados");
         }else{
-            return view("abilities.create");
+            return view("states.create");
         }
     }
 
@@ -69,9 +66,8 @@ class AbilitiesController extends Controller
      */
     public function edit($id)
     {
-        $habilidad = Ability::find($id);
-        $tiposh = Typeability::pluck('nombre','id');
-        return view("abilities.edit",["habilidad"=> $habilidad,"tiposh"=>$tiposh]);
+        $estado = State::find($id);
+        return view("states.edit",["estado"=> $estado]);
     }
 
     /**
@@ -83,14 +79,14 @@ class AbilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $habilidad = Ability::find($id);
-        $habilidad->nombre = $request->nombre;
-        $habilidad->typeability_id = $request->typeability_id;
-        if($habilidad->save()){
-            return redirect("/habilidades");
+        $estado = State::find($id);
+        $estado->nombre = $request->nombre;
+
+        if($estado->save()){
+            return redirect("/estados");
         }else{
-            return view("abilities.edit",["habilidad" => $habilidad]);
-        }   
+            return view("states.edit",["estado" => $estado]);
+        }
     }
 
     /**
@@ -101,7 +97,7 @@ class AbilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Ability::destroy($id);
-        return redirect('/habilidades');
+        State::destroy($id);
+        return redirect('/estados');
     }
 }

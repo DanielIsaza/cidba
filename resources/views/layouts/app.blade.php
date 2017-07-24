@@ -90,6 +90,9 @@
                                         <a href="{{ url('/tiposevaluaciones') }}">Tipos de evaluación</a>
                                     </li>
                                     <li>
+                                        <a href="{{ url('/estados') }}">Estados</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/habilidades') }}">Habilidades</a>
                                     </li>
                                </ul>
@@ -116,7 +119,7 @@
                                         <a href="{{ url('/planesacademicos') }}">Planes académicos</a>
                                     </li>
                                     <li>
-                                        <a href="#">Espacios académicos</a>
+                                        <a href="{{ url('/espaciosacademicos') }}">Espacios académicos</a>
                                     </li>
                                </ul>
                         </li>
@@ -149,6 +152,7 @@
     </div>
     <!-- En está parte se ingresan los form -->
         @yield('content')
+        
     <!-- Scripts -->
     <script
         src="http://code.jquery.com/jquery-3.2.1.min.js"
@@ -174,25 +178,10 @@
                 });
                 $(this).html(options);
             }
-            
-            $.fn.populateTable = function (values){
-                var rows = '';
-                rows += '<tbody>';
-                $.each(values, function(key,row){
-                    rows += '<td>'+row.value+'</td>';
-                    rows += '<td>'+row.text+'</td>';
-                    rows += '<td>'+"<a href='{{ URL::asset('programasacademicos') }}/"+row.value+"/edit'>Editar </a>";
-                    rows += "<form action='{{ URL::asset('programasacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
-                    "<input name='_method' type='hidden' value='DELETE'>"+
-                    "<input name='_token' type='hidden' value='B2k035qqC6uPnr1hMxmrdSBW8Q2OyRkFgM0uUfpF'>"+
-                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
-                });
-                rows += '</tbody>';
-                $(this).append(rows);
-            }
 
             $('#university_id').change(function(){
                 $('#academicprogram_id').empty().change();
+                $('#tabla > tbody').remove();
                 var universidad = $(this).val();
                 if(universidad == ''){
                     $('#faculty_id').empty().change();
@@ -205,7 +194,7 @@
             });
             $('#faculty_id').change(function(){
                 $('#academicprogram_id').empty().change();
-                $('#programas').dataTable().fnDestroy();
+                $('#tabla > tbody').remove();
                 var facultad = $(this).val();
                 if(facultad == -1){
                     $('#academicprogram_id').empty().change();
@@ -218,10 +207,31 @@
                         $.getJSON('{{ route('programa/' )}}/'+facultad,null,function(values){
                             $('#tabla').populateTable(values);
                         });
-                      }
-                    
+                      }     
                 }
-            });       
+            });
+
+            $('#academicprogram_id').change(function(){
+                if($('#academicprogram_id').length){
+                    $('#tabla > tbody').remove();
+                }
+                var programa = $(this).val();
+                if(programa == -1){
+                    $('#tabla > tbody').remove();
+                    $('#tablah > tbody').remove();
+
+                }else{
+                    if($('#academicplan_id').length){
+                        $.getJSON('{{ route('planes/') }}/'+programa,null,function(values){
+                            $('#tabla').populateSelect(values);
+                        });
+                    }else {
+                        $.getJSON('{{ route('planes/') }}/'+programa,null,function(values){
+                            $('#tabla').populateTable(values);
+                        });
+                    }    
+                }
+            });     
             $.material.init();
         });
     </script>

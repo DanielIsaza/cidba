@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ability;
-use App\Typeability;
 use App\University;
+use App\Academicprogram;
+use App\Faculty;
+use App\Academicspace;
 
-class AbilitiesController extends Controller
+
+class AcademicspacesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +19,8 @@ class AbilitiesController extends Controller
     public function index()
     {
         $universidades = University::pluck('nombre','id')->toArray();
-        return view("abilities.index",["universidades"=>$universidades]);
+        return view("academicspaces.index",["universidades"=>$universidades]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,9 +28,9 @@ class AbilitiesController extends Controller
      */
     public function create()
     {
-        $tiposh = Typeability::pluck('nombre','id');
-        $habilidad = new Ability;
-        return view("abilities.create",["habilidad"=> $habilidad,"tiposh" => $tiposh]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        $espacio = new Academicspace;
+        return view("academicspaces.create",["universidades" => $universidades]);
     }
 
     /**
@@ -40,13 +41,13 @@ class AbilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $habilidad = new Ability;
-        $habilidad->nombre = $request->nombre;
-        $habilidad->typeability_id = $request->typeability_id;
-        if($habilidad->save()){
-            return redirect("/habilidades");
+        $espacio = new Academicspace;
+        $espacio->nombre = $request->nombre;
+        $espacio->faculty_id = $request->faculty_id;
+        if($espacio->save()){
+            return redirect("/espaciosacademicos");
         }else{
-            return view("abilities.create");
+            return view("academicspaces.create");
         }
     }
 
@@ -69,9 +70,10 @@ class AbilitiesController extends Controller
      */
     public function edit($id)
     {
-        $habilidad = Ability::find($id);
-        $tiposh = Typeability::pluck('nombre','id');
-        return view("abilities.edit",["habilidad"=> $habilidad,"tiposh"=>$tiposh]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        $facultades = Faculty::pluck('nombre','id')->toArray();
+        $espacio = Academicspace::find($id);   
+        return view("academicspaces.edit",["espacio"=> $espacio,"universidades"=>$universidades,"facultades"=>$facultades]);
     }
 
     /**
@@ -83,14 +85,14 @@ class AbilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $habilidad = Ability::find($id);
-        $habilidad->nombre = $request->nombre;
-        $habilidad->typeability_id = $request->typeability_id;
-        if($habilidad->save()){
-            return redirect("/habilidades");
+        $espacio = Academicspace::find($id);
+        $espacio->nombre = $request->nombre;
+        $espacio->faculty_id = $request->faculty_id;
+        if($espacio->save()){
+            return redirect("/espaciosacademicos");
         }else{
-            return view("abilities.edit",["habilidad" => $habilidad]);
-        }   
+            return view("academicspaces.edit",["espacio" => $espacio]);
+        }
     }
 
     /**
@@ -101,7 +103,7 @@ class AbilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Ability::destroy($id);
-        return redirect('/habilidades');
+        Academicspace::destroy($id);
+        return redirect('/espaciosacademicos');
     }
 }

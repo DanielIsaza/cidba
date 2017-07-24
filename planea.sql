@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2017 a las 05:20:37
+-- Tiempo de generación: 24-07-2017 a las 07:01:48
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `planea`
 --
-USE `planea`;
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +53,13 @@ CREATE TABLE `academicplans` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `academicplans`
+--
+
+INSERT INTO `academicplans` (`id`, `nombre`, `academicprogram_id`, `state_id`, `created_at`, `updated_at`) VALUES
+(1, 'Plan 1 B', 1, 1, '2017-07-24 06:54:10', '2017-07-24 06:54:10');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +73,13 @@ CREATE TABLE `academicprograms` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `academicprograms`
+--
+
+INSERT INTO `academicprograms` (`id`, `nombre`, `faculty_id`, `created_at`, `updated_at`) VALUES
+(1, 'CIDBA', 1, '2017-07-24 06:53:24', '2017-07-24 06:53:24');
 
 -- --------------------------------------------------------
 
@@ -97,7 +111,7 @@ CREATE TABLE `academicspaces` (
   `procesosIntegrativos` varchar(700) COLLATE utf8_unicode_ci NOT NULL,
   `unidades` varchar(9000) COLLATE utf8_unicode_ci NOT NULL,
   `semester_id` int(10) UNSIGNED NOT NULL,
-  `academicprograms_id` int(10) UNSIGNED NOT NULL,
+  `academicplan_id` int(10) UNSIGNED NOT NULL,
   `activityacademic_id` int(10) UNSIGNED NOT NULL,
   `typeevaluation_id` int(10) UNSIGNED NOT NULL,
   `typemethodology_id` int(10) UNSIGNED NOT NULL,
@@ -208,6 +222,13 @@ CREATE TABLE `natures` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `natures`
+--
+
+INSERT INTO `natures` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'naturaleza 1', '2017-07-24 07:06:50', '2017-07-24 07:06:50');
+
 -- --------------------------------------------------------
 
 --
@@ -265,6 +286,13 @@ CREATE TABLE `profiles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `profiles`
+--
+
+INSERT INTO `profiles` (`id`, `nombre`, `descripcion`, `academicplan_id`, `created_at`, `updated_at`) VALUES
+(1, 'perfil', 'Este es el perfil que el plan le otorga a los estudiantes.', 1, '2017-07-24 06:54:10', '2017-07-24 06:54:10');
+
 -- --------------------------------------------------------
 
 --
@@ -316,15 +344,24 @@ INSERT INTO `semesters` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `state`
+-- Estructura de tabla para la tabla `states`
 --
 
-CREATE TABLE `state` (
+CREATE TABLE `states` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `states`
+--
+
+INSERT INTO `states` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'Oferta', '2017-07-24 06:52:53', '2017-07-24 06:52:53'),
+(2, 'Vigente', '2017-07-24 06:53:01', '2017-07-24 06:53:01'),
+(3, 'Retirado', '2017-07-24 06:53:08', '2017-07-24 06:53:08');
 
 -- --------------------------------------------------------
 
@@ -339,6 +376,13 @@ CREATE TABLE `typeabilities` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `typeabilities`
+--
+
+INSERT INTO `typeabilities` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'habilidad 1', '2017-07-24 07:06:36', '2017-07-24 07:06:36');
+
 -- --------------------------------------------------------
 
 --
@@ -352,6 +396,13 @@ CREATE TABLE `typeevaluations` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `typeevaluations`
+--
+
+INSERT INTO `typeevaluations` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'evaluacion tipo 1', '2017-07-24 07:07:07', '2017-07-24 07:07:07');
+
 -- --------------------------------------------------------
 
 --
@@ -364,6 +415,13 @@ CREATE TABLE `typemethodologies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `typemethodologies`
+--
+
+INSERT INTO `typemethodologies` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'metodologia 1', '2017-07-24 07:06:59', '2017-07-24 07:06:59');
 
 -- --------------------------------------------------------
 
@@ -450,7 +508,7 @@ ALTER TABLE `academicprograms`
 ALTER TABLE `academicspaces`
   ADD PRIMARY KEY (`id`),
   ADD KEY `academicspaces_semester_id_foreign` (`semester_id`),
-  ADD KEY `academicspaces_academicprograms_id_foreign` (`academicprograms_id`),
+  ADD KEY `academicspaces_academicplan_id_foreign` (`academicplan_id`),
   ADD KEY `academicspaces_activityacademic_id_foreign` (`activityacademic_id`),
   ADD KEY `academicspaces_typeevaluation_id_foreign` (`typeevaluation_id`),
   ADD KEY `academicspaces_typemethodology_id_foreign` (`typemethodology_id`),
@@ -540,9 +598,9 @@ ALTER TABLE `semesters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `state`
+-- Indices de la tabla `states`
 --
-ALTER TABLE `state`
+ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -597,12 +655,12 @@ ALTER TABLE `abilities`
 -- AUTO_INCREMENT de la tabla `academicplans`
 --
 ALTER TABLE `academicplans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `academicprograms`
 --
 ALTER TABLE `academicprograms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `academicspaces`
 --
@@ -632,7 +690,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `natures`
 --
 ALTER TABLE `natures`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `objectiveEspaces`
 --
@@ -647,7 +705,7 @@ ALTER TABLE `objectives`
 -- AUTO_INCREMENT de la tabla `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `requirements`
 --
@@ -664,25 +722,25 @@ ALTER TABLE `rols`
 ALTER TABLE `semesters`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `state`
+-- AUTO_INCREMENT de la tabla `states`
 --
-ALTER TABLE `state`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `states`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `typeabilities`
 --
 ALTER TABLE `typeabilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `typeevaluations`
 --
 ALTER TABLE `typeevaluations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `typemethodologies`
 --
 ALTER TABLE `typemethodologies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `universities`
 --
@@ -714,7 +772,7 @@ ALTER TABLE `abilities`
 --
 ALTER TABLE `academicplans`
   ADD CONSTRAINT `academicplans_academicprogram_id_foreign` FOREIGN KEY (`academicprogram_id`) REFERENCES `academicprograms` (`id`),
-  ADD CONSTRAINT `academicplans_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`);
+  ADD CONSTRAINT `academicplans_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
 
 --
 -- Filtros para la tabla `academicprograms`
@@ -726,7 +784,7 @@ ALTER TABLE `academicprograms`
 -- Filtros para la tabla `academicspaces`
 --
 ALTER TABLE `academicspaces`
-  ADD CONSTRAINT `academicspaces_academicprograms_id_foreign` FOREIGN KEY (`academicprograms_id`) REFERENCES `academicprograms` (`id`),
+  ADD CONSTRAINT `academicspaces_academicplan_id_foreign` FOREIGN KEY (`academicplan_id`) REFERENCES `academicplans` (`id`),
   ADD CONSTRAINT `academicspaces_activityacademic_id_foreign` FOREIGN KEY (`activityacademic_id`) REFERENCES `activityacademics` (`id`),
   ADD CONSTRAINT `academicspaces_nature_id_foreign` FOREIGN KEY (`nature_id`) REFERENCES `natures` (`id`),
   ADD CONSTRAINT `academicspaces_semester_id_foreign` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),

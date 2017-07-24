@@ -7,6 +7,8 @@ use App\Academicplan;
 use App\Academicprogram;
 use App\Faculty;
 use App\University;
+use App\State;
+use App\Profile;
 
 
 class AcademicplansController extends Controller
@@ -19,7 +21,7 @@ class AcademicplansController extends Controller
     public function index()
     {
         $universidades = University::pluck('nombre','id')->toArray();
-        return view("academicplans.index2",["universidades"=>$universidades]);
+        return view("academicplans.index",["universidades"=>$universidades]);
     }
 
     /**
@@ -29,7 +31,9 @@ class AcademicplansController extends Controller
      */
     public function create()
     {
-        //
+        $universidades = University::pluck('nombre','id')->toArray();
+        $estados = State::pluck('nombre','id')->toArray();
+        return view("academicplans.create",["universidades" => $universidades,"estados"=>$estados]);
     }
 
     /**
@@ -40,7 +44,20 @@ class AcademicplansController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plan = new Academicplan;
+        $plan->nombre = $request->nombre;
+        $plan->academicprogram_id = $request->academicprogram_id;
+        $plan->state_id = $request->state_id;
+        if($plan->save()){
+            $perfil = new Profile;
+            $perfil->nombre = 'perfil';
+            $perfil->descripcion = $request->descripcion;
+            $perfil->academicplan_id = Academicplan::all()->max('id');
+            $perfil->save();
+            return redirect("/planesacademicos");
+        }else{
+            return view("academicplans.create");
+        }
     }
 
     /**
@@ -62,7 +79,17 @@ class AcademicplansController extends Controller
      */
     public function edit($id)
     {
-        //
+        $universidades = University::pluck('nombre','id')->toArray();
+        $facultades = Faculty::pluck('nombre','id')->toArray();
+        $estados = State::pluck('nombre','id')->toArray();
+        $programas = Academicprogram::pluck('nombre','id')->toArray();
+        $plan = Academicplan::find($id);   
+        $idfacultad = \DB::table('academicprograms')
+                     ->join('faculties','faculties.id','=','academicprograms.faculty_id')
+                     ->where('academicprograms.faculty_id',$plan->academicprogram_id)
+                     ->select('faculty_id as id')->get();
+        $perfil = \DB::table('profiles')->where('academicplan_id',$id)->get()[0];
+        return view("academicplans.edit",["plan"=> $plan,"universidades"=>$universidades,"facultades"=>$facultades,"estados"=>$estados,"programas"=>$programas,"perfil"=>$perfil,"idfacultad"=>$idfacultad[0]->id]);
     }
 
     /**
@@ -74,7 +101,21 @@ class AcademicplansController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $plan = Academicplan::find($id);
+        $plan->nombre = $request->nombre;
+        $plan->academicprogram_id = $request->academicprogram_id;
+        $plan->state_id = $request->state_id;
+
+        $idperfil = \DB::table('profiles')->where('academicplan_id',$id)->get()[0];
+        $perfil = Profile::find($idperfil->id);
+        $perfil->descripcion = $request->descripcion;
+
+
+        if($plan->save() && $perfil->save()){
+            return redirect("/planesacademicos");
+        }else{
+            return view("academicplans.edit",["plan" => $plan]);
+        }
     }
 
     /**
@@ -85,6 +126,7 @@ class AcademicplansController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Academicplan::destroy($id);
+        return redirect('/planesacademicos');
     }
 }

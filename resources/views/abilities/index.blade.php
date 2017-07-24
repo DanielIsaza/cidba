@@ -5,7 +5,16 @@
 		<h1>Habilidades</h1>
 	</div>
 	<div class="container">
-		<table class="table table-bordered">
+	{!! Form::model(['method'=>'POST','class'=>'form']) !!}
+
+			{!! Field::select('university_id',$universidades) !!}
+			{!! Field::select('faculty_id') !!}
+			{!! Field::select('academicprogram_id') !!}
+			{!! Field::select('academicplan_id') !!}
+			{!! Field::select('profile_id') !!}
+
+		{!! Form::close() !!}
+		<table id = "tabla" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>Id</td>
@@ -14,17 +23,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($habilidades as $habilidad)
-					<tr>
-						<td>{{ $habilidad->id }}</td>
-						<td>{{ $habilidad->nombre }}</td>
-						<td> 
-							<a href="{{url('/habilidades/'.$habilidad->id.'/edit')}}">
-							Editar</a>
-							@include('abilities.delete',['habilidad'=>$habilidad])
-						</td>
-					</tr>
-				@endforeach
 			</tbody>
 		</table>
 	</div>

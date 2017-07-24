@@ -38,7 +38,7 @@ class CreateEspaciosacaTable extends Migration
             $table->string('unidades',9000);
 
             $table->integer('semester_id')->unsigned();
-            $table->integer('academicprograms_id')->unsigned();
+            $table->integer('academicplan_id')->unsigned();
             $table->integer('activityacademic_id')->unsigned();
             $table->integer('typeevaluation_id')->unsigned();
             $table->integer('typemethodology_id')->unsigned();
@@ -47,7 +47,7 @@ class CreateEspaciosacaTable extends Migration
             $table->timestamps();
 
             $table->foreign('semester_id')->references('id')->on('semesters');
-            $table->foreign('academicprograms_id')->references('id')->on('academicprograms');
+            $table->foreign('academicplan_id')->references('id')->on('academicplans');
             $table->foreign('activityacademic_id')->references('id')->on('activityacademics');
             $table->foreign('typeevaluation_id')->references('id')->on('typeevaluations');
             $table->foreign('typemethodology_id')->references('id')->on('typemethodologies');

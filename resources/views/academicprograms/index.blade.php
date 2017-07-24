@@ -6,7 +6,6 @@
 	</div>
 	<div class="container">
 		{!! Field::select('university_id',$universidades,null) !!}
-
 		{!! Field::select('faculty_id') !!}
 
 		<table id = "tabla" class="table table-bordered">
@@ -27,3 +26,22 @@
 	</div>
 @endsection
 
+@section('tabla')
+<script>
+$.fn.populateTable = function (values){
+                var rows = '';
+                rows += '<tbody>';
+                $.each(values, function(key,row){
+                    rows += '<td>'+row.value+'</td>';
+                    rows += '<td>'+row.text+'</td>';
+                    rows += '<td>'+"<a href='{{ URL::asset('programasacademicos') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += "<form action='{{ URL::asset('programasacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
+                    "<input name='_method' type='hidden' value='DELETE'>"+
+                    "<input name='_token' type='hidden' value='B2k035qqC6uPnr1hMxmrdSBW8Q2OyRkFgM0uUfpF'>"+
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                });
+                rows += '</tbody>';
+                $(this).append(rows);
+            }
+ </script>
+@endsection
