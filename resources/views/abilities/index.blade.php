@@ -46,7 +46,7 @@
                     rows += '<td>'+"<a href='{{ URL::asset('habilidades') }}/"+row.value+"/edit'>Editar </a>";
                     rows += "<form action='{{ URL::asset('habilidades') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
-                    "<input name='_token' type='hidden' value='CYLZBWURbR8h86bX6tk24Z7WjExZHfc9rQWiuq3w'>"+
+                    "<input name='_token' type='hidden' value='RiFbRkouPQ51YbNCVmDv3smV5DQfKiG4PMgOpeK9'>"+
                     "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
                 });
                 rows += '</tbody>';

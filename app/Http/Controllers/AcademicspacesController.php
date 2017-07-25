@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\University;
 use App\Academicprogram;
 use App\Faculty;
@@ -10,6 +11,7 @@ use App\Academicspace;
 use App\Typeevaluation;
 use App\Typemethodology;
 use App\Activityacademic;
+use App\Academicplan;
 use App\Nature;
 use App\Semester;
 
@@ -107,10 +109,22 @@ class AcademicspacesController extends Controller
      */
     public function edit($id)
     {
+        $espacio = Academicspace::find($id);
         $universidades = University::pluck('nombre','id')->toArray();
         $facultades = Faculty::pluck('nombre','id')->toArray();
-        $espacio = Academicspace::find($id);   
-        return view("academicspaces.edit",["espacio"=> $espacio,"universidades"=>$universidades,"facultades"=>$facultades]);
+        $programas = Academicprogram::pluck('nombre','id')->toArray();
+        $planes = Academicplan::pluck('nombre','id')->toArray();
+        $tipoEvaluaciones = Typeevaluation::pluck('nombre','id')->toArray();
+        $tipoMetodologias = Typemethodology::pluck('nombre','id')->toArray();
+        $actividadesAca = Activityacademic::pluck('nombre','id')->toArray();
+        $naturalezas = Nature::pluck('nombre','id')->toArray();
+        $semestres = Semester::pluck('nombre','id')->toArray();
+        
+        $idPlan = Academicplan::where('id',$espacio->academicplan_id)->select('id','academicprogram_id')->get()[0];
+        $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
+        $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
+
+        return view("academicspaces.edit",["espacio"=> $espacio,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"tipoEvaluaciones"=>$tipoEvaluaciones,"tipoMetodologias"=>$tipoMetodologias,"actividadesAca"=>$actividadesAca,"naturalezas"=>$naturalezas,"semestres"=>$semestres,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
     }
 
     /**
@@ -123,8 +137,50 @@ class AcademicspacesController extends Controller
     public function update(Request $request, $id)
     {
         $espacio = Academicspace::find($id);
+        $espacio->codigo = $request->codigo;
         $espacio->nombre = $request->nombre;
-        $espacio->faculty_id = $request->faculty_id;
+        $espacio->numeroCreditos = $request->numeroCreditos;
+        $espacio->horasTeoricas = $request->horasTeoricas;
+        $espacio->horasPracticas = $request->horasPracticas;
+        $espacio->horasTeoPract = $request->horasTeoPract;
+        $espacio->horasAsesorias = $request->horasAsesorias;
+        $espacio->horasIndependiente = $request->horasIndependiente;
+
+        if (Input::get('customer_data')) {
+            $espacio->habilitable = 1;
+        } else {
+        $espacio->habilitable = 0;
+        }
+
+        if (Input::get('customer_data')) {
+        $espacio->validable = 1;
+        } else {
+        $espacio->validable = 0;
+        }
+
+        if (Input::get('homologable')) {
+        $espacio->homologable = 1;
+        } else {
+        $espacio->homologable = 0;
+        }
+  
+        $espacio->nucleoTematico = $request->nucleoTematico;
+        $espacio->justificacion = $request->justificacion;
+        $espacio->metodologia = $request->metodologia;
+        $espacio->evaluacion = $request->evaluacion;
+        $espacio->descripcion = $request->descripcion;
+        $espacio->contenidoConceptual = $request->contenidoConceptual;
+        $espacio->contenidoProcedimental  = $request->contenidoProcedimental;
+        $espacio->contenidoActitudinal = $request->contenidoActitudinal;
+        $espacio->procesosIntegrativos = $request->procesosIntegrativos;
+        $espacio->unidades = $request->unidades;
+
+        $espacio->academicplan_id = $request->academicplan_id;
+        $espacio->semester_id = $request->semester_id;
+        $espacio->activityacademic_id = $request->activityacademic_id;
+        $espacio->typeevaluation_id = $request->typeevaluation_id;
+        $espacio->typemethodology_id = $request->typemethodology_id;
+        $espacio->nature_id = $request->nature_id;
         if($espacio->save()){
             return redirect("/espaciosacademicos");
         }else{

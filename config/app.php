@@ -236,6 +236,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
 
 

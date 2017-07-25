@@ -43,6 +43,8 @@ Route::resource('habilidades','AbilitiesController');
 Route::resource('planesacademicos','AcademicplansController');
 //Rutas para el CRUD de los espacios academicos
 Route::resource('espaciosacademicos','AcademicspacesController');
+//Rutas para el CRUD de los objetivos
+Route::resource('objetivos','Objetiveespaces');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
@@ -60,6 +62,7 @@ Route::get('planes/{program_id?}',["as" => "planes/",function($program_id){
 	->where('academicplans.academicprogram_id',$program_id)
 	->select('academicplans.id as value','academicplans.nombre as text','states.nombre as estado')->get();
 }]);
+//Ruta que permite obtener los perfiles asociados a un plan academico
 Route::get('perfiles/{academicplan_id?}',["as"=>"perfiles/",function($academicplan_id){
 	return App\Profile::where('academicplan_id',$academicplan_id)
 			->select('id as value','descripcion as text')->get();
@@ -68,6 +71,23 @@ Route::get('perfiles/{academicplan_id?}',["as"=>"perfiles/",function($academicpl
 Route::get('habilidad/{profile_id?}',["as"=>"habilidad/",function($profile_id){
 	return App\Ability::where('profile_id',$profile_id)
 	->select('id as value','nombre as text','peso as peso')->get();
+}]);
+//Ruta que retorna las habilidades definidas en un perfil
+Route::get('habilidad/{typeability_id?}',["as"=>"habilidad",function($typeability_id){
+	return App\Ability::where('typeability_id',$typeability_id)
+	->select('id as value','nombre as text','peso as peso')->get();
+}]);
+//Ruta que retorna las materias de un semestre y un plan definido
+Route::get('materias/{semester_id?}/{academicplan_id?}',["as"=>"materias",function($semester_id,$academicplan_id){
+	return App\Academicspace::where([['semester_id','=',$semester_id],['academicplan_id','=',$academicplan_id]])->select('id as value','nombre as text')->get();
+}]);
+//Ruta que retorna las materias de un semestre y un plan definido
+Route::get('materia/{academicplan_id?}',["as"=>"materia",function($academicplan_id){
+	return App\Academicspace::where('academicplan_id',$academicplan_id)->select('id as value','nombre as text')->get();
+}]);
+//Ruta que permite tener el valor de los objetivos de una habilidad
+Route::get('objetivo/{ability_id?}',["as"=>"objetivo/",function($ability_id){
+	return App\Objective::where('ability_id',$ability_id)->select('id as value','nombre as text','peso')->get();
 }]);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

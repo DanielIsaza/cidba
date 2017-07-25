@@ -108,6 +108,9 @@
                                     <li>
                                         <a href="{{ url('/roles') }}">Roles</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/roles') }}">Permisos</a>
+                                    </li>
                                </ul>
                         </li>
                         <li class="dropdown">
@@ -120,6 +123,22 @@
                                     </li>
                                     <li>
                                         <a href="{{ url('/espaciosacademicos') }}">Espacios académicos</a>
+                                    </li>
+                               </ul>
+                        </li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Pesos <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ url('/objetivos') }}">Objetivos Espacios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/espaciosacademicos') }}">Asignar Pesos teóricos</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/espaciosacademicos') }}">Asignar Pesos</a>
                                     </li>
                                </ul>
                         </li>
@@ -244,10 +263,13 @@
                         $('#profile_id').empty().change();
                     }
                 else{
-                    if(!$('#tabla').length){
-
-                        $.getJSON('{{ route('perfiles/') }}/'+plan,null,function(values){
-                            $('#profile_id').populateSelect(values);
+                    
+                    $.getJSON('{{ route('perfiles/') }}/'+plan,null,function(values){
+                        $('#profile_id').populateSelect(values);
+                    });
+                    if(("#academicspace_id").length){
+                        $.getJSON('{{ route('materia') }}/'+plan,null,function(values){
+                            $('#academicspace_id').populateSelect(values);
                         });
                     }
                 }
@@ -262,15 +284,44 @@
                         $('#tabla > tbody').remove();
                         $('#profile_id').empty.change();
                     }else{
-                        $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
+                        if($("#tabla").length){
+                         $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
                             $('#tabla').populateTable(values);
                         });
+                        }
                     }
                 }
             });
 
             $('#semester_id').change(function(){
-                
+                $('#tabla > tbody').remove();
+                var semestre = $("#semester_id").val();
+                var plan = $("#academicplan_id").val();
+                if( semestre > 0 && plan > 0){
+                    $.getJSON('{{ route('materias') }}/'+semestre+'/'+plan,null,function(values){
+                        $("#tabla").populateTable(values);
+                    });
+                }
+            });
+
+            $('#typeability_id').change(function(){
+                $('#tabla > tbody').remove();
+                var tipoHabilidad = $('#typeability_id').val();
+                if(tipoHabilidad > 0){
+                    $.getJSON('{{route('habilidad')}}/'+tipoHabilidad,null,function(values){
+                        $("#ability_id").populateSelect(values);
+                    });
+                }
+            });
+
+            $('#ability_id').change(function(){
+                $('#tabla > tbody').remove();
+                var habilidad = $('#ability_id').val();
+                if(habilidad > 0){
+                    $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
+                        $("#tabla").populateTable(values);
+                    });
+                }
             });
 
             $.material.init();
