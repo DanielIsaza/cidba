@@ -45,6 +45,12 @@ Route::resource('planesacademicos','AcademicplansController');
 Route::resource('espaciosacademicos','AcademicspacesController');
 //Rutas para el CRUD de los objetivos
 Route::resource('objetivos','Objetiveespaces');
+//Ruta para la asignacion de peso a los objetivos
+Route::get('/asignar','Objetiveespaces@asignar');
+//Ruta para la asignacion de los pesos teoricos
+Route::get('/asignarTeorico', 'Objetiveespaces@asignarTeorico');
+//
+Route::get('/estadistica','Objetiveespaces@estadistica');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)

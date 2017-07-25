@@ -1,9 +1,9 @@
 @extends("layouts.app");
 
 @section("content")
-	<div class="container white">
-		<h1 align="center">Nuevo objetivo</h1>
-		{!!Form::open(['url'=> '/objetivos','method' =>'POST']) !!}
+<div class="container white">
+		<h1 align="center">Asignar Pesos Teóricos</h1>
+		{!!Form::open(['url'=> '/objetivosTeoricos','method' =>'POST']) !!}
 
 	<div class="row">
 		<div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
@@ -16,23 +16,16 @@
 		<div class="col-md-6">{!! Field::select('academicspace_id') !!}</div>
 		<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
 	</div>
-
-		{!! Field::select('ability_id') !!}
-	 
 	<div class="row">
-		<div class="col-md-6">
-			{{ Form::label('Nombre del objetivo')}}
-			{{ Form::text('nombre',null,['class' => 'form-control',
-					'placeholder'=>'Nombre']) }}
-		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">{!! Field::select('ability_id') !!}</div>
+		<div class="col-md-4">{!! Field::select('objective_id',["1"=>"objetivo1","2"=>"objetivo2"]) !!}</div>
+		<div class="col-md-4">
 			{{ Form::label('Peso')}}
 			{{ Form::text('peso',null,['class' => 'form-control',
 					'placeholder'=>'Peso del objetivo sobre la habilidad']) }}
 		</div>
 	</div>
 	<div class="form-group text-	">
-		<a href="{{url('/objetivos')}}">Regresar al listado de objetivos</a>
 		<input type="submit" value="Guardar" class="btn btn-success">
 	</div>
 	{!! Form::close() !!}

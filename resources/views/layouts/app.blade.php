@@ -135,10 +135,13 @@
                                         <a href="{{ url('/objetivos') }}">Objetivos Espacios</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/espaciosacademicos') }}">Asignar Pesos teóricos</a>
+                                        <a href="{{ url('/asignarTeorico') }}">Asignar Pesos teóricos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/espaciosacademicos') }}">Asignar Pesos</a>
+                                        <a href="{{ url('/asignar') }}">Asignar Pesos</a>
+                                    </li>
+                                     <li>
+                                        <a href="{{ url('/estadistica') }}">Estadistica</a>
                                     </li>
                                </ul>
                         </li>
@@ -288,6 +291,11 @@
                          $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
                             $('#tabla').populateTable(values);
                         });
+                        }
+                        if($('#ability_id').length){
+                            $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
+                                $('#ability_id').populateSelect(values);
+                            });
                         }
                     }
                 }
