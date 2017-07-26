@@ -13,11 +13,11 @@
 	</div>
 	 
 	<div class="row">
-		<div class="col-md-6">{!! Field::select('academicspace_id') !!}</div>
 		<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
+		<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
 	</div>
 
-		{!! Field::select('ability_id') !!}
+		
 	 
 	<div class="row">
 		<div class="col-md-6">

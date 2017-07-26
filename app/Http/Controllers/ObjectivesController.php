@@ -7,9 +7,9 @@ use App\Typeability;
 use App\University;
 use App\Faculty;
 
-class Objetiveespaces extends Controller
+class ObjectivesController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
