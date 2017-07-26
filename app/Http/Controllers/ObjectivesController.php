@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Academicprogram;
+use App\Academicplan;
+use App\Profile;
+use App\Ability;    
+use App\Objective;
 use App\Typeability;
 use App\University;
 use App\Faculty;
@@ -16,8 +21,9 @@ class ObjectivesController extends Controller
      */
     public function index()
     {
+        $universidades = University::pluck('nombre','id')->toArray();
         $tipoHabilidades = Typeability::pluck('nombre','id')->toArray();
-        return view("objetives.index",["tipoHabilidades"=>$tipoHabilidades]);
+        return view("objetives.index",["universidades"=>$universidades,"tipoHabilidades"=>$tipoHabilidades]);
     }
 
     /**
@@ -39,11 +45,13 @@ class ObjectivesController extends Controller
      */
     public function store(Request $request)
     {
-        $facultad = new Faculty;
-        $facultad->nombre = $request->nombre;
-        $facultad->university_id = $request->university_id;
-        if($facultad->save()){
-            return redirect("/facultades");
+        $objetivo = new Objective;
+        $objetivo->nombre = $request->nombre;
+        $objetivo->peso = $request->peso;
+        $objetivo->ability_id = $request->ability_id;
+
+        if($objetivo->save()){
+            return redirect("/objetivos");
         }else{
             return view("objetives.create");
         }
@@ -68,9 +76,20 @@ class ObjectivesController extends Controller
      */
     public function edit($id)
     {
-        $facultad = Faculty::find($id);
-        $universidades = University::pluck('nombre','id');
-        return view("objetives.edit",["facultad"=> $facultad,"universidades"=>$universidades]);
+        $objetivo = Objective::find($id);
+        $universidades = University::pluck('nombre','id')->toArray();
+        $facultades = Faculty::pluck('nombre','id')->toArray();
+        $programas = Academicprogram::pluck('nombre','id')->toArray();
+        $planes = Academicplan::pluck('nombre','id')->toArray();
+        $perfiles = Profile::pluck('nombre','id')->toArray();
+        $habilidades = Ability::pluck('nombre','id')->toArray();
+
+        $idPerfil = Profile::where('id',$objetivo->ability_id)->select('id','academicplan_id')->get()[0];
+        $idPlan = Academicplan::where('id',$idPerfil->academicplan_id)->select('id','academicprogram_id')->get()[0];
+        $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
+        $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
+
+        return view("objetives.edit",["universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"perfiles"=>$perfiles,"habilidades"=>$habilidades,"objetivo"=>$objetivo,"idHabilidad"=>$objetivo->ability_id,"idPerfil"=>$idPerfil->id,"idPlan"=>$idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
     }
 
     /**
@@ -82,13 +101,15 @@ class ObjectivesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $facultad = Faculty::find($id);
-        $facultad->nombre = $request->nombre;
-        $facultad->university_id = $request->university_id;
-        if($facultad->save()){
-            return redirect("/facultades");
+        $objetivo = Objective::find($id);
+        $objetivo->nombre = $request->nombre;
+        $objetivo->peso = $request->peso;
+        $objetivo->ability_id = $request->ability_id;
+       
+        if($objetivo->save()){
+            return redirect("/objetivos");
         }else{
-            return view("objetives.edit",["facultad" => $facultad]);
+            return view("objetives.edit",["objetivo" => $objetivo]);
         }
     }
     /**
@@ -135,7 +156,7 @@ class ObjectivesController extends Controller
      */
     public function destroy($id)
     {
-        Faculty::destroy($id);
-        return redirect('/facultades');
+        Objective::destroy($id);
+        return redirect('/objetivos');
     }
 }

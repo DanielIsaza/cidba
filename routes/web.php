@@ -45,7 +45,7 @@ Route::resource('planesacademicos','AcademicplansController');
 Route::resource('espaciosacademicos','AcademicspacesController');
 //Rutas para el CRUD de los objetivos
 Route::resource('objetivos','ObjectivesController');
-//
+// permite obtener las gráficas estadisticas 
 Route::get('/estadistica','Objetiveespaces@estadistica');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){

@@ -132,13 +132,28 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/objetivos') }}">Objetivos Espacios</a>
+                                        <a href="{{ url('/objetivos') }}">Objetivos</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/asignar') }}">Asignar Pesos</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/asignarTeorico') }}">Asignar Pesos teóricos</a>
                                     </li>
+                               </ul>
+                        </li><li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   Estadisticas <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/asignar') }}">Asignar Pesos</a>
+                                        <a href="{{ url('/estadistica') }}">El plan de estudios completo</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/asignarTeorico') }}">Por área de conocimiento</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/asignar') }}"></a>
                                     </li>
                                      <li>
                                         <a href="{{ url('/estadistica') }}">Estadistica</a>
@@ -287,14 +302,14 @@
                         $('#tabla > tbody').remove();
                         $('#profile_id').empty.change();
                     }else{
-                        if($("#tabla").length){
-                         $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
-                            $('#tabla').populateTable(values);
-                        });
-                        }
                         if($('#ability_id').length){
                             $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
                                 $('#ability_id').populateSelect(values);
+                            });
+                        }
+                        else if($("#tabla").length){
+                            $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
+                                $('#tabla').populateTable(values);
                             });
                         }
                     }
