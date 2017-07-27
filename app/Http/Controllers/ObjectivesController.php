@@ -113,42 +113,6 @@ class ObjectivesController extends Controller
         }
     }
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function asignar()
-    {
-        $universidades = University::pluck('nombre','id')->toArray();
-        return view("objetives.asignar",["universidades"=>$universidades]);
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function asignarTeorico()
-    {
-        $universidades = University::pluck('nombre','id')->toArray();
-        return view("objetives.asignarTeorico",["universidades"=>$universidades]);
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function estadistica ()
-    {
-        $universidades = University::pluck('nombre','id')->toArray();
-        return view("objetives.estadistica",["universidades"=>$universidades]);
-    }
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
