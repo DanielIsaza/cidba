@@ -20,12 +20,14 @@
 		</div>
 
 		{!! Form::close() !!}
-		<table id = "tabla" class="table table-bordered">
+		<table id = "tablaO" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>Id</td>
-					<td>Nombre</td>
-					<td>Peso</td>
+					<td>Espacio</td>
+					<td>Peso sobre objetivos</td>
+					<td>Objetivo</td>
+					<td>Peso sobre habilidad</td>
 					<td>Acciones</td>
 				</tr>
 			</thead>
@@ -48,8 +50,10 @@
                     rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.peso+'</td>';
-                    rows += '<td>'+"<a href='{{ URL::asset('objetivos') }}/"+row.value+"/edit'>Editar </a>";
-                    rows += "<form action='{{ URL::asset('objetivos') }}/"+row.value+"' method='POST' class='inline-block'>"+
+                    rows += '<td>'+row.objetivos+'</td>'
+                    rows += '<td>'+row.pesohabilidad+'</td>'
+                    rows += '<td>'+"<a href='{{ URL::asset('asignacion') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += "<form action='{{ URL::asset('asignacion') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='RiFbRkouPQ51YbNCVmDv3smV5DQfKiG4PMgOpeK9'>"+
                     "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";

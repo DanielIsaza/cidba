@@ -50,14 +50,14 @@ class ObjectivespacesController extends Controller
         $espaciobjetivo = new ObjectiveEspace;
         $peso = new Weight;
 
-        $espaciobjetivo->academispace_id = $request->academispace_id;
+        $espaciobjetivo->academicspace_id = $request->academicspace_id;
         $espaciobjetivo->objective_id = $request->objective_id;
 
         if($espaciobjetivo->save()){
             $peso->tipo = 1;
             $peso->peso = $request->peso;
             $peso->ability_id = $request->ability_id;
-            $peso->objectiveEspace_id = ObjectiveEspace::pluck('id')->max('id')->get();
+            $peso->objectiveEspace_id = ObjectiveEspace::all('id')->max()->select('id')->get()[0]->id;
             if($peso->save()){
                 return redirect("/asignacion");
             }

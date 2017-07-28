@@ -341,6 +341,11 @@
                 $('#tabla > tbody').remove();
                 var habilidad = $('#ability_id').val();
                 if(habilidad > 0){
+                    if($('#tablaO').length){
+                        $.getJSON('{{ route('prueba') }}/'+habilidad,null,function(values){
+                            $('#tablaO').populateTable(values);
+                        });
+                    }else{    
                     if($('#objective_id').length){
                         $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
                             $('#objective_id').populateSelect(values);
@@ -349,6 +354,7 @@
                         $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
                             $("#tabla").populateTable(values);
                         });
+                    }
                     }
                 }
             });
