@@ -46,7 +46,7 @@ Route::resource('espaciosacademicos','AcademicspacesController');
 //Rutas para el CRUD de los objetivos
 Route::resource('objetivos','ObjectivesController');
 //Rutas para el manejo de la asignación de los pesos
-Route::resource('asignacion','ObjetivespacesController');
+Route::resource('asignacion','ObjectivespacesController');
 // permite obtener las gráficas estadisticas 
 Route::get('/estadistica','Objetiveespaces@estadistica');
 //Ruta que retorna todas las facultades

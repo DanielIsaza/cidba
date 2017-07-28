@@ -11,6 +11,8 @@ use App\Objective;
 use App\Typeability;
 use App\University;
 use App\Faculty;
+use App\ObjectiveEspace;
+use App\Weight;
 
 class ObjectivespacesController extends Controller
 {
@@ -23,7 +25,7 @@ class ObjectivespacesController extends Controller
     {
         $universidades = University::pluck('nombre','id')->toArray();
         $tipoHabilidades = Typeability::pluck('nombre','id')->toArray();
-        return view("objetives.index",["universidades"=>$universidades,"tipoHabilidades"=>$tipoHabilidades]);
+        return view("objectivess.index",["universidades"=>$universidades,"tipoHabilidades"=>$tipoHabilidades]);
     }
 
     /**
@@ -34,7 +36,7 @@ class ObjectivespacesController extends Controller
     public function create()
     {
         $universidades = University::pluck('nombre','id')->toArray();
-        return view("objetives.create",["universidades" => $universidades]);
+        return view("objectivess.create",["universidades" => $universidades]);
     }
 
     /**
@@ -45,15 +47,22 @@ class ObjectivespacesController extends Controller
      */
     public function store(Request $request)
     {
-        $objetivo = new Objective;
-        $objetivo->nombre = $request->nombre;
-        $objetivo->peso = $request->peso;
-        $objetivo->ability_id = $request->ability_id;
+        $espaciobjetivo = new ObjectiveEspace;
+        $peso = new Weight;
 
-        if($objetivo->save()){
-            return redirect("/objetivos");
+        $espaciobjetivo->academispace_id = $request->academispace_id;
+        $espaciobjetivo->objective_id = $request->objective_id;
+
+        if($espaciobjetivo->save()){
+            $peso->tipo = 1;
+            $peso->peso = $request->peso;
+            $peso->ability_id = $request->ability_id;
+            $peso->objectiveEspace_id = ObjectiveEspace::pluck('id')->max('id')->get();
+            if($peso->save()){
+                return redirect("/asignacion");
+            }
         }else{
-            return view("objetives.create");
+            return view("objectivess.create");
         }
     }
 

@@ -135,7 +135,7 @@
                                         <a href="{{ url('/objetivos') }}">Objetivos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/asignar') }}">Asignar Pesos</a>
+                                        <a href="{{ url('/asignacion') }}">Asignar Pesos</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/asignarTeorico') }}">Asignar Pesos teóricos</a>
@@ -341,9 +341,15 @@
                 $('#tabla > tbody').remove();
                 var habilidad = $('#ability_id').val();
                 if(habilidad > 0){
-                    $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
-                        $("#tabla").populateTable(values);
-                    });
+                    if($('#objective_id').length){
+                        $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
+                            $('#objective_id').populateSelect(values);
+                        });
+                    }else{
+                        $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
+                            $("#tabla").populateTable(values);
+                        });
+                    }
                 }
             });
 
