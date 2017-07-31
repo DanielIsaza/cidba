@@ -41,7 +41,8 @@
                 	rows += '<tr>';
                     rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
-                    rows += '<td>'+"<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += '<td>'+"<a href='{{ URL::asset('descargar') }}/"+row.values+"'>Descargar  </a>";
+                    rows += "<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'>Editar  </a>";
                     rows += "<form action='{{ URL::asset('espaciosacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='RiFbRkouPQ51YbNCVmDv3smV5DQfKiG4PMgOpeK9'>"+

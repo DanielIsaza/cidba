@@ -138,7 +138,7 @@
                                         <a href="{{ url('/asignacion') }}">Asignar Pesos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/asignarTeorico') }}">Asignar Pesos teóricos</a>
+                                        <a href="{{ url('/asignacionTeorica') }}">Asignar Pesos teóricos</a>
                                     </li>
                                </ul>
                         </li><li class="dropdown">

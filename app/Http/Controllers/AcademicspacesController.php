@@ -100,6 +100,15 @@ class AcademicspacesController extends Controller
     {
         //
     }
+    /**
+     * Download the syllabus of the academicspace
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function descarga($id){
+
+    }
 
     /**
      * Show the form for editing the specified resource.
