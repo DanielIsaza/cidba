@@ -109,7 +109,7 @@
                                         <a href="{{ url('/roles') }}">Roles</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/roles') }}">Permisos</a>
+                                        <a href="{{ url('/autoriza') }}">Permisos</a>
                                     </li>
                                </ul>
                         </li>
