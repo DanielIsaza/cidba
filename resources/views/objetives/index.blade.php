@@ -51,7 +51,7 @@
                     rows += '<td>'+"<a href='{{ URL::asset('objetivos') }}/"+row.value+"/edit'>Editar </a>";
                     rows += "<form action='{{ URL::asset('objetivos') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
-                    "<input name='_token' type='hidden' value='RiFbRkouPQ51YbNCVmDv3smV5DQfKiG4PMgOpeK9'>"+
+                    "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
                     "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
                 });
                 rows += '</tbody>';

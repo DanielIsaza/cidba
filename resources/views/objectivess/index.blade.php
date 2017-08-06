@@ -27,7 +27,7 @@
 					<td>Espacio</td>
 					<td>Peso sobre objetivos</td>
 					<td>Objetivo</td>
-					<td>Peso sobre habilidad</td>
+					<td>Peso del objetivo sobre habilidad</td>
 					<td>Acciones</td>
 				</tr>
 			</thead>
@@ -47,6 +47,7 @@
                 var rows = '';
                 rows += '<tbody>';
                 $.each(values, function(key,row){
+                	rows += '<tr>';
                     rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.peso+'</td>';
@@ -55,8 +56,9 @@
                     rows += '<td>'+"<a href='{{ URL::asset('asignacion') }}/"+row.value+"/edit'>Editar </a>";
                     rows += "<form action='{{ URL::asset('asignacion') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
-                    "<input name='_token' type='hidden' value='RiFbRkouPQ51YbNCVmDv3smV5DQfKiG4PMgOpeK9'>"+
+                    "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
                     "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                    rows += '</tr>';
                 });
                 rows += '</tbody>';
                 $(this).append(rows);

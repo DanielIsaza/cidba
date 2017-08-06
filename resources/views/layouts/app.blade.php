@@ -339,6 +339,7 @@
 
             $('#ability_id').change(function(){
                 $('#tabla > tbody').remove();
+                $('#tablaO > tbody').remove();
                 var habilidad = $('#ability_id').val();
                 if(habilidad > 0){
                     if($('#tablaO').length){

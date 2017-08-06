@@ -84,7 +84,8 @@ class ObjectivesController extends Controller
         $perfiles = Profile::pluck('nombre','id')->toArray();
         $habilidades = Ability::pluck('nombre','id')->toArray();
 
-        $idPerfil = Profile::where('id',$objetivo->ability_id)->select('id','academicplan_id')->get()[0];
+        $idHabilidad = Ability::where('id',$objetivo->ability_id)->select('id','profile_id')->get()[0];
+        $idPerfil = Profile::where('id',$idHabilidad->profile_id)->select('id','academicplan_id')->get()[0];
         $idPlan = Academicplan::where('id',$idPerfil->academicplan_id)->select('id','academicprogram_id')->get()[0];
         $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
         $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
