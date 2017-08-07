@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ Route::resource('autoriza','AutorizesController');
 //Rutas para el manejo de la asignación teorica de los pesos
 Route::resource('asignacionTeorica','ObjectivesspacesTController');
 // permite obtener las gráficas estadisticas 
-Route::get('/estadistica','Objetiveespaces@estadistica');
+Route::get('estadistica','StatisticsController@index');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
