@@ -343,10 +343,15 @@
                 var habilidad = $('#ability_id').val();
                 if(habilidad > 0){
                     if($('#tablaO').length){
-                        $.getJSON('{{ route('prueba') }}/'+habilidad,null,function(values){
+                        $.getJSON('{{ route('objetivosreal') }}/'+habilidad,null,function(values){
                             $('#tablaO').populateTable(values);
                         });
-                    }else{    
+                    }else{
+                    if($('#tablaT').length){
+                        $.getJSON('{{ route('objetivosteo') }}/'+habilidad,null,function(values){
+                            $('#tablaT').populateTable(values);
+                        });
+                    }    
                     if($('#objective_id').length){
                         $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
                             $('#objective_id').populateSelect(values);

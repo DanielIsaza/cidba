@@ -98,13 +98,22 @@ Route::get('objetivo/{ability_id?}',["as"=>"objetivo/",function($ability_id){
 	return App\Objective::where('ability_id',$ability_id)->select('id as value','nombre as text','peso')->get();
 }]);
 //Ruta que obtiene los espacios académicos y objetivos que son afectados por cada uno
-Route::get('prueba/{ability_id?}',["as"=>"prueba",function($ability_id){
+Route::get('objetivosreal/{ability_id?}',["as"=>"objetivosreal",function($ability_id){
 	return DB::table('abilities')
 	->join('weights','abilities.id','=','weights.ability_id')
 	->join('objectiveespaces','objectiveespaces.id','=','weights.objectiveEspace_id')
 	->join('objectives','objectives.id','=','objectiveespaces.objective_id')
 	->join('academicspaces','academicspaces.id','=','objectiveespaces.academicspace_id')
-	->where('abilities.id',$ability_id)->select('weights.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
+	->where([['abilities.id','=',$ability_id],['weights.tipo','=','1']])->select('weights.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
+}]);
+//Ruta que obtiene los espacios académicos y objetivos que son afectados por cada uno
+Route::get('objetivosteo/{ability_id?}',["as"=>"objetivosteo",function($ability_id){
+	return DB::table('abilities')
+	->join('weights','abilities.id','=','weights.ability_id')
+	->join('objectiveespaces','objectiveespaces.id','=','weights.objectiveEspace_id')
+	->join('objectives','objectives.id','=','objectiveespaces.objective_id')
+	->join('academicspaces','academicspaces.id','=','objectiveespaces.academicspace_id')
+	->where([['abilities.id','=',$ability_id],['weights.tipo','=','0']])->select('weights.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
 }]);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

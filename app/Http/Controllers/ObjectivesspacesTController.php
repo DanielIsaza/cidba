@@ -25,7 +25,7 @@ class ObjectivesspacesTController extends Controller
     {
         $universidades = University::pluck('nombre','id')->toArray();
         $tipoHabilidades = Typeability::pluck('nombre','id')->toArray();
-        return view("objectivess.index",["universidades"=>$universidades,"tipoHabilidades"=>$tipoHabilidades]);
+        return view("objectivessT.index",["universidades"=>$universidades,"tipoHabilidades"=>$tipoHabilidades]);
     }
 
     /**
@@ -36,7 +36,7 @@ class ObjectivesspacesTController extends Controller
     public function create()
     {
         $universidades = University::pluck('nombre','id')->toArray();
-        return view("objectivess.create",["universidades" => $universidades]);
+        return view("objectivessT.create",["universidades" => $universidades]);
     }
 
     /**
@@ -63,7 +63,7 @@ class ObjectivesspacesTController extends Controller
                 return redirect("/asignacionTeorica");
             }
         }else{
-            return view("objectivess.create");
+            return view("objectivessT.create");
         }
     }
 
@@ -105,7 +105,7 @@ class ObjectivesspacesTController extends Controller
         $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
         $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
 
-        return view("objetives.edit",[["idHabilidad"=>$objetivo->ability_id,"peso"=>$peso,"objetivoes"=>$objetivoes,"objetivos"=>$objetivos,"espacios"=>$espacios,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"perfiles"=>$perfiles,"habilidades"=>$habilidades,"objetivo"=>$objetivo,"idHabilidad"=>$objetivo->ability_id,"idPerfil"=>$idPerfil->id,"idPlan"=>$idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
+        return view("objectivessT.edit",["idHabilidad"=>$objetivo->ability_id,"peso"=>$peso,"objetivoes"=>$objetivoes,"objetivos"=>$objetivos,"espacios"=>$espacios,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"perfiles"=>$perfiles,"habilidades"=>$habilidades,"objetivo"=>$objetivo,"idHabilidad"=>$objetivo->ability_id,"idPerfil"=>$idPerfil->id,"idPlan"=>$idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
     }
 
     /**
@@ -124,7 +124,7 @@ class ObjectivesspacesTController extends Controller
         if($peso->save()){
             return redirect("/asignacionTeorica");
         }else{
-            return view("objetives.edit",["objetivo" => $objetivo]);
+            return view("objectivessT.edit",["objetivo" => $objetivo]);
         }
     }
     /**
