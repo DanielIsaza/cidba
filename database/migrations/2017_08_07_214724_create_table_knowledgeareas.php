@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActividadesacTable extends Migration
+class CreateTableKnowledgeareas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateActividadesacTable extends Migration
      */
     public function up()
     {
-        Schema::create('activityacademics', function (Blueprint $table) {
+        Schema::create('knowledgeareas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->String('nombre');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateActividadesacTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activityacademics');
+        Schema::dropIfExists('knowledgeareas');
     }
 }

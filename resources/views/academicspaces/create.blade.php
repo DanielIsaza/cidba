@@ -17,9 +17,10 @@
   		<div class="col-md-4">{!! Field::select('activityacademic_id',$actividadesAca) !!}</div>
   	</div>
   	<div class="row">
-  		<div class="col-md-4">{!! Field::select('typeevaluation_id',$tipoEvaluaciones) !!}</div>
-  		<div class="col-md-4">{!! Field::select('typemethodology_id',$tipoMetodologias) !!}</div>
-  		<div class="col-md-4">{!! Field::select('nature_id',$naturalezas) !!}</div>
+  		<div class="col-md-3">{!! Field::select('typeevaluation_id',$tipoEvaluaciones) !!}</div>
+  		<div class="col-md-3">{!! Field::select('typemethodology_id',$tipoMetodologias) !!}</div>
+  		<div class="col-md-3">{!! Field::select('nature_id',$naturalezas) !!}</div>
+  		<div class="col-md-3">{!! Field::select('knowledgearea_id',$areas) !!}</div>
   	</div>
   	<div class="row">
   		<div class="col-md-3">

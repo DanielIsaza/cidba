@@ -96,6 +96,9 @@
                                     <li>
                                         <a href="{{ url('/habilidades') }}">Habilidades</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/areasconocimiento') }}">Áreas de conocimiento</a>
+                                    </li>
                                </ul>
                         </li>
                         <li class="dropdown">

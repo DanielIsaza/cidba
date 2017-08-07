@@ -14,6 +14,7 @@ use App\Activityacademic;
 use App\Academicplan;
 use App\Nature;
 use App\Semester;
+use App\Knowledgearea;
 
 class AcademicspacesController extends Controller
 {
@@ -41,8 +42,9 @@ class AcademicspacesController extends Controller
         $actividadesAca = Activityacademic::pluck('nombre','id')->toArray();
         $naturalezas = Nature::pluck('nombre','id')->toArray();
         $semestres = Semester::pluck('nombre','id')->toArray();
+        $areas = Knowledgearea::pluck('nombre','id')->toArray();
 
-        return view("academicspaces.create",["universidades"=>$universidades,"tipoEvaluaciones"=>$tipoEvaluaciones,"tipoMetodologias"=>$tipoMetodologias,"actividadesAca"=>$actividadesAca,"naturalezas"=>$naturalezas,"semestres"=>$semestres]);
+        return view("academicspaces.create",["universidades"=>$universidades,"tipoEvaluaciones"=>$tipoEvaluaciones,"tipoMetodologias"=>$tipoMetodologias,"actividadesAca"=>$actividadesAca,"naturalezas"=>$naturalezas,"semestres"=>$semestres,"areas"=>$areas]);
     }
 
     /**
@@ -82,6 +84,7 @@ class AcademicspacesController extends Controller
         $espacio->typeevaluation_id = $request->typeevaluation_id;
         $espacio->typemethodology_id = $request->typemethodology_id;
         $espacio->nature_id = $request->nature_id;
+        $espacio->knowledgearea_id = $request->knowledgearea_id;
 
         if($espacio->save()){
             return redirect("/espaciosacademicos");
@@ -128,12 +131,13 @@ class AcademicspacesController extends Controller
         $actividadesAca = Activityacademic::pluck('nombre','id')->toArray();
         $naturalezas = Nature::pluck('nombre','id')->toArray();
         $semestres = Semester::pluck('nombre','id')->toArray();
+        $areas = Knowledgearea::pluck('nombre','id')->toArray();
         
         $idPlan = Academicplan::where('id',$espacio->academicplan_id)->select('id','academicprogram_id')->get()[0];
         $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
         $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
 
-        return view("academicspaces.edit",["espacio"=> $espacio,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"tipoEvaluaciones"=>$tipoEvaluaciones,"tipoMetodologias"=>$tipoMetodologias,"actividadesAca"=>$actividadesAca,"naturalezas"=>$naturalezas,"semestres"=>$semestres,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
+        return view("academicspaces.edit",["espacio"=> $espacio,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"tipoEvaluaciones"=>$tipoEvaluaciones,"tipoMetodologias"=>$tipoMetodologias,"actividadesAca"=>$actividadesAca,"naturalezas"=>$naturalezas,"semestres"=>$semestres,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id,"areas"=>$areas]);
     }
 
     /**
