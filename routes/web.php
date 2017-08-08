@@ -55,6 +55,10 @@ Route::resource('asignacionTeorica','ObjectivesspacesTController');
 Route::resource('areasconocimiento','KnowledgeareasController');
 // permite obtener las gráficas estadisticas 
 Route::get('estadistica','StatisticsController@index');
+// permite obtener las gráficas estadisticas 
+Route::get('estadisticaAreaConocimiento','StatisticsController@indexA');
+// permite obtener tabla resumen con los datos 
+Route::get('tablaResumen','StatisticsController@indexT');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
@@ -130,5 +134,21 @@ Route::get('estadisticah/{plan_id?}/{tipo?}',["as"=>"estadisticah",function($pla
 	->groupBy('abilities.id','abilities.nombre')
 	->get();
 }]);
+// Ruta que retorna la información estadistica de las habilidades
+Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",function($plan_id,$area_id,$tipo){
+	return DB::table('academicplans')
+	->join('profiles','academicplans.id','=','profiles.academicplan_id')
+	->join('abilities','profiles.id','=','abilities.profile_id')
+	->join('objectives','abilities.id','=','objectives.ability_id')
+	->join('objectiveespaces','objectives.id','=','objectiveespaces.objective_id')
+	->join('academicspaces','objectiveespaces.academicspace_id','=','academicspaces.id')
+	->join('knowledgeareas','knowledgeareas.id','=','academicspaces.knowledgearea_id')
+	->join('weights','objectiveespaces.id','=','weights.objectiveEspace_id')
+	->where([['weights.tipo','=',$tipo],['academicplans.id','=',$plan_id],['knowledgeareas.id','=',$area_id]])
+	->select('abilities.id as id','abilities.nombre as nombre',DB::raw('SUM(weights.peso) as peso'))
+	->groupBy('abilities.id','abilities.nombre')
+	->get();
+}]);
+
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

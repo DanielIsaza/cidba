@@ -2,17 +2,19 @@
 
 @section("content")
 <div class="container white">
-	<h1 align="center">Estadística por plan de estudios</h1>
+	<h1 align="center">Estadística por área de conocimiento</h1>
 
+	<div class="row">
+        <div class="col-md-6">{!! Field::select('university_id',$universidades) !!}</div>
+        <div class="col-md-6">{!! Field::select('faculty_id') !!}</div>
+    </div>
     <div class="row">
-        <div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
-        <div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
-        <div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
-        <div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+        <div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
+        <div class="col-md-4">{!! Field::select('academicplan_id') !!}</div>
+        <div class="col-md-4">{!! Field::select('knowledgearea_id',$areas) !!}</div>
     </div>
 
 	<div id="grafica">
-		
 	</div>
 </div>
 @endsection
@@ -55,9 +57,22 @@
 
     $('#academicplan_id').change(function(){
         var plan = $(this).val();
-        if( plan > 0){
-            $.getJSON('{{ route('estadisticah') }}/'+plan+'/0',null,function(valuesT){
-                $.getJSON('{{ route('estadisticah') }}/'+plan+'/1',null,function(values){
+        var area = $('#knowledgearea_id').val();
+        if( plan > 0 && area > 0){
+            $.getJSON('{{ route('estadisticaa') }}/'+plan+'/'+area+'/0',null,function(valuesT){
+                $.getJSON('{{ route('estadisticaa') }}/'+plan+'/'+area+'/1',null,function(values){
+                    $('#grafica').graficar(values,valuesT);
+                });
+            });
+        }
+    });
+
+    $('#knowledgearea_id').change(function(){
+        var plan = $('#academicplan_id').val();
+        var area = $(this).val();
+        if( plan > 0 && area > 0){
+            $.getJSON('{{ route('estadisticaa') }}/'+plan+'/'+area+'/0',null,function(valuesT){
+                $.getJSON('{{ route('estadisticaa') }}/'+plan+'/'+area+'/1',null,function(values){
                     $('#grafica').graficar(values,valuesT);
                 });
             });

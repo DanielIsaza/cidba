@@ -147,20 +147,17 @@
                                </ul>
                         </li><li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   Estadisticas <span class="caret"></span>
+                                   Estadísticas <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/estadistica') }}">El plan de estudios completo</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/asignarTeorico') }}">Por área de conocimiento</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/asignar') }}"></a>
+                                        <a href="{{ url('/estadisticaAreaConocimiento') }}">Por área de conocimiento</a>
                                     </li>
                                      <li>
-                                        <a href="{{ url('/estadistica') }}">Estadistica</a>
+                                        <a href="{{ url('/estadistica') }}">Por plan de estudios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/estadisticaT') }}">Tabla resumen</a>
                                     </li>
                                </ul>
                         </li>

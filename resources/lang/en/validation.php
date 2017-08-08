@@ -129,7 +129,8 @@ return [
         'typeability_id' => 'Tipo de habilidad',
         'ability_id' => 'Habilidad',
         'academicspace_id' => 'Espacio académico',
-        "objective_id" => "objetivos",
+        "objective_id" => "Objetivos",
+        'knowledgeareas_id'=>'Áreas de conocimiento',
      ],
 
 ];
