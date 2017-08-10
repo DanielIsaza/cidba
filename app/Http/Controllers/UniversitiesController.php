@@ -41,8 +41,10 @@ class UniversitiesController extends Controller
         $universidad->nombre = $request->nombre;
 
         if($universidad->save()){
+             \Alert::message('Universidad creada correctamente', 'success');
             return redirect("/universidades");
         }else{
+             \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("universidades.create");
         }
     }
@@ -83,8 +85,10 @@ class UniversitiesController extends Controller
         $universidad->nombre = $request->nombre;
 
         if($universidad->save()){
+             \Alert::message('Universidad actualizada correctamente', 'success');
             return redirect("/universidades");
         }else{
+             \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("universidades.edit",["universidad" => $universidad]);
         }
     }
@@ -98,7 +102,7 @@ class UniversitiesController extends Controller
     public function destroy($id)
     {
         University::destroy($id);
-
+        \Alert::message('Universidad eliminada correctamente', 'success');
         return redirect('/universidades');
     }
 }

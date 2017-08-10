@@ -41,8 +41,10 @@ class ActivityacademicsController extends Controller
         $actividad->nombre = $request->nombre;
 
         if($actividad->save()){
+            \Alert::message('Actividad académica creada correctamente', 'success');
             return redirect("/actividadesacademicas");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("activityacademics.create");
         }
     }
@@ -83,8 +85,10 @@ class ActivityacademicsController extends Controller
         $actividad->nombre = $request->nombre;
 
         if($actividad->save()){
+            \Alert::message('Actividad académica actualizada correctamente', 'success');
             return redirect("/actividadesacademicas");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("activityacademics.edit",["actividad" => $actividad]);
         }
     }
@@ -98,6 +102,7 @@ class ActivityacademicsController extends Controller
     public function destroy($id)
     {
         Activityacademic::destroy($id);
+        \Alert::message('Actividad académica eliminada correctamente', 'success');
         return redirect('/actividadesacademicas');
     }
 }

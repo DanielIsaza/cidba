@@ -130,7 +130,7 @@ return [
         'ability_id' => 'Habilidad',
         'academicspace_id' => 'Espacio académico',
         "objective_id" => "Objetivos",
-        'knowledgeareas_id'=>'Áreas de conocimiento',
+        'knowledgearea_id'=>'Áreas de conocimiento',
      ],
 
 ];

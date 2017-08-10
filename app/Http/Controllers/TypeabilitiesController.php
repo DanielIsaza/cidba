@@ -41,8 +41,10 @@ class TypeabilitiesController extends Controller
         $tipoHabilidad->nombre = $request->nombre;
 
         if($tipoHabilidad->save()){
+            \Alert::message('Tipo de habilidad creada correctamente', 'success');
             return redirect('/tiposhabilidad');
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typeabilities.create");
         }
     }
@@ -83,8 +85,10 @@ class TypeabilitiesController extends Controller
         $tiposhabilidad->nombre = $request->nombre;
 
         if($tiposhabilidad->save()){
+            \Alert::message('Tipo de habilidad actualizada correctamente', 'success');
             return redirect('/tiposhabilidad');
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typeabilities.edit",["tiposhabilidad"=>$tiposhabilidad]);  
         }
     }
@@ -98,6 +102,7 @@ class TypeabilitiesController extends Controller
     public function destroy($id)
     {
         Typeability::destroy($id);
+        \Alert::message('Tipo de habilidad eliminada correctamente', 'success');
         return redirect('/tiposhabilidad');
     }
 }

@@ -41,8 +41,10 @@ class TypeevaluationsController extends Controller
         $tipoevaluacion->nombre = $request->nombre;
 
         if($tipoevaluacion->save()){
+            \Alert::message('Tipo de evaluación creada correctamente', 'success');
             return redirect("/tiposevaluaciones");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typeevaluations.create");
         }
     }
@@ -83,8 +85,10 @@ class TypeevaluationsController extends Controller
         $tipoevaluacion->nombre = $request->nombre;
 
         if($tipoevaluacion->save()){
+            \Alert::message('Tipo de evaluación actualizada correctamente', 'success');
             return redirect("/tiposevaluaciones");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typeevaluations.edit",["tipoevaluacion" => $tipoevaluacion]);
         }
     }
@@ -98,6 +102,7 @@ class TypeevaluationsController extends Controller
     public function destroy($id)
     {
         Typeevaluation::destroy($id);
+        \Alert::message('Tipo de evaluación eliminada correctamente', 'success');
         return redirect('/tiposevaluaciones');
     }
 }

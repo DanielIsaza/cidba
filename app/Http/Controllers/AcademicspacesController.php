@@ -87,8 +87,10 @@ class AcademicspacesController extends Controller
         $espacio->knowledgearea_id = $request->knowledgearea_id;
 
         if($espacio->save()){
+            \Alert::message('Espacio académico creado correctamente', 'success');
             return redirect("/espaciosacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicspaces.create");
         }
     }
@@ -195,8 +197,10 @@ class AcademicspacesController extends Controller
         $espacio->typemethodology_id = $request->typemethodology_id;
         $espacio->nature_id = $request->nature_id;
         if($espacio->save()){
+            \Alert::message('Espacio académico actualizado correctamente', 'success');
             return redirect("/espaciosacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicspaces.edit",["espacio" => $espacio]);
         }
     }
@@ -210,6 +214,7 @@ class AcademicspacesController extends Controller
     public function destroy($id)
     {
         Academicspace::destroy($id);
+        \Alert::message('Espacio académico eliminado correctamente', 'success');
         return redirect('/espaciosacademicos');
     }
 }

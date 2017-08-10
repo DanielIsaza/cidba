@@ -50,7 +50,7 @@
                         Planea CIDBA
                     </a>
                 </div>
-
+                @if (Auth::check())
                 <div class="navbar-collapse collapse navbar-responsive-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
@@ -162,7 +162,7 @@
                                </ul>
                         </li>
                     </ul>
-
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -189,6 +189,7 @@
 
     </div>
     <!-- En está parte se ingresan los form -->
+    {!! Alert::render() !!}
         @yield('content')
         
     <!-- Scripts -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-07-2017 a las 07:01:48
+-- Tiempo de generación: 08-08-2017 a las 02:51:14
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -37,6 +37,14 @@ CREATE TABLE `abilities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `abilities`
+--
+
+INSERT INTO `abilities` (`id`, `nombre`, `peso`, `typeability_id`, `profile_id`, `created_at`, `updated_at`) VALUES
+(1, 'habilidad 1', 20, 1, 1, '2017-07-25 09:23:57', '2017-07-25 09:23:57'),
+(2, 'habilidad 2', 20, 1, 1, '2017-07-25 19:10:23', '2017-07-25 19:10:23');
 
 -- --------------------------------------------------------
 
@@ -111,6 +119,7 @@ CREATE TABLE `academicspaces` (
   `procesosIntegrativos` varchar(700) COLLATE utf8_unicode_ci NOT NULL,
   `unidades` varchar(9000) COLLATE utf8_unicode_ci NOT NULL,
   `semester_id` int(10) UNSIGNED NOT NULL,
+  `knowledgearea_id` int(10) UNSIGNED NOT NULL,
   `academicplan_id` int(10) UNSIGNED NOT NULL,
   `activityacademic_id` int(10) UNSIGNED NOT NULL,
   `typeevaluation_id` int(10) UNSIGNED NOT NULL,
@@ -119,6 +128,13 @@ CREATE TABLE `academicspaces` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `academicspaces`
+--
+
+INSERT INTO `academicspaces` (`id`, `codigo`, `nombre`, `numeroCreditos`, `horasTeoricas`, `horasPracticas`, `horasTeoPract`, `horasAsesorias`, `horasIndependiente`, `habilitable`, `validable`, `homologable`, `nucleoTematico`, `justificacion`, `metodologia`, `evaluacion`, `descripcion`, `contenidoConceptual`, `contenidoProcedimental`, `contenidoActitudinal`, `procesosIntegrativos`, `unidades`, `semester_id`, `knowledgearea_id`, `academicplan_id`, `activityacademic_id`, `typeevaluation_id`, `typemethodology_id`, `nature_id`, `created_at`, `updated_at`) VALUES
+(2, '123', 'Bases de datos', '2', '20', '20', '20', '20', '13', 0, 0, 0, 'nucleo tematico', 'justificacion', 'metodologi', 'evaluacion', 'describe', 'contenido', 'procedimientos ', 'actitudinal', 'integrativos', 'unidad 1 \r\nunidad 2\r\n', 1, 2, 1, 1, 1, 1, 1, '2017-08-08 04:01:09', '2017-08-08 04:01:28');
 
 -- --------------------------------------------------------
 
@@ -132,6 +148,13 @@ CREATE TABLE `activityacademics` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `activityacademics`
+--
+
+INSERT INTO `activityacademics` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'actividad 1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -172,6 +195,26 @@ INSERT INTO `faculties` (`id`, `nombre`, `university_id`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `knowledgeareas`
+--
+
+CREATE TABLE `knowledgeareas` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `knowledgeareas`
+--
+
+INSERT INTO `knowledgeareas` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(2, 'area conocimiento 1', '2017-08-08 03:56:52', '2017-08-08 03:56:52');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `migrations`
 --
 
@@ -207,7 +250,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2017_07_15_175043_create_espaciosaca_table', 9),
 (20, '2017_07_15_175159_create_requisitos_table', 10),
 (21, '2017_07_15_175129_create_objetivoespacio_table', 11),
-(22, '2017_07_15_175347_create_pesos_table', 11);
+(22, '2017_07_15_175347_create_pesos_table', 11),
+(23, '2017_08_07_214724_create_table_knowledgeareas', 12);
 
 -- --------------------------------------------------------
 
@@ -243,6 +287,14 @@ CREATE TABLE `objectiveEspaces` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `objectiveEspaces`
+--
+
+INSERT INTO `objectiveEspaces` (`id`, `academicspace_id`, `objective_id`, `created_at`, `updated_at`) VALUES
+(5, 2, 2, '2017-08-08 04:02:27', '2017-08-08 04:02:27'),
+(6, 2, 2, '2017-08-08 04:03:13', '2017-08-08 04:03:13');
+
 -- --------------------------------------------------------
 
 --
@@ -257,6 +309,14 @@ CREATE TABLE `objectives` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `objectives`
+--
+
+INSERT INTO `objectives` (`id`, `nombre`, `peso`, `ability_id`, `created_at`, `updated_at`) VALUES
+(1, 'objetivo 1', 12, 2, '2017-07-28 06:26:02', '2017-07-28 06:26:02'),
+(2, 'Objetivoss', 10, 1, '2017-08-06 01:02:55', '2017-08-06 01:02:55');
 
 -- --------------------------------------------------------
 
@@ -361,7 +421,7 @@ CREATE TABLE `states` (
 INSERT INTO `states` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (1, 'Oferta', '2017-07-24 06:52:53', '2017-07-24 06:52:53'),
 (2, 'Vigente', '2017-07-24 06:53:01', '2017-07-24 06:53:01'),
-(3, 'Retirado', '2017-07-24 06:53:08', '2017-07-24 06:53:08');
+(4, 'Retirado', '2017-07-25 07:27:32', '2017-07-25 07:27:32');
 
 -- --------------------------------------------------------
 
@@ -381,7 +441,7 @@ CREATE TABLE `typeabilities` (
 --
 
 INSERT INTO `typeabilities` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'habilidad 1', '2017-07-24 07:06:36', '2017-07-24 07:06:36');
+(1, 'tipo de habilidad 1', '2017-07-24 07:06:36', '2017-07-25 09:07:54');
 
 -- --------------------------------------------------------
 
@@ -476,6 +536,14 @@ CREATE TABLE `weights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `weights`
+--
+
+INSERT INTO `weights` (`id`, `peso`, `tipo`, `objectiveEspace_id`, `ability_id`, `created_at`, `updated_at`) VALUES
+(5, 12, 1, 5, 1, '2017-08-08 04:02:27', '2017-08-08 04:02:27'),
+(6, 9, 0, 6, 1, '2017-08-08 04:03:13', '2017-08-08 04:03:13');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -512,7 +580,8 @@ ALTER TABLE `academicspaces`
   ADD KEY `academicspaces_activityacademic_id_foreign` (`activityacademic_id`),
   ADD KEY `academicspaces_typeevaluation_id_foreign` (`typeevaluation_id`),
   ADD KEY `academicspaces_typemethodology_id_foreign` (`typemethodology_id`),
-  ADD KEY `academicspaces_nature_id_foreign` (`nature_id`);
+  ADD KEY `academicspaces_nature_id_foreign` (`nature_id`),
+  ADD KEY `academicspaces_knowledgearea_id_foreign` (`knowledgearea_id`);
 
 --
 -- Indices de la tabla `activityacademics`
@@ -535,6 +604,12 @@ ALTER TABLE `authorizes`
 ALTER TABLE `faculties`
   ADD PRIMARY KEY (`id`),
   ADD KEY `faculties_university_id_foreign` (`university_id`);
+
+--
+-- Indices de la tabla `knowledgeareas`
+--
+ALTER TABLE `knowledgeareas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `migrations`
@@ -650,7 +725,7 @@ ALTER TABLE `weights`
 -- AUTO_INCREMENT de la tabla `abilities`
 --
 ALTER TABLE `abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `academicplans`
 --
@@ -665,12 +740,12 @@ ALTER TABLE `academicprograms`
 -- AUTO_INCREMENT de la tabla `academicspaces`
 --
 ALTER TABLE `academicspaces`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `activityacademics`
 --
 ALTER TABLE `activityacademics`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `authorizes`
 --
@@ -682,10 +757,15 @@ ALTER TABLE `authorizes`
 ALTER TABLE `faculties`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `knowledgeareas`
+--
+ALTER TABLE `knowledgeareas`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `natures`
 --
@@ -695,12 +775,12 @@ ALTER TABLE `natures`
 -- AUTO_INCREMENT de la tabla `objectiveEspaces`
 --
 ALTER TABLE `objectiveEspaces`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `profiles`
 --
@@ -725,7 +805,7 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT de la tabla `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `typeabilities`
 --
@@ -755,7 +835,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `weights`
 --
 ALTER TABLE `weights`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --
@@ -786,6 +866,7 @@ ALTER TABLE `academicprograms`
 ALTER TABLE `academicspaces`
   ADD CONSTRAINT `academicspaces_academicplan_id_foreign` FOREIGN KEY (`academicplan_id`) REFERENCES `academicplans` (`id`),
   ADD CONSTRAINT `academicspaces_activityacademic_id_foreign` FOREIGN KEY (`activityacademic_id`) REFERENCES `activityacademics` (`id`),
+  ADD CONSTRAINT `academicspaces_knowledgearea_id_foreign` FOREIGN KEY (`knowledgearea_id`) REFERENCES `knowledgeareas` (`id`),
   ADD CONSTRAINT `academicspaces_nature_id_foreign` FOREIGN KEY (`nature_id`) REFERENCES `natures` (`id`),
   ADD CONSTRAINT `academicspaces_semester_id_foreign` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `academicspaces_typeevaluation_id_foreign` FOREIGN KEY (`typeevaluation_id`) REFERENCES `typeevaluations` (`id`),

@@ -60,9 +60,11 @@ class ObjectivesspacesTController extends Controller
             $peso->ability_id = $request->ability_id;
             $peso->objectiveEspace_id = \DB::table('objectiveespaces')->max('id');
             if($peso->save()){
+                \Alert::message('Asignación teórica creada correctamente', 'success');
                 return redirect("/asignacionTeorica");
             }
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objectivessT.create");
         }
     }
@@ -122,8 +124,10 @@ class ObjectivesspacesTController extends Controller
         $peso->peso = $request->peso;
        
         if($peso->save()){
+            \Alert::message('Asignación teórica actualizada correctamente', 'success');
             return redirect("/asignacionTeorica");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objectivessT.edit",["objetivo" => $objetivo]);
         }
     }
@@ -138,6 +142,7 @@ class ObjectivesspacesTController extends Controller
         $peso = Weight::where('objectiveEspace_id',$id);
         $peso->delete();
         ObjectiveEspace::destroy($id);
+        \Alert::message('Asignación teórica eliminada correctamente', 'success');
         return redirect('/asignacionTeorica');
     }
 }

@@ -41,8 +41,10 @@ class KnowledgeareasController extends Controller
         $area->nombre = $request->nombre;
 
         if($area->save()){
+            \Alert::message('Área de conocimiento creada correctamente', 'success');
             return redirect("/areasconocimiento");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("knowledgeareas.create");
         }
     }
@@ -83,8 +85,10 @@ class KnowledgeareasController extends Controller
         $area->nombre = $request->nombre;
 
         if($area->save()){
+            \Alert::message('Área de conocimiento actualizada correctamente', 'success');
             return redirect("/areasconocimiento");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("knowledgeareas.edit",["area" => $area]);
         }
     }
@@ -98,6 +102,7 @@ class KnowledgeareasController extends Controller
     public function destroy($id)
     {
         Knowledgearea::destroy($id);
+        \Alert::message('Área de conocimiento eliminada correctamente', 'success');
         return redirect('/areasconocimiento');
     }
 }

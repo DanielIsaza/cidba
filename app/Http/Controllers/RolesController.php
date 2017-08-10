@@ -40,8 +40,10 @@ class RolesController extends Controller
         $rol->nombre = $request->nombre;
 
         if($rol->save()){
+            \Alert::message('Rol creado correctamente', 'success');
             return redirect("/roles");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("roles.create");
         }
     }
@@ -82,8 +84,10 @@ class RolesController extends Controller
         $rol->nombre = $request->nombre;
 
         if($rol->save()){
+            \Alert::message('Rol actualizado correctamente', 'success');
             return redirect("/roles");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("roles.edit",["rol" => $rol]);
         }
     }
@@ -97,6 +101,7 @@ class RolesController extends Controller
     public function destroy($id)
     {
         Rol::destroy($id);
+        \Alert::message('Rol eliminado correctamente', 'success');
         return redirect('/roles');
     }
 }

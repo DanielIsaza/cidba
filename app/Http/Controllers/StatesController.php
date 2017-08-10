@@ -41,8 +41,10 @@ class StatesController extends Controller
         $estado->nombre = $request->nombre;
 
         if($estado->save()){
+            \Alert::message('Estado creado correctamente', 'success');
             return redirect("/estados");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("states.create");
         }
     }
@@ -83,8 +85,10 @@ class StatesController extends Controller
         $estado->nombre = $request->nombre;
 
         if($estado->save()){
+            \Alert::message('Estado actualizado correctamente', 'success');
             return redirect("/estados");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("states.edit",["estado" => $estado]);
         }
     }
@@ -98,6 +102,7 @@ class StatesController extends Controller
     public function destroy($id)
     {
         State::destroy($id);
+        \Alert::message('Estado eliminado correctamente', 'success');
         return redirect('/estados');
     }
 }

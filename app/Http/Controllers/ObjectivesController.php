@@ -51,8 +51,10 @@ class ObjectivesController extends Controller
         $objetivo->ability_id = $request->ability_id;
 
         if($objetivo->save()){
+            \Alert::message('Objetivo creado correctamente', 'success');
             return redirect("/objetivos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objetives.create");
         }
     }
@@ -108,8 +110,10 @@ class ObjectivesController extends Controller
         $objetivo->ability_id = $request->ability_id;
        
         if($objetivo->save()){
+            \Alert::message('Objetivo actualizado correctamente', 'success');
             return redirect("/objetivos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objetives.edit",["objetivo" => $objetivo]);
         }
     }
@@ -122,6 +126,7 @@ class ObjectivesController extends Controller
     public function destroy($id)
     {
         Objective::destroy($id);
+        \Alert::message('Objetivo eliminado correctamente', 'success');
         return redirect('/objetivos');
     }
 }

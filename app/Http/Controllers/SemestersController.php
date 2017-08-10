@@ -41,8 +41,10 @@ class SemestersController extends Controller
         $semestre->nombre = $request->nombre;
 
         if($semestre->save()){
+            \Alert::message('Semestre creado correctamente', 'success');
             return redirect("/semestres");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("semesters.create");
         }
     }
@@ -83,8 +85,10 @@ class SemestersController extends Controller
         $semestre->nombre = $request->nombre;
 
         if($semestre->save()){
+            \Alert::message('Semestre actualizado correctamente', 'success');
             return redirect("/semestres");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("semesters.edit",["semestre" => $semestre]);
         }
     }
@@ -98,6 +102,7 @@ class SemestersController extends Controller
     public function destroy($id)
     {
         Semester::destroy($id);
+        \Alert::message('Semestre eliminado correctamente', 'success');
         return redirect('/semestres');
     }
 }

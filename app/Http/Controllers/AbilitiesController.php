@@ -51,8 +51,10 @@ class AbilitiesController extends Controller
         $habilidad->profile_id = $request->profile_id;
         $habilidad->typeability_id = $request->typeability_id;
         if($habilidad->save()){
+            \Alert::message('Habilidad creada correctamente', 'success');
             return redirect("/habilidades");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("abilities.create");
         }
     }
@@ -106,8 +108,10 @@ class AbilitiesController extends Controller
         $habilidad->peso = $request->peso;
         $habilidad->typeability_id = $request->typeability_id;
         if($habilidad->save()){
+            \Alert::message('Habilidad actualizada correctamente', 'success');
             return redirect("/habilidades");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("abilities.edit",["habilidad" => $habilidad]);
         }   
     }
@@ -121,6 +125,7 @@ class AbilitiesController extends Controller
     public function destroy($id)
     {
         Ability::destroy($id);
+        \Alert::message('Habilidad eliminada correctamente', 'success');
         return redirect('/habilidades');
     }
 }

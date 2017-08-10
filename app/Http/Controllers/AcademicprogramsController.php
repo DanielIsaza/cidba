@@ -45,8 +45,10 @@ class AcademicprogramsController extends Controller
         $programa->nombre = $request->nombre;
         $programa->faculty_id = $request->faculty_id;
         if($programa->save()){
+            \Alert::message('Programa académico creado correctamente', 'success');
             return redirect("/programasacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicprograms.create");
         }
     }
@@ -89,8 +91,10 @@ class AcademicprogramsController extends Controller
         $programa->nombre = $request->nombre;
         $programa->faculty_id = $request->faculty_id;
         if($programa->save()){
+            \Alert::message('Programa académico actualizado correctamente', 'success');
             return redirect("/programasacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicprograms.edit",["programa" => $programa]);
         }
     }
@@ -104,6 +108,7 @@ class AcademicprogramsController extends Controller
     public function destroy($id)
     {
         Academicprogram::destroy($id);
+        \Alert::message('Programa académico eliminado correctamente', 'success');
         return redirect('/programasacademicos');
     }
 }

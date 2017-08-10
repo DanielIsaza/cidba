@@ -54,8 +54,10 @@ class AcademicplansController extends Controller
             $perfil->descripcion = $request->descripcion;
             $perfil->academicplan_id = Academicplan::all()->max('id');
             $perfil->save();
+            \Alert::message('Plan académico creado correctamente', 'success');
             return redirect("/planesacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicplans.create");
         }
     }
@@ -112,8 +114,10 @@ class AcademicplansController extends Controller
 
 
         if($plan->save() && $perfil->save()){
+            \Alert::message('Plan académico actualizado correctamente', 'success');
             return redirect("/planesacademicos");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("academicplans.edit",["plan" => $plan]);
         }
     }
@@ -127,6 +131,7 @@ class AcademicplansController extends Controller
     public function destroy($id)
     {
         Academicplan::destroy($id);
+        \Alert::message('Plan académico eliminado correctamente', 'success');
         return redirect('/planesacademicos');
     }
 }

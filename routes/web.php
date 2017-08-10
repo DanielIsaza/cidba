@@ -11,13 +11,16 @@
 |
 */
 
-//Ruta para el home de la aplicacion
-Route::get('/', 'MainController@home');
 //Rutas para el controlador del login y registro de usuario
 Auth::routes();
-//Rutas para el CRUD de Universidad
-Route::resource('universidades','UniversitiesController');
-//Rutas para el CRUD de Estados
+
+Route::group(['middleware' => 'auth'],function(){
+	//Rutas para el CRUD de Universidad
+	Route::resource('universidades','UniversitiesController');
+	//Ruta para el home de la aplicacion
+	Route::get('/', 'MainController@home');
+
+	//Rutas para el CRUD de Estados
 Route::resource('estados','StatesController');
 //Rutas para el CRUD de Tipos de habilidad
 Route::resource('tiposhabilidad','TypeabilitiesController');
@@ -152,3 +155,5 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
+	
+});

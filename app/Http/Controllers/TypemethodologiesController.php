@@ -41,8 +41,10 @@ class TypemethodologiesController extends Controller
         $tipometodologia->nombre = $request->nombre;
 
         if($tipometodologia->save()){
+             \Alert::message('Tipo de metodología creada correctamente', 'success');
             return redirect("/tiposmetodologias");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typemethodologies.create");
         }
     }
@@ -83,8 +85,10 @@ class TypemethodologiesController extends Controller
         $tipometodologia->nombre = $request->nombre;
 
         if($tipometodologia->save()){
+            \Alert::message('Tipo de metodología actualizada correctamente', 'success');
             return redirect("/tiposmetodologias");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("typemethodologies.edit",["tipometodologia" => $tipometodologia]);
         }
     }
@@ -98,6 +102,7 @@ class TypemethodologiesController extends Controller
     public function destroy($id)
     {
         Typemethodology::destroy($id);
+        \Alert::message('Tipo de metodología eliminada correctamente', 'success');
         return redirect('/tiposmetodologias');
     }
 }

@@ -62,9 +62,11 @@ class ObjectivespacesController extends Controller
             $peso->ability_id = $request->ability_id;
             $peso->objectiveEspace_id = \DB::table('objectiveespaces')->max('id');
             if($peso->save()){
+                \Alert::message('Asignación creada correctamente', 'success');
                 return redirect("/asignacion");
             }
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objectivess.create");
         }
     }
@@ -123,8 +125,10 @@ class ObjectivespacesController extends Controller
         $peso = Weight::find($id);
         $peso->peso = $request->peso;
         if ($peso->save()) {
+            \Alert::message('Asignación actualizada correctamente', 'success');
             return redirect("/asignacion");                
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("objetivess.edit",["objetivo" => $objetivo]);
         }
     }
@@ -139,6 +143,7 @@ class ObjectivespacesController extends Controller
         $peso = Weight::where('objectiveEspace_id',$id);
         $peso->delete();
         ObjectiveEspace::destroy($id);
+        \Alert::message('Asignación eliminada correctamente', 'success');
         return redirect('/asignacion');
     }
 }

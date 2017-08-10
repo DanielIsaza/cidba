@@ -43,8 +43,10 @@ class FacultiesController extends Controller
         $facultad->nombre = $request->nombre;
         $facultad->university_id = $request->university_id;
         if($facultad->save()){
+            \Alert::message('Facultad creada correctamente', 'success');
             return redirect("/facultades");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("faculties.create");
         }
     }
@@ -86,8 +88,10 @@ class FacultiesController extends Controller
         $facultad->nombre = $request->nombre;
         $facultad->university_id = $request->university_id;
         if($facultad->save()){
+            \Alert::message('Facultad actualizada correctamente', 'success');
             return redirect("/facultades");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("faculties.edit",["facultad" => $facultad]);
         }
     }
@@ -101,6 +105,7 @@ class FacultiesController extends Controller
     public function destroy($id)
     {
         Faculty::destroy($id);
+        \Alert::message('Facultad eliminada correctamente', 'success');
         return redirect('/facultades');
     }
 }

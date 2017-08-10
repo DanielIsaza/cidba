@@ -41,8 +41,10 @@ class NaturesController extends Controller
         $nature->nombre = $request->nombre;
 
         if($nature->save()){
+            \Alert::message('Naturaleza creada correctamente', 'success');
             return redirect("/naturaleza");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("natures.create");
         }
     }
@@ -83,8 +85,10 @@ class NaturesController extends Controller
         $nature->nombre = $request->nombre;
 
         if($nature->save()){
+            \Alert::message('Naturaleza actualizado correctamente', 'success');
             return redirect("/naturaleza");
         }else{
+            \Alert::message('Ocurrio un error, intente nuevamente', 'danger');
             return view("natures.edit",["nature" => $nature]);
         }
     }
@@ -98,6 +102,7 @@ class NaturesController extends Controller
     public function destroy($id)
     {
         Nature::destroy($id);
+        \Alert::message('Naturaleza eliminada correctamente', 'success');
         return redirect('/naturaleza');
     }
 }
