@@ -1,21 +1,21 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-<div class="container white">
-	<h1 align="center">Estadística por área de conocimiento</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Estadística por área de conocimiento</div>
+    <div class="panel-body">
+    	<div class="row">
+            <div class="col-md-6">{!! Field::select('university_id',$universidades) !!}</div>
+            <div class="col-md-6">{!! Field::select('faculty_id') !!}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
+            <div class="col-md-4">{!! Field::select('academicplan_id') !!}</div>
+            <div class="col-md-4">{!! Field::select('knowledgearea_id',$areas) !!}</div>
+        </div>
 
-	<div class="row">
-        <div class="col-md-6">{!! Field::select('university_id',$universidades) !!}</div>
-        <div class="col-md-6">{!! Field::select('faculty_id') !!}</div>
+    	<div id="grafica"></div>
     </div>
-    <div class="row">
-        <div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
-        <div class="col-md-4">{!! Field::select('academicplan_id') !!}</div>
-        <div class="col-md-4">{!! Field::select('knowledgearea_id',$areas) !!}</div>
-    </div>
-
-	<div id="grafica">
-	</div>
 </div>
 @endsection
 

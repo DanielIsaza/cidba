@@ -1,10 +1,11 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	{!!Form::open(['url'=> '/espaciosacademicos/'.$espacio->id,'method' => 'PUT']) !!}
+<div class="panel panel-default">
+	<div class="panel-heading">Editar espacio académico</div>
+    <div class="panel-body">
 
-		<div class="container white">
-			<h1 align="center">Editar espacio académico</h1>
+	{!!Form::open(['url'=> '/espaciosacademicos/'.$espacio->id,'method' => 'PUT']) !!}
 
 	<div class="row">
    		<div class="col-md-4">{!! Field::select('university_id',$universidades,$idUniversidad) !!}</div>
@@ -143,9 +144,11 @@
 		</div>
 	</div>		
 			<div class="form-group">
-				<a href="{{url('/programasacademicos')}}">Regresar al listado de programas</a>
+				<a href="{{url('/espaciosacademicos')}}">Regresar al listado de espacios académicos</a>
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
 		</div>	
 	{!! Form::close() !!}
+	</div>
+</div>
 @endsection

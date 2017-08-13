@@ -1,5 +1,6 @@
 {!!Form::open(['url'=> $url,'method' => $method]) !!}
 	<div class="form-group">
+		{{ Form::label('Nombre')}}
 		{{ Form::text('nombre',$tipoevaluacion->nombre,['class' => 'form-control',
 		'placeholder'=>'Nombre del tipo de evaluación']) }}
 	</div>

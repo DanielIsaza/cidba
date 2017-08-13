@@ -1,8 +1,10 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="container white">
-		<h1 align="center">Editar naturaleza</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">Editar naturaleza</div>
+    <div class="panel-body">
 		@include('natures.form',['nature'=>$nature, 'url' => '/naturaleza/'.$nature->id,'method' => 'PUT'])
-	</div>
+    </div>
+</div>
 @endsection

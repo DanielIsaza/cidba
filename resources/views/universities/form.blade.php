@@ -1,7 +1,7 @@
 {!!Form::open(['url'=> $url,'method' => $method]) !!}
 	<div class="form-group">
-		{{ Form::text('nombre',$universidad->nombre,['class' => 'form-control',
-		'placeholder'=>'Nombre de la Universidad']) }}
+		{{ Form::label('Nombre')}}
+		{{ Form::text('nombre',$universidad->nombre,['class' => 'form-control']) }}
 	</div>
 	<div class="form-group text-	">
 		<a href="{{url('/universidades')}}">Regresar al listado de Universidades</a>

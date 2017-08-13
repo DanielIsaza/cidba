@@ -1,10 +1,9 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Facultades</h1>
-	</div>
-	<div class="container">
+<div class="panel panel-default">
+	<div class="panel-heading">Facultades</div>
+    <div class="panel-body">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -27,10 +26,11 @@
 				@endforeach
 			</tbody>
 		</table>
-	</div>
-	<div class="floating">
-		<a href="{{url('/facultades/create')}}" class="btn btn-primary btn-fab">
+		<div class="floating">
+			<a href="{{url('/facultades/create')}}" class="btn btn-primary btn-fab">
 			<i class="material-icons">add</i>
-		</a>
+			</a>
+		</div>
 	</div>
+</div>
 @endsection

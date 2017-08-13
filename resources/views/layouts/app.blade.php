@@ -189,8 +189,14 @@
 
     </div>
     <!-- En está parte se ingresan los form -->
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
     {!! Alert::render() !!}
         @yield('content')
+        </div>
+        </div>
+        </div>
         
     <!-- Scripts -->
     <script

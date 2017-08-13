@@ -1,23 +1,22 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Objetivos</h1>
-	</div>
-	<div class="container">
-	{!! Form::model(['method'=>'POST','class'=>'form']) !!}
+<div class="panel panel-default">
+	<div class="panel-heading">Objetivos</div>
+    <div class="panel-body">
+		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
-		<div class="row">
-			<div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
-			<div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
-			<div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
-			<div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
-		</div>
-	 
-		<div class="row">
-			<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
-			<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
-		</div>
+			<div class="row">
+				<div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
+				<div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
+				<div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
+				<div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+			</div>
+		 
+			<div class="row">
+				<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
+				<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
+			</div>
 
 		{!! Form::close() !!}
 		<table id = "tabla" class="table table-bordered">
@@ -32,12 +31,13 @@
 			<tbody>
 			</tbody>
 		</table>
+		<div class="floating">
+			<a href="{{url('/objetivos/create')}}" class="btn btn-primary btn-fab">
+				<i class="material-icons">add</i>
+			</a>
+		</div>
 	</div>
-	<div class="floating">
-		<a href="{{url('/objetivos/create')}}" class="btn btn-primary btn-fab">
-			<i class="material-icons">add</i>
-		</a>
-	</div>
+</div>
 @endsection
 @section('tabla')
 	<script type="text/javascript">

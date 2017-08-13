@@ -276,10 +276,10 @@ INSERT INTO `natures` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `objectiveEspaces`
+-- Estructura de tabla para la tabla `objectiveespaces`
 --
 
-CREATE TABLE `objectiveEspaces` (
+CREATE TABLE `objectiveespaces` (
   `id` int(10) UNSIGNED NOT NULL,
   `academicspace_id` int(10) UNSIGNED NOT NULL,
   `objective_id` int(10) UNSIGNED NOT NULL,
@@ -288,10 +288,10 @@ CREATE TABLE `objectiveEspaces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `objectiveEspaces`
+-- Volcado de datos para la tabla `objectiveespaces`
 --
 
-INSERT INTO `objectiveEspaces` (`id`, `academicspace_id`, `objective_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `objectiveespaces` (`id`, `academicspace_id`, `objective_id`, `created_at`, `updated_at`) VALUES
 (5, 2, 2, '2017-08-08 04:02:27', '2017-08-08 04:02:27'),
 (6, 2, 2, '2017-08-08 04:03:13', '2017-08-08 04:03:13');
 
@@ -624,9 +624,9 @@ ALTER TABLE `natures`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `objectiveEspaces`
+-- Indices de la tabla `objectiveespaces`
 --
-ALTER TABLE `objectiveEspaces`
+ALTER TABLE `objectiveespaces`
   ADD PRIMARY KEY (`id`),
   ADD KEY `objectiveespaces_academicspace_id_foreign` (`academicspace_id`),
   ADD KEY `objectiveespaces_objective_id_foreign` (`objective_id`);
@@ -772,9 +772,9 @@ ALTER TABLE `migrations`
 ALTER TABLE `natures`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `objectiveEspaces`
+-- AUTO_INCREMENT de la tabla `objectiveespaces`
 --
-ALTER TABLE `objectiveEspaces`
+ALTER TABLE `objectiveespaces`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `objectives`
@@ -887,9 +887,9 @@ ALTER TABLE `faculties`
   ADD CONSTRAINT `faculties_university_id_foreign` FOREIGN KEY (`university_id`) REFERENCES `universities` (`id`);
 
 --
--- Filtros para la tabla `objectiveEspaces`
+-- Filtros para la tabla `objectiveespaces`
 --
-ALTER TABLE `objectiveEspaces`
+ALTER TABLE `objectiveespaces`
   ADD CONSTRAINT `objectiveespaces_academicspace_id_foreign` FOREIGN KEY (`academicspace_id`) REFERENCES `academicspaces` (`id`),
   ADD CONSTRAINT `objectiveespaces_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `objectives` (`id`);
 
@@ -917,7 +917,7 @@ ALTER TABLE `requirements`
 --
 ALTER TABLE `weights`
   ADD CONSTRAINT `weights_ability_id_foreign` FOREIGN KEY (`ability_id`) REFERENCES `abilities` (`id`),
-  ADD CONSTRAINT `weights_objectiveespace_id_foreign` FOREIGN KEY (`objectiveEspace_id`) REFERENCES `objectiveEspaces` (`id`);
+  ADD CONSTRAINT `weights_objectiveespace_id_foreign` FOREIGN KEY (`objectiveEspace_id`) REFERENCES `objectiveespaces` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

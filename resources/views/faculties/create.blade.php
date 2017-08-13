@@ -1,8 +1,10 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="container white">
-		<h1 align="center">Nueva facultad</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">Crear facultad</div>
+    <div class="panel-body">
 		@include('faculties.form',[['facultad'=>$facultad, 'universidades'=>$universidades],'url' => '/facultades','method'=>'POST'])
-	</div>
+    </div>
+</div>
 @endsection

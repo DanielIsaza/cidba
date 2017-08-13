@@ -1,9 +1,10 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-{!!Form::open(['url'=> '/planesacademicos/'.$plan->id,'method' => 'PUT']) !!}
-	<div class="container white">
-		<h1 align="center">Editar plan académico</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">Editar plan académico</div>
+    <div class="panel-body">
+		{!!Form::open(['url'=> '/planesacademicos/'.$plan->id,'method' => 'PUT']) !!}
 			{!! Field::select('university_id',$universidades,1) !!}
 			{!! Field::select('faculty_id',$facultades,$idfacultad) !!}
 			{!! Field::select('academicprogram_id',$programas,$plan->academicprogram_id) !!}
@@ -11,13 +12,15 @@
 			{{ Form::label('nombre del plan académico')}}
 			{{ Form::text('nombre',$plan->nombre,['class' => 'form-control',
 				'placeholder'=>'Ingrese un nombre ']) }}
-				<br>
+			<br>
 			{{ Form::label('Descripción del perfil')}}
-				{{ Form::textarea('descripcion',$perfil->descripcion,['class' => 'form-control','placeholder'=>'Descripción del perfil otorgado al estudiante por el plan académico']) }}
-		
+			{{ Form::textarea('descripcion',$perfil->descripcion,['class' => 'form-control','placeholder'=>'Descripción del perfil otorgado al estudiante por el plan académico']) }}
+			
 			<div class="form-group">
 				<a href="{{url('/planesacademicos')}}">Regresar al listado de programas</a>
 				<input type="submit" value="Guardar" class="btn btn-success">
-			</div>	</div>
-{!! Form::close() !!}
+			</div>
+		{!! Form::close() !!}
+	</div>
+</div>
 @endsection

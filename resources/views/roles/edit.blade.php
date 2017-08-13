@@ -1,8 +1,10 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="container white">
-		<h1 align="center">Editar rol</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">Editar rol</div>
+    <div class="panel-body">
 		@include('roles.form',['rol'=>$rol, 'url' => '/roles/'.$rol->id,'method' => 'PUT'])
 	</div>
+</div>
 @endsection

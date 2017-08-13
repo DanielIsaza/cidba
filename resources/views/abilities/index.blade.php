@@ -1,10 +1,9 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Habilidades</h1>
-	</div>
-	<div class="container">
+<div class="panel panel-default">
+	<div class="panel-heading">Habilidades</div>
+    <div class="panel-body">
 	{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
 			<div class="row">
@@ -27,12 +26,13 @@
 			<tbody>
 			</tbody>
 		</table>
+		<div class="floating">
+			<a href="{{url('/habilidades/create')}}" class="btn btn-primary btn-fab">
+				<i class="material-icons">add</i>
+			</a>
+		</div>
 	</div>
-	<div class="floating">
-		<a href="{{url('/habilidades/create')}}" class="btn btn-primary btn-fab">
-			<i class="material-icons">add</i>
-		</a>
-	</div>
+</div>
 @endsection
 @section('tabla')
 	<script type="text/javascript">
@@ -40,6 +40,7 @@
                 var rows = '';
                 rows += '<tbody>';
                 $.each(values, function(key,row){
+                	rows += '<tr>';
                     rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.peso+'</td>';
@@ -48,6 +49,7 @@
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
                     "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                    rows += '</tr>';
                 });
                 rows += '</tbody>';
                 $(this).append(rows);

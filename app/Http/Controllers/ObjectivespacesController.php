@@ -13,7 +13,7 @@ use App\Objectivespaces;
 use App\Typeability;
 use App\University;
 use App\Faculty;
-use App\ObjectiveEspace;
+use App\Objectiveespace;
 use App\Weight;
 
 class ObjectivespacesController extends Controller
@@ -49,7 +49,7 @@ class ObjectivespacesController extends Controller
      */
     public function store(Request $request)
     {
-        $espaciobjetivo = new ObjectiveEspace;
+        $espaciobjetivo = new Objectiveespace;
         $peso = new Weight;
 
         $espaciobjetivo->academicspace_id = $request->academicspace_id;
@@ -60,7 +60,7 @@ class ObjectivespacesController extends Controller
             $peso->tipo = 1;
             $peso->peso = $request->peso;
             $peso->ability_id = $request->ability_id;
-            $peso->objectiveEspace_id = \DB::table('objectiveespaces')->max('id');
+            $peso->Objectiveespace_id = \DB::table('Objectiveespaces')->max('id');
             if($peso->save()){
                 \Alert::message('Asignación creada correctamente', 'success');
                 return redirect("/asignacion");
@@ -90,17 +90,16 @@ class ObjectivespacesController extends Controller
      */
     public function edit($id)
     {
-        $objetivoes = ObjectiveEspace::find($id);
-        $objetivo = Objective::find($id);
-        $espacio = Academicspace::find($id);
-        $peso = Weight::where('objectiveEspace_id',$id)->select('peso')->get()[0]->peso;
+        $objetivoes = Objectiveespace::find($id);
+        $objetivo = Objective::where('id',$objetivoes->objective_id)->get()[0];
+        $peso = Weight::where('Objectiveespace_id',$id)->select('peso')->get()[0]->peso;
         $universidades = University::pluck('nombre','id')->toArray();
         $facultades = Faculty::pluck('nombre','id')->toArray();
         $programas = Academicprogram::pluck('nombre','id')->toArray();
         $planes = Academicplan::pluck('nombre','id')->toArray();
         $perfiles = Profile::pluck('nombre','id')->toArray();
         $habilidades = Ability::pluck('nombre','id')->toArray();
-        $espacios = Academicprogram::pluck('nombre','id')->toArray();
+        $espacios = Academicspace::pluck('nombre','id')->toArray();
         $objetivos = Objective::pluck('nombre','id')->toArray();
 
         $idHabilidad = Ability::where('id',$objetivo->ability_id)->select('id','profile_id')->get()[0];
@@ -121,7 +120,7 @@ class ObjectivespacesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $objetivo = ObjectiveEspace::find($id);
+        $objetivo = Objectiveespace::find($id);
         $peso = Weight::find($id);
         $peso->peso = $request->peso;
         if ($peso->save()) {
@@ -140,9 +139,9 @@ class ObjectivespacesController extends Controller
      */
     public function destroy($id)
     {
-        $peso = Weight::where('objectiveEspace_id',$id);
+        $peso = Weight::where('Objectiveespace_id',$id);
         $peso->delete();
-        ObjectiveEspace::destroy($id);
+        Objectiveespace::destroy($id);
         \Alert::message('Asignación eliminada correctamente', 'success');
         return redirect('/asignacion');
     }

@@ -1,8 +1,11 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="container white">
-		<h1 align="center">Editar Universidad</h1>
-		@include('universities.form',['universidad'=>$universidad, 'url' => '/universidades/'.$universidad->id,'method' => 'PUT'])
+<div class="panel panel-default">
+	<div class="panel-heading">Editar universidades</div>
+    <div class="panel-body">
+			@include('universities.form',['universidad'=>$universidad, 'url' => '/universidades/'.$universidad->id,'method' => 'PUT'])
+
 	</div>
+</div>
 @endsection

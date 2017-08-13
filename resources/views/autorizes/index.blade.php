@@ -1,9 +1,9 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Asignar permisos</h1>
-	</div>
-	<div class="container">
-	</div>
+<div class="panel panel-default">
+	<div class="panel-heading">Asignar permisos</div>
+    <div class="panel-body">
+    </div>
+</div>
 @endsection

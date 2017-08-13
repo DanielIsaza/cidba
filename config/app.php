@@ -181,9 +181,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
 
-        //Tablas dinamicas para el manejo de informacion
-        Yajra\Datatables\DatatablesServiceProvider::class,
-
     ],
 
     /*

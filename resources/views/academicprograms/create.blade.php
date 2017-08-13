@@ -1,18 +1,19 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	{!!Form::open(['url'=> '/programasacademicos/','method' => 'POST']) !!}
-		<div class="container white">
-			<h1 align="center">Crear un programa académico</h1>
-				{!! Field::select('university_id',$universidades,null) !!}
-				{!! Field::select('faculty_id') !!}
-				{{ Form::text('nombre',null,['class' => 'form-control',
-					'placeholder'=>'Nombre del programa académico ']) }}
-		
+<div class="panel panel-default">
+	<div class="panel-heading">Crear programa académico</div>
+    <div class="panel-body">
+		{!!Form::open(['url'=> '/programasacademicos/','method' => 'POST']) !!}
+			{!! Field::select('university_id',$universidades,null) !!}
+			{!! Field::select('faculty_id') !!}
+			{{ Form::label('Nombre')}}
+			{{ Form::text('nombre',null,['class' => 'form-control']) }}
 			<div class="form-group">
 				<a href="{{url('/programasacademicos')}}">Regresar al listado de programas</a>
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
-		</div>	
-	{!! Form::close() !!}
+		{!! Form::close() !!}
+    </div>
+</div>
 @endsection

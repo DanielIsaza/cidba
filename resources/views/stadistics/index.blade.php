@@ -1,19 +1,18 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-<div class="container white">
-	<h1 align="center">Estadística por plan de estudios</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Estadística por plan de estudios</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
+            <div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
+            <div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
+            <div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+        </div>
 
-    <div class="row">
-        <div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
-        <div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
-        <div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
-        <div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+    	<div id="grafica"></div>
     </div>
-
-	<div id="grafica">
-		
-	</div>
 </div>
 @endsection
 

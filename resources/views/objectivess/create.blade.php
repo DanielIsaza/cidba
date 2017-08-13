@@ -1,10 +1,10 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Asignar peso espacio - objetivo</h1>
-	</div>
-	<div class="container">
+<div class="panel panel-default">
+	<div class="panel-heading">Asignar peso espacio - objetivo</div>
+    <div class="panel-body">
+
 	{!!Form::open(['url'=> '/asignacion','method' =>'POST']) !!}
 
 		<div class="row">
@@ -29,11 +29,11 @@
 			</div>
 			<div class="col-md-4">{!! Field::select('objective_id') !!}</div>
 		</div>
-		
-	<div class="form-group text-	">
-		<a href="{{url('/asignacion')}}">Regresar al resumen</a>
-		<input type="submit" value="Guardar" class="btn btn-success">
-	</div>
+		<div class="form-group text-	">
+			<a href="{{url('/asignacion')}}">Regresar al resumen</a>
+			<input type="submit" value="Guardar" class="btn btn-success">
+		</div>
 		{!! Form::close() !!}
 	</div>
+</div>
 @endsection

@@ -1,10 +1,9 @@
-@extends("layouts.app");
+@extends("layouts.app")
 
 @section("content")
-	<div class="big-padding text-center blue-grey white-text">
-		<h1>Planes académicos</h1>
-	</div>
-	<div class="container">
+<div class="panel panel-default">
+	<div class="panel-heading">Planes académicos</div>
+    <div class="panel-body">
 		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
 			{!! Field::select('university_id',$universidades) !!}
@@ -26,12 +25,13 @@
 				
 			</tbody>
 		</table>
+		<div class="floating">
+			<a href="{{url('/planesacademicos/create')}}" class="btn btn-primary btn-fab">
+				<i class="material-icons">add</i>
+			</a>
+		</div>
 	</div>
-	<div class="floating">
-		<a href="{{url('/planesacademicos/create')}}" class="btn btn-primary btn-fab">
-			<i class="material-icons">add</i>
-		</a>
-	</div>
+</div>
 @endsection
 
 @section("tabla")

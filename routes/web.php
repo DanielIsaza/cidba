@@ -113,7 +113,7 @@ Route::get('objetivosreal/{ability_id?}',["as"=>"objetivosreal",function($abilit
 	->join('objectiveespaces','objectiveespaces.id','=','weights.objectiveEspace_id')
 	->join('objectives','objectives.id','=','objectiveespaces.objective_id')
 	->join('academicspaces','academicspaces.id','=','objectiveespaces.academicspace_id')
-	->where([['abilities.id','=',$ability_id],['weights.tipo','=','1']])->select('weights.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
+	->where([['abilities.id','=',$ability_id],['weights.tipo','=','1']])->select('objectiveespaces.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
 }]);
 //Ruta que obtiene los espacios académicos y objetivos que son afectados por cada uno
 Route::get('objetivosteo/{ability_id?}',["as"=>"objetivosteo",function($ability_id){
@@ -122,7 +122,7 @@ Route::get('objetivosteo/{ability_id?}',["as"=>"objetivosteo",function($ability_
 	->join('objectiveespaces','objectiveespaces.id','=','weights.objectiveEspace_id')
 	->join('objectives','objectives.id','=','objectiveespaces.objective_id')
 	->join('academicspaces','academicspaces.id','=','objectiveespaces.academicspace_id')
-	->where([['abilities.id','=',$ability_id],['weights.tipo','=','0']])->select('weights.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
+	->where([['abilities.id','=',$ability_id],['weights.tipo','=','0']])->select('objectiveespaces.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
 }]);
 // Ruta que retorna la información estadistica de las habilidades
 Route::get('estadisticah/{plan_id?}/{tipo?}',["as"=>"estadisticah",function($plan_id,$tipo){
@@ -151,6 +151,10 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 	->select('abilities.id as id','abilities.nombre as nombre',DB::raw('SUM(weights.peso) as peso'))
 	->groupBy('abilities.id','abilities.nombre')
 	->get();
+}]);
+
+Route::get("prueba",['as'=>'prueba',function(){
+	return DB::table('academicplans');
 }]);
 
 //Ruta que da acceso al home de la aplicacion
