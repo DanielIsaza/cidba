@@ -154,7 +154,16 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 }]);
 
 Route::get("prueba",['as'=>'prueba',function(){
-	return DB::table('academicplans');
+	return DB::table('academicplans')
+	->join('profiles','academicplans.id','=','profiles.academicplan_id')
+	->join('abilities','profiles.id','=','abilities.profile_id')
+	->join('objectiveespaces','objectives.id','=','objectiveespaces.objective_id')
+	->join('academicspaces','objectiveespaces.academicspace_id','=','academicspaces.id')
+	->join('knowledgeareas','knowledgeareas.id','=','academicspaces.knowledgearea_id')
+	->join('weights','objectiveespaces.id','=','weights.objectiveEspace_id')
+	->select('abilities.id as id','abilities.nombre as nombre',DB::raw('SUM(weights.peso) as peso'))
+	->groupBy('abilities.id','abilities.nombre')
+	->get();
 }]);
 
 //Ruta que da acceso al home de la aplicacion
