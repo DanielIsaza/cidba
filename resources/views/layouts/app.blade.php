@@ -157,7 +157,7 @@
                                         <a href="{{ url('/estadistica') }}">Por plan de estudios</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/estadisticaT') }}">Tabla resumen</a>
+                                        <a href="{{ url('/tablaResumen') }}">Tabla resumen</a>
                                     </li>
                                </ul>
                         </li>

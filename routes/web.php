@@ -152,20 +152,19 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 	->groupBy('abilities.id','abilities.nombre')
 	->get();
 }]);
+//habilidades y objetivos
+Route::get('habilidadesobjetivos/{plan_id?}',["as"=>"habilidadesobjetivos",function($plan_id){
+	return DB::select("select `abilities`.`id` as habilidad_id, `abilities`.`nombre` as habilidad_nombre, `objectives`.`id` as objetivo_id, `objectives`.`nombre` as objetivo_nombre from `academicplans` inner join `profiles` on `academicplans`.`id` = `profiles`.`academicplan_id` inner join `abilities` on `profiles`.`id` = `abilities`.`profile_id` inner join `objectives` on `abilities`.`id` = `objectives`.`ability_id` where `academicplans`.`id` = 1 group by `abilities`.`id`, `abilities`.`nombre`, `objectives`.`id`, `objectives`.`nombre`");
 
-Route::get("prueba",['as'=>'prueba',function(){
-	return DB::table('academicplans')
+	/*return DB::table('academicplans')
 	->join('profiles','academicplans.id','=','profiles.academicplan_id')
 	->join('abilities','profiles.id','=','abilities.profile_id')
-	->join('objectiveespaces','objectives.id','=','objectiveespaces.objective_id')
-	->join('academicspaces','objectiveespaces.academicspace_id','=','academicspaces.id')
-	->join('knowledgeareas','knowledgeareas.id','=','academicspaces.knowledgearea_id')
-	->join('weights','objectiveespaces.id','=','weights.objectiveEspace_id')
-	->select('abilities.id as id','abilities.nombre as nombre',DB::raw('SUM(weights.peso) as peso'))
-	->groupBy('abilities.id','abilities.nombre')
-	->get();
+	->join('objectives','abilities.id','=','objectives.ability_id')
+	->where('academicplans.id','=',$plan_id)
+	->select('abilities.id','abilities.ombre','objectives.id','objectives.nombre')
+	->groupBy('abilities.id','abilities.nombre','objectives.id','objectives.nombre')
+	->get();*/
 }]);
-
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
 	
