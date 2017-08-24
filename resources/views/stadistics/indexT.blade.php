@@ -11,33 +11,39 @@
             <div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
         </div>
 
-  	  	<table class="table table-bordered" id="resumen">
-		</table>
+  	  	<table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td colspan="2" rowspan="2"></td>
+                    @foreach ($h as $hk)
+                        <td colspan="{{ sizeof($hk->listaO) }}">{{ $hk->nombre }}</td>
+                    @endforeach
+                </tr>
+                <tr>
+                    @foreach ($h as $hk)
+                        @foreach ($hk->listaO as $o)
+                            <td>{{ $o->nombre }}</td>
+                        @endforeach
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($ac as $ack)
+                    <tr>
+                        <td rowspan="{{ sizeof($ack->listaAE) }}">{{ $ack->nombre }}</td>
+                    @foreach ($ack->listaAE as $ea)
+                            <td>{{ $ea->nombre }}</td>
+                            @foreach ($ea->lista as $p)
+                                <td>{{ $p->valor }}</td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                    @endforeach
+                @endforeach
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
-@endsection
-@section('tabla')
-<script type="text/javascript">
-	$(document).ready(function(){
-		$.fn.populateTable = function (values){
-			var rows = '';
-            rows += '<thead>';
-            rows += '<tr>';
-            $.each(values,function(key,row){
-            	rows += '<td>'+ row.text + '</td>';
-            });
-            rows += '</tr>';
-            rows += '</thead>';
-             $(this).append(rows);
-    	}
-   
-        $('#academicplan_id').change(function(){
-        	if($(this).val() > 0){
-        		$.getJSON('{{ route('objetivo' )}}/'+1,null,function(values){
-            		$('#resumen').populateTable(values);
-        		});
-        	}
-        });
-	});
-</script>
 @endsection
