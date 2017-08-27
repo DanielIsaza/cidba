@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Obtiene los permisos del usuario
+     */
+    public function autorize()
+    {
+        return $this->hasMany('App\Autorize');
+    }
 }

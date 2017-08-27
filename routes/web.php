@@ -156,101 +156,12 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 Route::get('habilidadesobjetivos/{plan_id?}',["as"=>"habilidadesobjetivos",function($plan_id){
 	return DB::select("select `abilities`.`id` as habilidad_id, `abilities`.`nombre` as habilidad_nombre, `objectives`.`id` as objetivo_id, `objectives`.`nombre` as objetivo_nombre from `academicplans` inner join `profiles` on `academicplans`.`id` = `profiles`.`academicplan_id` inner join `abilities` on `profiles`.`id` = `abilities`.`profile_id` inner join `objectives` on `abilities`.`id` = `objectives`.`ability_id` where `academicplans`.`id` = 1 group by `abilities`.`id`, `abilities`.`nombre`, `objectives`.`id`, `objectives`.`nombre`");
 
-	/*return DB::table('academicplans')
-	->join('profiles','academicplans.id','=','profiles.academicplan_id')
-	->join('abilities','profiles.id','=','abilities.profile_id')
-	->join('objectives','abilities.id','=','objectives.ability_id')
-	->where('academicplans.id','=',$plan_id)
-	->select('abilities.id','abilities.ombre','objectives.id','objectives.nombre')
-	->groupBy('abilities.id','abilities.nombre','objectives.id','objectives.nombre')
-	->get();*/
 }]);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
 //
-Route::get('/pru', function () {
-    $ac = new StdClass();
-    $ac->nombre = "AC1";
-
-    $ea1 = new StdClass();
-    $ea1->nombre = "EA1";
-
-    $ea2 = new StdClass();
-    $ea2->nombre = "EA2";
-
-
-    $h1 = new StdClass();
-    $h1->nombre = "H1";
-
-    $h2 = new StdClass();
-    $h2->nombre = "H2";
-
-    $o1 = new StdClass();
-    $o1->nombre = "Obj1";
-
-    $o2 = new StdClass();
-    $o2->nombre = "Obj2";
-
-    $o3 = new StdClass();
-    $o3->nombre = "Obj3";
-
-    $o4 = new StdClass();
-    $o4->nombre = "Obj4";
-
-    $p1 = new StdClass();
-    $p1->o = $o1;
-    $p1->ea = $ea1;
-    $p1->valor = 1;
-
-    $p2 = new StdClass();
-    $p2->o = $o2;
-    $p2->ea = $ea1;
-    $p2->valor = 2;
-
-    $p3 = new StdClass();
-    $p3->o = $o3;
-    $p3->ea = $ea1;
-    $p3->valor = 3;
-
-    $p4 = new StdClass();
-    $p4->o = $o4;
-    $p4->ea = $ea1;
-    $p4->valor = 4;
-
-    $ea1->lista = array($p1, $p2, $p3, $p4);
-
-
-
-    $p5 = new StdClass();
-    $p5->o = $o1;
-    $p5->ea = $ea2;
-    $p5->valor = 5;
-
-    $p6 = new StdClass();
-    $p6->o = $o2;
-    $p6->ea = $ea2;
-    $p6->valor = 6;
-
-    $p7 = new StdClass();
-    $p7->o = $o3;
-    $p7->ea = $ea2;
-    $p7->valor = 7;
-
-    $p8 = new StdClass();
-    $p8->o = $o4;
-    $p8->ea = $ea2;
-    $p8->valor = 8;
-
-    $ea2->lista = array($p5, $p6, $p7, $p8);
-
-
-
-    $h1->listaO = array($o1, $o2);
-    $h2->listaO = array($o3, $o4);
-    $ac->listaAE = array($ea1, $ea2);
-
-    return view('pru')->with('ac', array($ac))->with('h', array($h1, $h2));
-});
-
+Route::get('prueba',[function(){
+	dd( App\University::find(1)->faculties);
+}]);
 	
 });
