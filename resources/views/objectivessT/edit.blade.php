@@ -7,14 +7,14 @@
 		{!!Form::open(['url'=> '/asignacionTeorica/'.$objetivoes->id,'method' =>'PUT']) !!}
 
 			<div class="row">
-				<div class="col-md-3">{!! Field::select('university_id',$universidades,$idUniversidad) !!}</div>
-				<div class="col-md-3">{!! Field::select('faculty_id',$facultades,$idFacultad) !!}</div>
-				<div class="col-md-3">{!! Field::select('academicprogram_id',$programas,$idPrograma) !!}</div>
-				<div class="col-md-3">{!! Field::select('academicplan_id',$planes,$idPlan) !!}</div>
+				<div class="col-md-4">{!! Field::select('university_id',$universidades,$idUniversidad) !!}</div>
+				<div class="col-md-4">{!! Field::select('faculty_id',$facultades,$idFacultad) !!}</div>
+				<div class="col-md-4">{!! Field::select('academicprogram_id',$programas,$idPrograma) !!}</div>
 			</div>
 		 
 			<div class="row">
 				
+				<div class="col-md-6">{!! Field::select('academicplan_id',$planes,$idPlan) !!}</div>
 				<div class="col-md-6">{!! Field::select('ability_id',$habilidades,$idHabilidad) !!}</div>
 				
 			</div>

@@ -5,14 +5,14 @@
 	<div class="panel-heading">Espacios académicos</div>
     <div class="panel-body">
 		<div class="row">
-			<div class="col-md-6">{!! Field::select('university_id',$universidades,null) !!}</div>
-			<div class="col-md-6">{!! Field::select('faculty_id') !!}</div>
+			<div class="col-md-4">{!! Field::select('university_id',$universidades,null) !!}</div>
+			<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
+			<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">{!! Field::select('academicprogram_id') !!}</div>
 			<div class="col-md-6">{!! Field::select('academicplan_id') !!}</div>
+			<div class="col-md-6">{!! Field::select('semester_id',$semestres) !!}</div>
 		</div>
-			{!! Field::select('semester_id',$semestres) !!}
 
 			<table id = "tabla" class="table table-bordered">
 				<thead>

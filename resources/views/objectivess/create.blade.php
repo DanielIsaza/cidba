@@ -8,14 +8,13 @@
 	{!!Form::open(['url'=> '/asignacion','method' =>'POST']) !!}
 
 		<div class="row">
-			<div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
-			<div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
-			<div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
-			<div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+			<div class="col-md-4">{!! Field::select('university_id',$universidades) !!}</div>
+			<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
+			<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
 		</div>
 	 
 		<div class="row">
-			
+			<div class="col-md-6">{!! Field::select('academicplan_id') !!}</div>
 			<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
 			
 		</div>

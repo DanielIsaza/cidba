@@ -79,14 +79,9 @@ Route::get('planes/{program_id?}',["as" => "planes/",function($program_id){
 	->where('academicplans.academicprogram_id',$program_id)
 	->select('academicplans.id as value','academicplans.nombre as text','states.nombre as estado')->get();
 }]);
-//Ruta que permite obtener los perfiles asociados a un plan academico
-Route::get('perfiles/{academicplan_id?}',["as"=>"perfiles/",function($academicplan_id){
-	return App\Profile::where('academicplan_id',$academicplan_id)
-			->select('id as value','descripcion as text')->get();
-}]);
 //Ruta que retorna las habilidades definidas en un perfil
-Route::get('habilidad/{profile_id?}',["as"=>"habilidad/",function($profile_id){
-	return App\Ability::where('profile_id',$profile_id)
+Route::get('habilidad/{academicplan_id?}',["as"=>"habilidad/",function($academicplan_id){
+	return App\Ability::where('academicplan_id',$academicplan_id)
 	->select('id as value','nombre as text','peso as peso')->get();
 }]);
 //Ruta que retorna las habilidades definidas en un perfil
@@ -127,8 +122,7 @@ Route::get('objetivosteo/{ability_id?}',["as"=>"objetivosteo",function($ability_
 // Ruta que retorna la información estadistica de las habilidades
 Route::get('estadisticah/{plan_id?}/{tipo?}',["as"=>"estadisticah",function($plan_id,$tipo){
 	return DB::table('academicplans')
-	->join('profiles','academicplans.id','=','profiles.academicplan_id')
-	->join('abilities','profiles.id','=','abilities.profile_id')
+	->join('abilities','academicplans.id','=','abilities.academicplan_id')
 	->join('objectives','abilities.id','=','objectives.ability_id')
 	->join('objectiveespaces','objectives.id','=','objectiveespaces.objective_id')
 	->join('weights','objectiveespaces.id','=','weights.objectiveEspace_id')
@@ -140,8 +134,7 @@ Route::get('estadisticah/{plan_id?}/{tipo?}',["as"=>"estadisticah",function($pla
 // Ruta que retorna la información estadistica de las habilidades
 Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",function($plan_id,$area_id,$tipo){
 	return DB::table('academicplans')
-	->join('profiles','academicplans.id','=','profiles.academicplan_id')
-	->join('abilities','profiles.id','=','abilities.profile_id')
+	->join('abilities','academicplans.id','=','abilities.academicplan_id')
 	->join('objectives','abilities.id','=','objectives.ability_id')
 	->join('objectiveespaces','objectives.id','=','objectiveespaces.objective_id')
 	->join('academicspaces','objectiveespaces.academicspace_id','=','academicspaces.id')
@@ -151,11 +144,6 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 	->select('abilities.id as id','abilities.nombre as nombre',DB::raw('SUM(weights.peso) as peso'))
 	->groupBy('abilities.id','abilities.nombre')
 	->get();
-}]);
-//habilidades y objetivos
-Route::get('habilidadesobjetivos/{plan_id?}',["as"=>"habilidadesobjetivos",function($plan_id){
-	return DB::select("select `abilities`.`id` as habilidad_id, `abilities`.`nombre` as habilidad_nombre, `objectives`.`id` as objetivo_id, `objectives`.`nombre` as objetivo_nombre from `academicplans` inner join `profiles` on `academicplans`.`id` = `profiles`.`academicplan_id` inner join `abilities` on `profiles`.`id` = `abilities`.`profile_id` inner join `objectives` on `abilities`.`id` = `objectives`.`ability_id` where `academicplans`.`id` = 1 group by `abilities`.`id`, `abilities`.`nombre`, `objectives`.`id`, `objectives`.`nombre`");
-
 }]);
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');

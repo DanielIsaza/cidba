@@ -11,21 +11,19 @@
 				<div class="col-md-3">{!! Field::select('academicprogram_id',$programas,$idPrograma) !!}</div>
 				<div class="col-md-3">{!! Field::select('academicplan_id',$planes,$idPlan) !!}</div>
 			</div>
-
+			<br>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					{{ Form::label('Tipo de habilidad')}}
 					{!! Form::select('typeability_id',$tiposh,$habilidad->typeability_id,['class'=> 'form-control','placeholder'=>'Seleccione una opción','required']) !!}
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					{{ Form::label('Nombre de la habilidad')}}
 					{{ Form::text('nombre',$habilidad->nombre,['class' => 'form-control',
 							'placeholder'=>'Nombre de la habilidad ']) }}
 				</div>
-				<div class="col-md-6">
-					{{ Form::label('Peso especifico de la habilidad')}}
+				<div class="col-md-4">
+					{{ Form::label('Peso de la habilidad')}}
 					{{ Form::text('peso',$habilidad->peso,['class' => 'form-control',
 							'placeholder'=>'Peso específico de la habilidad ']) }}
 				</div>

@@ -99,6 +99,9 @@
                                     <li>
                                         <a href="{{ url('/areasconocimiento') }}">Áreas de conocimiento</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/actividadesacademicas') }}">Actividades académicas</a>
+                                    </li>
                                </ul>
                         </li>
                         <li class="dropdown">
@@ -286,10 +289,19 @@
                         $('#tabla > tbody').remove();
                     }
                 else{
-                    
-                    if(("#academicspace_id").length){
+                    if($("#academicspace_id").length){
                         $.getJSON('{{ route('materia') }}/'+plan,null,function(values){
                             $('#academicspace_id').populateSelect(values);
+                        });
+                    }
+                    if($("#ability_id").length){
+                        $.getJSON('{{ route('habilidad') }}/'+plan,null,function(values){
+                            $("#ability_id").populateSelect(values);
+                        });
+                    }
+                    if(!$("#semester_id").length && $("#tabla").length && !$("#ability_id").length) {
+                        $.getJSON('{{ route('habilidad') }}/'+plan,null,function(values){
+                            $('#tabla').populateTable(values);
                         });
                     }
                 }
@@ -320,6 +332,8 @@
             $('#ability_id').change(function(){
                 $('#tabla > tbody').remove();
                 $('#tablaO > tbody').remove();
+                $('#tablaT > tbody').remove();
+
                 var habilidad = $('#ability_id').val();
                 if(habilidad > 0){
                     if($('#tablaO').length){
@@ -337,6 +351,7 @@
                             $('#objective_id').populateSelect(values);
                         });
                     }else{
+                        console.log('{{ route('objetivo/')}}/'+habilidad);
                         $.getJSON('{{ route('objetivo/')}}/'+habilidad,null,function(values){
                             $("#tabla").populateTable(values);
                         });

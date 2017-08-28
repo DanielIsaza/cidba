@@ -88,7 +88,7 @@ class AbilitiesController extends Controller
         $idPrograma = \DB::table('academicprograms')->where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
         $idFacultad = \DB::table('faculties')->where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
 
-        return view("abilities.edit",["habilidad"=> $habilidad,"tiposh"=>$tiposh,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"perfiles"=>$perfiles,"idPlan" => $idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
+        return view("abilities.edit",["habilidad"=> $habilidad,"tiposh"=>$tiposh,"universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"idPlan" => $idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
     }
 
     /**

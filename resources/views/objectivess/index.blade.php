@@ -8,14 +8,12 @@
 		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
 			<div class="row">
-				<div class="col-md-3">{!! Field::select('university_id',$universidades) !!}</div>
-				<div class="col-md-3">{!! Field::select('faculty_id') !!}</div>
-				<div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
-				<div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
+				<div class="col-md-4">{!! Field::select('university_id',$universidades) !!}</div>
+				<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
+				<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
 			</div>
-		 
 			<div class="row">
-				<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
+				<div class="col-md-6">{!! Field::select('academicplan_id') !!}</div>
 				<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
 			</div>
 
@@ -24,9 +22,9 @@
 				<thead>
 					<tr>
 						<td>Id</td>
-						<td>Espacio</td>
-						<td>Peso sobre objetivos</td>
-						<td>Objetivo</td>
+						<td>Nombre espacio académico</td>
+						<td>Nombre del objetivo</td>
+						<td>Peso del objetivo</td>
 						<td>Peso del objetivo sobre habilidad</td>
 						<td>Acciones</td>
 					</tr>
@@ -51,8 +49,8 @@
                 	rows += '<tr>';
                     rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
-                    rows += '<td>'+row.peso+'</td>';
                     rows += '<td>'+row.objetivos+'</td>'
+                    rows += '<td>'+row.peso+'</td>';
                     rows += '<td>'+row.pesohabilidad+'</td>'
                     rows += '<td>'+"<a href='{{ URL::asset('asignacion') }}/"+row.value+"/edit'>Editar </a>";
                     rows += "<form action='{{ URL::asset('asignacion') }}/"+row.value+"' method='POST' class='inline-block'>"+
