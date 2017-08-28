@@ -20,12 +20,4 @@ class Academicplan extends Model
     {
         return $this->belongsTo('App\State');
     }
-    /**
-    * obtiene los perfiles del plan academico
-    */
-    public function profile()
-    {
-        return $this->hasMany('App\Profile');
-    }
-    
 }

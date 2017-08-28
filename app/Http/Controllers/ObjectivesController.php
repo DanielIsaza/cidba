@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Academicprogram;
 use App\Academicplan;
-use App\Profile;
 use App\Ability;    
 use App\Objective;
 use App\Typeability;
@@ -83,16 +82,14 @@ class ObjectivesController extends Controller
         $facultades = Faculty::pluck('nombre','id')->toArray();
         $programas = Academicprogram::pluck('nombre','id')->toArray();
         $planes = Academicplan::pluck('nombre','id')->toArray();
-        $perfiles = Profile::pluck('nombre','id')->toArray();
         $habilidades = Ability::pluck('nombre','id')->toArray();
 
-        $idHabilidad = Ability::where('id',$objetivo->ability_id)->select('id','profile_id')->get()[0];
-        $idPerfil = Profile::where('id',$idHabilidad->profile_id)->select('id','academicplan_id')->get()[0];
-        $idPlan = Academicplan::where('id',$idPerfil->academicplan_id)->select('id','academicprogram_id')->get()[0];
+        $idHabilidad = Ability::where('id',$objetivo->ability_id)->select('id','academicplan_id')->get()[0];
+        $idPlan = Academicplan::where('id',$idHabilidad->academicplan_id)->select('id','academicprogram_id')->get()[0];
         $idPrograma = Academicprogram::where('id',$idPlan->academicprogram_id)->select('id','faculty_id')->get()[0];
         $idFacultad = Faculty::where('id',$idPrograma->faculty_id)->select('id','university_id')->get()[0];
 
-        return view("objetives.edit",["universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"perfiles"=>$perfiles,"habilidades"=>$habilidades,"objetivo"=>$objetivo,"idHabilidad"=>$objetivo->ability_id,"idPerfil"=>$idPerfil->id,"idPlan"=>$idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
+        return view("objetives.edit",["universidades"=>$universidades,"facultades"=>$facultades,"programas"=>$programas,"planes"=>$planes,"habilidades"=>$habilidades,"objetivo"=>$objetivo,"idHabilidad"=>$objetivo->ability_id,"idPlan"=>$idPlan->id,"idPrograma"=>$idPrograma->id,"idFacultad"=>$idFacultad->id,"idUniversidad"=>$idFacultad->university_id]);
     }
 
     /**

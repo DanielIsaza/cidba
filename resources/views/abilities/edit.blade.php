@@ -13,7 +13,6 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-6">{!! Field::select('profile_id',$perfiles,$idPerfil) !!}</div>
 				<div class="col-md-6">
 					{{ Form::label('Tipo de habilidad')}}
 					{!! Form::select('typeability_id',$tiposh,$habilidad->typeability_id,['class'=> 'form-control','placeholder'=>'Seleccione una opción','required']) !!}

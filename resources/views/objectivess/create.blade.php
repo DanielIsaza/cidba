@@ -16,7 +16,6 @@
 	 
 		<div class="row">
 			
-			<div class="col-md-6">{!! Field::select('profile_id') !!}</div>	
 			<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
 			
 		</div>

@@ -12,8 +12,7 @@
 		<div class="col-md-3">{!! Field::select('academicprogram_id') !!}</div>
 		<div class="col-md-3">{!! Field::select('academicplan_id') !!}</div>
 	</div>
-	 {!! Field::select('profile_id') !!}
-		{!! Form::close() !!}
+	 	{!! Form::close() !!}
 		<table id = "tabla" class="table table-bordered">
 			<thead>
 				<tr>
