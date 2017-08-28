@@ -20,4 +20,11 @@ class Academicplan extends Model
     {
         return $this->belongsTo('App\State');
     }
+    /**
+    * obtiene las habilidades del plan academico 
+    */
+    public function abilities()
+    {
+        return $this->hasMany('App\Ability');
+    }
 }

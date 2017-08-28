@@ -11,6 +11,13 @@ class Ability extends Model
 	**/
     public function typeability()
     {
+        return $this->belongsTo('App\Typeability');
+    }
+    /**
+    * obtiene el tipo de habilidad de la habilidad
+    **/
+    public function academicplan()
+    {
         return $this->belongsTo('App\Academicplan');
     }
     /**

@@ -149,7 +149,20 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 Route::get('/home', 'HomeController@index');
 //
 Route::get('prueba',[function(){
-	dd( App\University::find(1)->faculties);
-}]);
-	
+
+	$ac = array(App\knowledgearea::find(2));
+	$espacios = array(App\Academicspace::find(3));
+
+	foreach ($espacios as $esp) {
+		echo $esp->nombre;
+		foreach ($esp->objective as $obj) {
+			foreach ($obj->weight as $pe) {
+				if($pe->tipo == 1){
+				echo $pe->peso;
+				}
+			}
+		}
+	}
+
+}]);	
 });

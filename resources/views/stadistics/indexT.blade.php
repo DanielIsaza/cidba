@@ -16,12 +16,12 @@
                 <tr>
                     <td colspan="2" rowspan="2"></td>
                     @foreach ($h as $hk)
-                        <td colspan="{{ sizeof($hk->listaO) }}">{{ $hk->nombre }}</td>
+                        <td colspan="{{ sizeof($hk->objective) }}">{{ $hk->nombre }}</td>
                     @endforeach
                 </tr>
                 <tr>
                     @foreach ($h as $hk)
-                        @foreach ($hk->listaO as $o)
+                        @foreach ($hk->objective as $o)
                             <td>{{ $o->nombre }}</td>
                         @endforeach
                     @endforeach
@@ -30,10 +30,10 @@
             <tbody>
                 @foreach ($ac as $ack)
                     <tr>
-                        <td rowspan="{{ sizeof($ack->listaAE) }}">{{ $ack->nombre }}</td>
-                    @foreach ($ack->listaAE as $ea)
+                        <td rowspan="{{ sizeof($ack->academicspace) }}">{{ $ack->nombre }}</td>
+                    @foreach ($ack->academicspace as $ea)
                             <td>{{ $ea->nombre }}</td>
-                            @foreach ($ea->lista as $p)
+                           @foreach ($ea->lista as $p)
                                 <td>{{ $p->valor }}</td>
                             @endforeach
                         </tr>

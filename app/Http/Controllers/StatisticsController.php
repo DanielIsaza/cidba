@@ -7,6 +7,7 @@ use App\University;
 use App\Knowledgearea;
 use App\Ability;
 use App\Objective;
+use App\Academicplan;
 
 class StatisticsController extends Controller
 {
@@ -39,14 +40,8 @@ class StatisticsController extends Controller
     public function indexT()
     {
         $universidades = University::pluck('nombre','id')->toArray();
-
-        $habilidades = \DB::table('abilities')
-        ->join('objectives','abilities.id','=','objectives.ability_id')
-        ->where('abilities.profile_id','=',1)
-        ->select('abilities.id as ability_id','abilities.nombre as ability_nombre','objectives.id as objective_id','objectives.nombre as objective_nombre')
-        ->groupBy('abilities.id','abilities.nombre','objectives.id','objectives.nombre')
-        ->get();
-        dd($habilidades);
-        return view('stadistics.indexT',["universidades"=>$universidades,'ac'=>array($ac),'h' => array($h1, $h2,$h3)]);
+        $ac = Knowledgearea::find(2);
+        $habilidades = Academicplan::find(2)->abilities;
+        return view('stadistics.indexT',["universidades"=>$universidades,'ac'=>array($ac),'h' => $habilidades]);
     }
 }
