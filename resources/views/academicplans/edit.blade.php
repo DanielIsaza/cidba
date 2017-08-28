@@ -14,7 +14,7 @@
 				'placeholder'=>'Ingrese un nombre ']) }}
 			<br>
 			{{ Form::label('Descripción del perfil')}}
-			{{ Form::textarea('descripcion',$plan->descripcion,['class' => 'form-control','placeholder'=>'Descripción del perfil otorgado al estudiante por el plan académico']) }}
+			{{ Form::textarea('descripcion',$plan->perfil,['class' => 'form-control']) }}
 			
 			<div class="form-group">
 				<a href="{{url('/planesacademicos')}}">Regresar al listado de programas</a>

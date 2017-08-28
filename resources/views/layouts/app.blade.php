@@ -284,13 +284,9 @@
                 if(plan != null){
                     if(plan == -1){
                         $('#tabla > tbody').remove();
-                        $('#profile_id').empty().change();
                     }
                 else{
                     
-                    $.getJSON('{{ route('perfiles/') }}/'+plan,null,function(values){
-                        $('#profile_id').populateSelect(values);
-                    });
                     if(("#academicspace_id").length){
                         $.getJSON('{{ route('materia') }}/'+plan,null,function(values){
                             $('#academicspace_id').populateSelect(values);
@@ -298,28 +294,6 @@
                     }
                 }
             }
-            });
-
-            $('#profile_id').change(function(){
-                $('#tabla > tbody').remove();
-                var perfil = $(this).val();
-                if(perfil != null){
-                    if(perfil == -1){
-                        $('#tabla > tbody').remove();
-                        $('#profile_id').empty.change();
-                    }else{
-                        if($('#ability_id').length){
-                            $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
-                                $('#ability_id').populateSelect(values);
-                            });
-                        }
-                        else if($("#tabla").length){
-                            $.getJSON('{{ route('habilidad/') }}/'+perfil,null,function(values){
-                                $('#tabla').populateTable(values);
-                            });
-                        }
-                    }
-                }
             });
 
             $('#semester_id').change(function(){

@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<a href="{{url('/planesacademicos')}}">Regresar al listado de planes académicos</a>
 				<input type="submit" value="Guardar" class="btn btn-success">
-			div>
+			<div>
 		{!! Form::close() !!}
 	</div>	
 </div>
