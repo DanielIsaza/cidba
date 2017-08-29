@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Autorize extends Model
+class Authorize extends Model
 {
-	/**
+    /**
 	* obtiene el usuario asociado
 	*/
     public function user()

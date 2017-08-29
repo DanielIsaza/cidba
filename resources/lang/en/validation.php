@@ -131,6 +131,8 @@ return [
         'academicspace_id' => 'Espacio académico',
         "objective_id" => "Objetivos",
         'knowledgearea_id'=>'Áreas de conocimiento',
+        'user_id'=>'Usuario',
+        'rol_id'=>'Rol',
      ],
 
 ];

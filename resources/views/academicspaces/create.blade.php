@@ -82,65 +82,75 @@
 		  	</div>				
 			
 			<div class="row">
-				<div class="col-md-6">
-					{{ Form::label('Núcleo temático')}}
-						{{ Form::textarea('nucleoTematico',null,['class' => 'form-control',
-							'placeholder'=>'Núcleo temático del espacio académico']) }}
-				</div>
-				<div class="col-md-6">
-					{{ Form::label('Justificación')}}
-						{{ Form::textarea('justificacion',null,['class' => 'form-control',
-							'placeholder'=>'Justificación del espacio académico']) }}
-				</div>
+			<div class="col-md-12">
+				{{ Form::label('Núcleo temático')}}
+				{{ Form::textarea('nucleoTematico',null,['class' => 'form-control',
+					'placeholder'=>'Núcleo temático del espacio académico']) }}
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				{{ Form::label('Justificación')}}
+				{{ Form::textarea('justificacion',null,['class' => 'form-control',
+					'placeholder'=>'Justificación del espacio académico']) }}
+			</div>
 			</div>		
 			<div class="row">
-				<div class="col-md-6">
-					{{ Form::label('Metodología')}}
-						{{ Form::textarea('metodologia',null,['class' => 'form-control',
-							'placeholder'=>'Metodología del espacio académico']) }}
-				</div>
-				<div class="col-md-6">
-						{{ Form::label('Evaluación')}}
-					{{ Form::textarea('evaluacion',null,['class' => 'form-control',
-							'placeholder'=>'Evaluación del espacio académico']) }}
-				</div>
+			<div class="col-md-12">
+				{{ Form::label('Metodología')}}
+				{{ Form::textarea('metodologia',null,['class' => 'form-control',
+					'placeholder'=>'Metodología del espacio académico']) }}
+			</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					{{ Form::label('Descripción')}}
-						{{ Form::textarea('descripcion',null,['class' => 'form-control',
-							'placeholder'=>'Descripción del espacio académico']) }}
-				</div>
-				<div class="col-md-6">
-					{{ Form::label('Contenido conceptual')}}
-						{{ Form::textarea('contenidoConceptual',null,['class' => 'form-control',
-							'placeholder'=>'Contenido conceptual del espacio académico']) }}
-				</div>
+			<div class="col-md-12">
+				{{ Form::label('Evaluación')}}
+				{{ Form::textarea('evaluacion',null,['class' => 'form-control',
+					'placeholder'=>'Evaluación del espacio académico']) }}
+			</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					{{ Form::label('Contenido procedimental')}}
-						{{ Form::textarea('contenidoProcedimental',null,['class' => 'form-control',
-							'placeholder'=>'Contenido procedimental del espacio académico']) }}
-				</div>
-				<div class="col-md-6">
-					{{ Form::label('Contenido actitudinal')}}
-						{{ Form::textarea('contenidoActitudinal',null,['class' => 'form-control',
-							'placeholder'=>'Justificación del espacio académico']) }}
-				</div>
+			<div class="col-md-12">
+				{{ Form::label('Descripción')}}
+				{{ Form::textarea('descripcion',null,['class' => 'form-control',
+					'placeholder'=>'Descripción del espacio académico']) }}
+			</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					{{ Form::label('Procesos integrativos')}}
-						{{ Form::textarea('procesosIntegrativos',null,['class' => 'form-control',
-							'placeholder'=>'Procesos integrativos del espacio académico']) }}
-				</div>
-				<div class="col-md-6">
-					{{ Form::label('Unidades')}}
-						{{ Form::textarea('unidades',null,['class' => 'form-control',
-							'placeholder'=>'Unidades del espacio académico']) }}
-				</div>
-			</div>		
+			<div class="col-md-12">
+				{{ Form::label('Contenido conceptual')}}
+				{{ Form::textarea('contenidoConceptual',null,['class' => 'form-control',
+					'placeholder'=>'Contenido conceptual del espacio académico']) }}
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				{{ Form::label('Contenido procedimental')}}
+				{{ Form::textarea('contenidoProcedimental',null,['class' => 'form-control',
+					'placeholder'=>'Contenido procedimental del espacio académico']) }}
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				{{ Form::label('Contenido actitudinal')}}
+				{{ Form::textarea('contenidoActitudinal',null,['class' => 'form-control',
+					'placeholder'=>'Justificación del espacio académico']) }}
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				{{ Form::label('Procesos integrativos')}}
+				{{ Form::textarea('procesosIntegrativos',null,['class' => 'form-control',
+					'placeholder'=>'Procesos integrativos del espacio académico']) }}
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				{{ Form::label('Unidades')}}
+				{{ Form::textarea('unidades',null,['class' => 'form-control',
+					'placeholder'=>'Unidades del espacio académico']) }}
+			</div>
+			</div>
 			<div class="form-group">
 				<a href="{{url('/espaciosacademicos')}}">Regresar al listado de espacios académicos</a>
 				<input type="submit" value="Guardar" class="btn btn-success">

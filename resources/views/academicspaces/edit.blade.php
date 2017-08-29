@@ -84,12 +84,14 @@
   	</div>				
 	
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			{{ Form::label('Núcleo temático')}}
 				{{ Form::textarea('nucleoTematico',$espacio->nucleoTematico,['class' => 'form-control',
 					'placeholder'=>'Núcleo temático del espacio académico']) }}
 		</div>
-		<div class="col-md-6">
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 			{{ Form::label('Justificación')}}
 				{{ Form::textarea('justificacion',$espacio->justificacion,['class' => 'form-control',
 					'placeholder'=>'Justificación del espacio académico']) }}
@@ -101,6 +103,8 @@
 				{{ Form::textarea('metodologia',$espacio->metodologia,['class' => 'form-control',
 					'placeholder'=>'Metodología del espacio académico']) }}
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6">
 				{{ Form::label('Evaluación')}}
 			{{ Form::textarea('evaluacion',$espacio->evaluacion,['class' => 'form-control',
@@ -113,6 +117,8 @@
 				{{ Form::textarea('descripcion',$espacio->descripcion,['class' => 'form-control',
 					'placeholder'=>'Descripción del espacio académico']) }}
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6">
 			{{ Form::label('Contenido conceptual')}}
 				{{ Form::textarea('contenidoConceptual',$espacio->contenidoConceptual,['class' => 'form-control',
@@ -125,6 +131,8 @@
 				{{ Form::textarea('contenidoProcedimental',$espacio->contenidoProcedimental,['class' => 'form-control',
 					'placeholder'=>'Contenido procedimental del espacio académico']) }}
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6">
 			{{ Form::label('Contenido actitudinal')}}
 				{{ Form::textarea('contenidoActitudinal',$espacio->contenidoActitudinal,['class' => 'form-control',
@@ -137,6 +145,8 @@
 				{{ Form::textarea('procesosIntegrativos',$espacio->procesosIntegrativos,['class' => 'form-control',
 					'placeholder'=>'Procesos integrativos del espacio académico']) }}
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6">
 			{{ Form::label('Unidades')}}
 				{{ Form::textarea('unidades',$espacio->unidades,['class' => 'form-control',

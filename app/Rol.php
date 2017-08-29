@@ -11,6 +11,6 @@ class Rol extends Model
      */
     public function autorize()
     {
-        return $this->hasMany('App\Autorize');
+        return $this->hasMany('App\Authorize');
     }
 }

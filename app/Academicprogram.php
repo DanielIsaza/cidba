@@ -25,6 +25,6 @@ class Academicprogram extends Model
      */
     public function autorize()
     {
-        return $this->hasMany('App\autorize');
+        return $this->hasMany('App\Authorize');
     }
 }
