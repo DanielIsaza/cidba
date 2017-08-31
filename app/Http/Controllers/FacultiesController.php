@@ -104,8 +104,14 @@ class FacultiesController extends Controller
      */
     public function destroy($id)
     {
-        Faculty::destroy($id);
-        \Alert::message('Facultad eliminada correctamente', 'success');
-        return redirect('/facultades');
+        $programas = Faculty::find($id)->academicprograms;
+        if(empty($programas)){
+            Faculty::destroy($id);
+            \Alert::message('Facultad eliminada correctamente', 'success');
+            return redirect('/facultades');
+        }else{
+            \Alert::message('No se puede eliminar la facultad', 'danger');
+            return redirect('/facultades');
+        }
     }
 }

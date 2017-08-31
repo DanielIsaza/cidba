@@ -7,7 +7,6 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Id</td>
 					<td>Nombre</td>
 					<td>Acciones</td>
 				</tr>
@@ -15,7 +14,6 @@
 			<tbody>
 				@foreach($roles as $rol)
 					<tr>
-						<td>{{ $rol->id }}</td>
 						<td>{{ $rol->nombre }}</td>
 						<td> 
 							<a href="{{url('/roles/'.$rol->id.'/edit')}}">

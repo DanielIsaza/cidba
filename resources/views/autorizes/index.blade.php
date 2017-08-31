@@ -31,7 +31,14 @@
 	    			</tr>
 	    		</thead>
 	    		<tbody>
-
+	    		@foreach($permisos as $permiso)
+	    			<tr>
+	    				<td>{{ $permiso->usuario }}</td>
+	    				<td>{{ $permiso->programa }}</td>
+	    				<td>{{ $permiso->rol }}</td>
+	    				<td>@include('autorizes.delete',['permiso'=>$permiso])</td>
+	    			</tr>
+	    		@endforeach 
 	    		</tbody>
 	    	</table>
 

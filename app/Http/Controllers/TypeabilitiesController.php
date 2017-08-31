@@ -101,8 +101,14 @@ class TypeabilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Typeability::destroy($id);
-        \Alert::message('Tipo de habilidad eliminada correctamente', 'success');
-        return redirect('/tiposhabilidad');
+        $habilidad = Typeability::find($id)->abilities;
+        if(empty($habilidad)){
+            Typeability::destroy($id);
+            \Alert::message('Tipo de habilidad eliminada correctamente', 'success');
+            return redirect('/tiposhabilidad');
+        }else{
+            \Alert::message('El tipo de habilidad no se puede eliminar', 'danger');
+            return redirect('/tiposhabilidad');           
+        }
     }
 }

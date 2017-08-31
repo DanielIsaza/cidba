@@ -7,7 +7,6 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Id</td>
 					<td>Nombre</td>
 					<td>Acciones</td>
 				</tr>
@@ -15,7 +14,6 @@
 			<tbody>
 				@foreach($facultades as $facultad)
 					<tr>
-						<td>{{ $facultad->id }}</td>
 						<td>{{ $facultad->nombre }}</td>
 						<td> 
 							<a href="{{url('/facultades/'.$facultad->id.'/edit')}}">

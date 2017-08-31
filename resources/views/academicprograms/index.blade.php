@@ -10,7 +10,6 @@
 		<table id = "tabla" class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Id</td>
 					<td>Nombre</td>
 					<td>Acciones</td>
 				</tr>
@@ -33,7 +32,6 @@ $.fn.populateTable = function (values){
                 var rows = '';
                 rows += '<tbody>';
                 $.each(values, function(key,row){
-                    rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+"<a href='{{ URL::asset('programasacademicos') }}/"+row.value+"/edit'>Editar </a>";
                     rows += "<form action='{{ URL::asset('programasacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+

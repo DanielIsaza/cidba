@@ -17,7 +17,6 @@
 			<table id = "tabla" class="table table-bordered">
 				<thead>
 					<tr>
-						<td>Id</td>
 						<td>Nombre</td>
 						<td>Acciones</td>
 					</tr>
@@ -39,7 +38,6 @@
                 rows += '<tbody>';
                 $.each(values, function(key,row){
                 	rows += '<tr>';
-                    rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+"<a href='{{ URL::asset('descargar') }}/"+row.values+"'>Descargar  </a>";
                     rows += "<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'>Editar  </a>";

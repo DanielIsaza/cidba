@@ -21,7 +21,6 @@
 		<table id = "tablaT" class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Id</td>
 					<td>Nombre espacio académico</td>
 					<td>Nombre del bjetivo</td>
 					<td>Peso del objetivo</td>
@@ -47,7 +46,6 @@
                 rows += '<tbody>';
                 $.each(values, function(key,row){
                 	rows += '<tr>';
-                    rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.objetivos+'</td>'
                     rows += '<td>'+row.peso+'</td>';

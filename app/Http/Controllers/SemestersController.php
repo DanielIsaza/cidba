@@ -101,8 +101,14 @@ class SemestersController extends Controller
      */
     public function destroy($id)
     {
-        Semester::destroy($id);
-        \Alert::message('Semestre eliminado correctamente', 'success');
-        return redirect('/semestres');
+        $espacios = Semester::find($id)->academicspaces; 
+        if(empty($espacios)){
+            Semester::destroy($id);
+            \Alert::message('Semestre eliminado correctamente', 'success');
+            return redirect('/semestres');
+        }else{
+            \Alert::message('No se puede eliminar el semestre', 'danger');
+            return redirect('/semestres');
+        }
     }
 }

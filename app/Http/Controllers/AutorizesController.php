@@ -21,8 +21,15 @@ class AutorizesController extends Controller
         $roles = Rol::pluck('nombre','id')->toArray();
         $programas = Academicprogram::pluck('nombre','id')->toArray();
 
-        
-        return view("autorizes.index",["usuarios"=>$usuarios,"roles"=>$roles,"programas"=>$programas]);
+        $permisos = \DB::table('authorizes')
+            ->join('users','users.id','=','authorizes.user_id')
+            ->join('rols','rols.id','=','authorizes.rol_id')
+            ->join('academicprograms','academicprograms.id','=','authorizes.academicprogram_id')
+            ->select('authorizes.id as id',\DB::raw('CONCAT(users.name," - ",users.email) as usuario'),'rols.nombre as rol','academicprograms.nombre as programa')
+            ->get()
+            ->toArray();
+            
+        return view("autorizes.index",["usuarios"=>$usuarios,"roles"=>$roles,"programas"=>$programas,"permisos"=>$permisos]);
     }
 
     /**
@@ -98,6 +105,8 @@ class AutorizesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Authorize::destroy($id);
+        \Alert::message('Permiso eliminado correctamente', 'success');
+        return redirect('/autoriza');
     }
 }

@@ -7,7 +7,6 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<td>Id</td>
 						<td>Nombre</td>
 						<td>Acciones</td>
 					</tr>
@@ -15,11 +14,10 @@
 				<tbody>
 					@foreach($universidades as $universidad)
 						<tr>
-							<td>{{ $universidad->id }}</td>
 							<td>{{ $universidad->nombre }}</td>
-							<td> 
+							<td > 
 								<a href="{{url('/universidades/'.$universidad->id.'/edit')}}">
-									Editar</a>
+									<i class="material-icons">mode_edit</i></a>
 								@include('universities.delete',['universidad'=>$universidad])
 							</td>
 						</tr>

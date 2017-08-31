@@ -11,6 +11,6 @@ class Semester extends Model
     */
     public function academicspaces()
     {
-        return $this->hasMany('App\academicspaces');
+        return $this->hasMany('App\Academicspace');
     }
 }

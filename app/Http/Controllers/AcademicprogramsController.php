@@ -107,8 +107,14 @@ class AcademicprogramsController extends Controller
      */
     public function destroy($id)
     {
-        Academicprogram::destroy($id);
-        \Alert::message('Programa académico eliminado correctamente', 'success');
-        return redirect('/programasacademicos');
+        $planes = Academicprogram::find($id)->academicplans;
+        if(empty($planes)){
+            Academicprogram::destroy($id);
+            \Alert::message('Programa académico eliminado correctamente', 'success');
+            return redirect('/programasacademicos');
+        }else{
+            \Alert::message('No se puede eliminar el programa académico', 'danger');
+            return redirect('/programasacademicos');
+        }
     }
 }

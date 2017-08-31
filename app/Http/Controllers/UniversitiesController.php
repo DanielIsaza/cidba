@@ -101,8 +101,14 @@ class UniversitiesController extends Controller
      */
     public function destroy($id)
     {
-        University::destroy($id);
-        \Alert::message('Universidad eliminada correctamente', 'success');
-        return redirect('/universidades');
+        $facultades = University::find($id)->faculties;
+        if(empty($facultades)){
+            University::destroy($id);
+            \Alert::message('Universidad eliminada correctamente', 'success');
+            return redirect('/universidades');
+        }else {
+            \Alert::message('No se puede eliminar la Universidad', 'danger');
+            return redirect('/universidades');
+        }
     }
 }
