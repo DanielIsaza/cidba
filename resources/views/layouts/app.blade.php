@@ -56,7 +56,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   Contexto <span class="caret"></span>
+                                   Información universidad <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -68,41 +68,48 @@
                                     <li>
                                         <a href="{{ url('/programasacademicos') }}">Programas académicos</a>
                                     </li>
-                                    <li>
-                                        <a href="{{ url('/semestres') }}">Semestres</a>
-                                    </li>
                                </ul>
                         </li>
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   Dominio <span class="caret"></span>
+                                   Programa académico <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/tiposhabilidad') }}">Tipos de habilidad</a>
+                                        <a href="{{ url('/semestres') }}">Semestres</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/naturaleza') }}">Tipos de naturaleza</a>
+                                        <a href="{{ url('/estados') }}">Estados planes académicos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/tiposmetodologias') }}">Tipos de metodologías</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/tiposevaluaciones') }}">Tipos de evaluación</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/estados') }}">Estados</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/habilidades') }}">Habilidades</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/areasconocimiento') }}">Áreas de conocimiento</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/actividadesacademicas') }}">Actividades académicas</a>
-                                    </li>
+                                        <a href="{{ url('/planesacademicos') }}">Planes académicos</a>
+                                    </li>   
                                </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Espacios académicos <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ url('/naturaleza') }}">Tipos de naturaleza</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/tiposmetodologias') }}">Tipos de metodologías</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/tiposevaluaciones') }}">Tipos de evaluación</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/areasconocimiento') }}">Áreas de conocimiento</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/actividadesacademicas') }}">Actividades académicas</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/espaciosacademicos') }}">Espacios académicos</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -110,7 +117,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/register') }}">Creación usuarios</a>
+                                        <a href="{{ url('/register') }}">Usuarios</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/roles') }}">Roles</a>
@@ -122,22 +129,15 @@
                         </li>
                         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   Materias <span class="caret"></span>
+                                   Habilidades <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/planesacademicos') }}">Planes académicos</a>
+                                        <a href="{{ url('/tiposhabilidad') }}">Tipos de habilidad</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/espaciosacademicos') }}">Espacios académicos</a>
+                                        <a href="{{ url('/habilidades') }}">Habilidades</a>
                                     </li>
-                               </ul>
-                        </li>
-                        <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   Pesos <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ url('/objetivos') }}">Objetivos</a>
                                     </li>
@@ -170,8 +170,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Ingreso</a></li>
+                            <li><a href="{{ url('/register') }}">Registro</a></li>
                         @else
                             <li>
                                 <a href="{{ url('/logout') }}"
