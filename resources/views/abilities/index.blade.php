@@ -16,7 +16,6 @@
 		<table id = "tabla" class="table table-bordered">
 			<thead>
 				<tr>
-					<td>Id</td>
 					<td>Nombre</td>
 					<td>Peso</td>
 					<td>Acciones</td>
@@ -40,7 +39,6 @@
                 rows += '<tbody>';
                 $.each(values, function(key,row){
                 	rows += '<tr>';
-                    rows += '<td>'+row.value+'</td>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.peso+'</td>';
                     rows += '<td>'+"<a href='{{ URL::asset('habilidades') }}/"+row.value+"/edit'>Editar </a>";

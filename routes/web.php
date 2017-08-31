@@ -150,10 +150,9 @@ Route::get('/home', 'HomeController@index');
 //
 Route::get('prueba',[function(){
 
-	$autoriza = App\Authorize::find(1)->user;
-	dd($autoriza);
-	/*$ac = array(App\knowledgearea::find(2));
-	$espacios = array(App\Academicspace::find(3));
+
+	$ac = array(App\knowledgearea::all());
+	/*$espacios = array(App\Academicspace::find(3));
 
 	foreach ($espacios as $esp) {
 		echo $esp->nombre;
