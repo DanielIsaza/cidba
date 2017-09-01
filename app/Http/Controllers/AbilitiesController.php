@@ -121,8 +121,15 @@ class AbilitiesController extends Controller
      */
     public function destroy($id)
     {
-        Ability::destroy($id);
-        \Alert::message('Habilidad eliminada correctamente', 'success');
-        return redirect('/habilidades');
+        $objetivos = Ability::find($id)->objective;
+        if(empty($objectivos)){
+            Ability::destroy($id);
+            \Alert::message('Habilidad eliminada correctamente', 'success');
+            return redirect('/habilidades');    
+        }else{
+            \Alert::message('No se puede eliminar la habilidad', 'danger');
+            return redirect('/habilidades');    
+        }
+        
     }
 }

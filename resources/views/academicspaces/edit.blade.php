@@ -71,15 +71,15 @@
   		</div>
   		<div class="col-md-3">
   			{{ Form::label('Habilitable?')}}
-			{{ Form::checkbox('habilitable',$espacio->habilitable,null) }}
+			{{ Form::checkbox('habilitable','',$espacio->habilitable) }}
 		</div>
 		<div class="col-md-3">
   			{{ Form::label('Validable?')}}
-			{{ Form::checkbox('validable',$espacio->validable) }}
+			{{ Form::checkbox('validable','',$espacio->validable) }}
 		</div>
 		<div class="col-md-3">
   			{{ Form::label('Homologable')}}
-			{{ Form::checkbox('homologable',$espacio->homologable) }}
+			{{ Form::checkbox('homologable','',$espacio->homologable) }}
 		</div>
   	</div>				
 	

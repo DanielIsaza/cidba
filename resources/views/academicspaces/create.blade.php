@@ -80,7 +80,14 @@
 					{{ Form::checkbox('homologable') }}
 				</div>
 		  	</div>				
-			
+			<div class="row">
+				<div class="col-md-6">
+					{{Form::label('Requisitos')}}
+				</div>
+				<div class="col-md-6">
+					{{Form::label('Co-Requisitos')}}
+				</div>
+			</div>
 			<div class="row">
 			<div class="col-md-12">
 				{{ Form::label('Núcleo temático')}}
