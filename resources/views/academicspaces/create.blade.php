@@ -8,7 +8,7 @@
 			<div class="row">
 		   		<div class="col-md-4">{!! Field::select('university_id',$universidades) !!}</div>
 		    	<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
-		    	<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div> 
+		    	<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
 		  	</div>
 		  	<div class="row">
 		  		<div class="col-md-4">{!! Field::select('academicplan_id') !!}	</div>
@@ -24,7 +24,7 @@
 		  	<div class="row">
 		  		<div class="col-md-3">
 		  			{{ Form::label('Código')}}
-						{{ Form::text('codigo',null,['class' => 'form-control', 
+						{{ Form::text('codigo',null,['class' => 'form-control',
 							'placeholder'=>'Código del espacio académico']) }}
 		  		</div>
 		  		<div class="col-md-6">
@@ -60,7 +60,7 @@
 							'placeholder'=>'Horas de asesoría del espacio académico']) }}
 		  		</div>
 		  	</div>
-							
+
 			<div class="row">
 				<div class="col-md-3">
 		  			{{ Form::label('Horas independiente')}}
@@ -79,7 +79,7 @@
 		  			{{ Form::label('Homologable')}}
 					{{ Form::checkbox('homologable') }}
 				</div>
-		  	</div>				
+		  	</div>
 			<div class="row">
 				<div class="col-md-6">
 					{{Form::label('Requisitos')}}
@@ -101,7 +101,7 @@
 				{{ Form::textarea('justificacion',null,['class' => 'form-control',
 					'placeholder'=>'Justificación del espacio académico']) }}
 			</div>
-			</div>		
+			</div>
 			<div class="row">
 			<div class="col-md-12">
 				{{ Form::label('Metodología')}}
@@ -158,11 +158,11 @@
 					'placeholder'=>'Unidades del espacio académico']) }}
 			</div>
 			</div>
-			<div class="form-group">
-				<a href="{{url('/espaciosacademicos')}}">Regresar al listado de espacios académicos</a>
-				<input type="submit" value="Guardar" class="btn btn-success">
-			</div>
-		{!! Form::close() !!}
-	</div>	
+	</div>
 </div>
+<div class="form-group" style="text-align:right">
+	<a href="{{url('/espaciosacademicos')}}">Regresar al listado de espacios académicos</a>
+	<input type="submit" value="Guardar" class="btn btn-success">
+</div>
+{!! Form::close() !!}
 @endsection

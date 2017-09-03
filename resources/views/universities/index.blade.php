@@ -15,21 +15,29 @@
 					@foreach($universidades as $universidad)
 						<tr>
 							<td>{{ $universidad->nombre }}</td>
-							<td > 
-								<a href="{{url('/universidades/'.$universidad->id.'/edit')}}">
-									<i class="material-icons">mode_edit</i></a>
-								@include('universities.delete',['universidad'=>$universidad])
+							<td >
+								<div class="row">
+									<div class="col-xs-1">
+										<a href="{{url('/universidades/'.$universidad->id.'/edit')}}">
+											<i class="material-icons">mode_edit</i></a>
+									</div>
+									<div class="col-xs-6">
+											@include('universities.delete',['universidad'=>$universidad])
+									</div>
+								</div>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-			<div class="floating">
+			</div>
+	</div>
+			<div style="float:top; text-align:right;">
 				<a href="{{url('/universidades/create')}}" class="btn btn-primary btn-fab">
-					<i class="material-icons">add</i>
+					<i class="glyphicon glyphicon-plus"></i>
 				</a>
 			</div>
-		</div>
-	</div>
-		
+
+
+
 @endsection

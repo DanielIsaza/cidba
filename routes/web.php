@@ -56,12 +56,14 @@ Route::resource('autoriza','AutorizesController');
 Route::resource('asignacionTeorica','ObjectivesspacesTController');
 //Rutas para el CRUD de las áreas de conocimiento
 Route::resource('areasconocimiento','KnowledgeareasController');
-// permite obtener las gráficas estadisticas 
+// permite obtener las gráficas estadisticas
 Route::get('estadistica','StatisticsController@index');
-// permite obtener las gráficas estadisticas 
+// permite obtener las gráficas estadisticas
 Route::get('estadisticaAreaConocimiento','StatisticsController@indexA');
-// permite obtener tabla resumen con los datos 
+// permite obtener tabla resumen con los datos
 Route::get('tablaResumen','StatisticsController@indexT');
+// permite realizar la descarga del syllabus de un espacio académico
+Route::get('descarga/{espacio_id?}','PdfController@descarga');
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
@@ -145,6 +147,7 @@ Route::get('estadisticaa/{plan_id?}/{area_id?}/{tipo?}',["as"=>"estadisticaa",fu
 	->groupBy('abilities.id','abilities.nombre')
 	->get();
 }]);
+
 //Ruta que da acceso al home de la aplicacion
 Route::get('/home', 'HomeController@index');
 //
@@ -165,5 +168,5 @@ Route::get('prueba',[function(){
 		}
 	}*/
 
-}]);	
+}]);
 });

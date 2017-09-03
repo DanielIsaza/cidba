@@ -39,12 +39,12 @@
                 $.each(values, function(key,row){
                 	rows += '<tr>';
                     rows += '<td>'+row.text+'</td>';
-                    rows += '<td>'+"<a href='{{ URL::asset('descargar') }}/"+row.values+"'>Descargar  </a>";
-                    rows += "<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'>Editar  </a>";
+                    rows += '<td>'+"<a href='{{ URL::asset('descargar') }}/"+row.values+"'><i class='material-icons'>get_app</i>  </a>";
+                    rows += "<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'><i class='material-icons'>mode_edit</i></a>";
                     rows += "<form action='{{ URL::asset('espaciosacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
-                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'><i class='material-icons'>delete_sweep</i></button>"+"</form>";
                 });
                 rows += '</tr>';
                 rows += '</tbody>';
