@@ -26,6 +26,22 @@
     <br>
     Descripcion:
     {{ $espacio->descripcion}}
+    <br>
+    Justificación:
+    {{ $espacio->justificacion }}
+    <br>
+    Competencias propias del espacio académico, núcleo o cátedra
+    {{ $espacio->nucleo }}
+    <br>
+    	Administración del espacio académico
+      Espacio académico: {{ $espacio->nombre }}
+      Horas semanales: {{ $espacio->horasTeoricas }}
+      Título de horas por semestre: {{ $espacio->horasTeoricas }}
+      Metodología: {{ $espacio->metodologia }}
+  <br>
+  Procesos integrativos:
+  {{ $espacio->procesointegrativo }}
+
     <div id="footer">
       <h1>Widgets Express</h1>
     </div>
