@@ -15,20 +15,26 @@
 				@foreach($tipometodologias as $tipometodologia)
 					<tr>
 						<td>{{ $tipometodologia->nombre }}</td>
-						<td> 
+						<td>
+							<div class="row">
+								<div class="col-xs-1">
 							<a href="{{url('/tiposmetodologias/'.$tipometodologia->id.'/edit')}}">
-							Editar</a>
+							<i class="material-icons">mode_edit</i></a>
+						</div>
+						<div class="col-xs-6">
 							@include('typemethodologies.delete',['tipometodologia'=>$tipometodologia])
+						</div>
+					</div>
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
 	</div>
-	<div class="floating">
-		<a href="{{url('/tiposmetodologias/create')}}" class="btn btn-primary btn-fab">
-			<i class="material-icons">add</i>
-		</a>
-	</div>
+</div>
+<div style="float:top; text-align:right;">
+	<a href="{{url('/tiposmetodologias/create')}}" class="btn btn-primary btn-fab">
+		<i class="glyphicon glyphicon-plus"></i>
+	</a>
 </div>
 @endsection

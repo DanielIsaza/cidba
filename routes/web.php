@@ -18,7 +18,8 @@ Route::group(['middleware' => 'auth'],function(){
 	//Rutas para el CRUD de Universidad
 	Route::resource('universidades','UniversitiesController');
 	//Ruta para el home de la aplicacion
-	Route::get('/', 'MainController@home');
+Route::get('/', 'HomeController@index');
+//'MainController@home');
 
 	//Rutas para el CRUD de Estados
 Route::resource('estados','StatesController');
@@ -170,3 +171,7 @@ Route::get('prueba',[function(){
 
 }]);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

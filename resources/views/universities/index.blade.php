@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends('layouts.app')
 
 @section("content")
 	<div class="panel panel-default">
@@ -15,7 +15,7 @@
 					@foreach($universidades as $universidad)
 						<tr>
 							<td>{{ $universidad->nombre }}</td>
-							<td >
+							<td>
 								<div class="row">
 									<div class="col-xs-1">
 										<a href="{{url('/universidades/'.$universidad->id.'/edit')}}">
@@ -32,12 +32,9 @@
 			</table>
 			</div>
 	</div>
-			<div style="float:top; text-align:right;">
-				<a href="{{url('/universidades/create')}}" class="btn btn-primary btn-fab">
+	<div style="float:top; text-align:right;">
+					<a href="{{url('/universidades/create')}}" class="btn btn-primary btn-fab">
 					<i class="glyphicon glyphicon-plus"></i>
-				</a>
+			</a>
 			</div>
-
-
-
 @endsection

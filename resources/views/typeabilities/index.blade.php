@@ -15,20 +15,26 @@
 					@foreach($tiposHabilidades as $tipoHabilidad)
 						<tr>
 							<td>{{ $tipoHabilidad->nombre }}</td>
-							<td> 
+							<td>
+								<div class="row">
+									<div class="col-xs-1">
 								<a href="{{url('/tiposhabilidad/'.$tipoHabilidad->id.'/edit')}}">
-								Editar</a>
+								<i class="material-icons">mode_edit</i></a>
+							</div>
+							<div class="col-xs-6">
 								@include('typeabilities.delete',['tipoHabilidad'=>$tipoHabilidad])
+							</div>
+						</div>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-		<div class="floating">
-			<a href="{{url('/tiposhabilidad/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
-			</a>
-		</div>
 	</div>
+</div>
+<div style="float:top; text-align:right;">
+	<a href="{{url('/tiposhabilidad/create')}}" class="btn btn-primary btn-fab">
+<i class="glyphicon glyphicon-plus"></i>
+	</a>
 </div>
 @endsection

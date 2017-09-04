@@ -31,12 +31,12 @@
 				<tbody>
 				</tbody>
 			</table>
-		<div class="floating">
-			<a href="{{url('/asignacion/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
-			</a>
-		</div>
 	</div>
+</div>
+<div style="float:top; text-align:right;">
+<a href="{{url('/asignacion/create')}}" class="btn btn-primary btn-fab">
+	<i class="glyphicon glyphicon-plus"></i>
+</a>
 </div>
 @endsection
 @section('tabla')
@@ -50,12 +50,14 @@
                     rows += '<td>'+row.objetivos+'</td>'
                     rows += '<td>'+row.peso+'</td>';
                     rows += '<td>'+row.pesohabilidad+'</td>'
-                    rows += '<td>'+"<a href='{{ URL::asset('asignacion') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += '<td> <div class="row"> <div class="col-xs-1">';
+										rows += "<a href='{{ URL::asset('asignacion') }}/"+row.value+"/edit'><i class='material-icons'>mode_edit</i> </a>";
+										rows += '</div> <div class="col-xs-6">';
                     rows += "<form action='{{ URL::asset('asignacion') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
-                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
-                    rows += '</tr>';
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'><i class='material-icons'>delete_sweep</i></button>"+"</form>";
+                    rows += '</div></div></td></tr>';
                 });
                 rows += '</tbody>';
                 $(this).append(rows);

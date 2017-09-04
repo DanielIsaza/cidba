@@ -11,7 +11,7 @@
 				<div class="col-md-4">{!! Field::select('faculty_id') !!}</div>
 				<div class="col-md-4">{!! Field::select('academicprogram_id') !!}</div>
 			</div>
-		 
+
 			<div class="row">
 				<div class="col-md-6">{!! Field::select('academicplan_id') !!}</div>
 				<div class="col-md-6">{!! Field::select('ability_id') !!}</div>
@@ -22,7 +22,7 @@
 			<thead>
 				<tr>
 					<td>Nombre espacio académico</td>
-					<td>Nombre del bjetivo</td>
+					<td>Nombre del objetivo</td>
 					<td>Peso del objetivo</td>
 					<td>Peso del objetivo sobre habilidad</td>
 					<td>Acciones</td>
@@ -31,12 +31,11 @@
 			<tbody>
 			</tbody>
 		</table>
-		<div class="floating">
-			<a href="{{url('/asignacionTeorica/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
-			</a>
-		</div>
 	</div>
+</div>
+<div style="float:top; text-align:right;">
+	<a href="{{url('/asignacionTeorica/create')}}" class="btn btn-primary btn-fab">
+<i class="glyphicon glyphicon-plus"></i>	</a>
 </div>
 @endsection
 @section('tabla')
@@ -50,12 +49,14 @@
                     rows += '<td>'+row.objetivos+'</td>'
                     rows += '<td>'+row.peso+'</td>';
                     rows += '<td>'+row.pesohabilidad+'</td>'
-                    rows += '<td>'+"<a href='{{ URL::asset('asignacionTeorica') }}/"+row.value+"/edit'>Editar </a>";
+                    rows += '<td> <div class="row"><div class="col-xs-1">';
+										rows += "<a href='{{ URL::asset('asignacionTeorica') }}/"+row.value+"/edit'><i class='material-icons'>mode_edit</i> </a>";
+										rows += '</div><div class="col-xs-6">';
                     rows += "<form action='{{ URL::asset('asignacionTeorica') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
-                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
-                    rows += '</tr>';
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'><i class='material-icons'>delete_sweep</i></button>"+"</form>";
+                    rows += '</div></div></td></tr>';
                 });
                 rows += '</tbody>';
                 $(this).append(rows);

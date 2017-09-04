@@ -15,20 +15,26 @@
 				@foreach($roles as $rol)
 					<tr>
 						<td>{{ $rol->nombre }}</td>
-						<td> 
+						<td>
+							<div class="row">
+								<div class="col-xs-1">
 							<a href="{{url('/roles/'.$rol->id.'/edit')}}">
-							Editar</a>
+							<i class="material-icons">mode_edit</i></a>
+						</div>
+						<div class="col-xs-6">
 							@include('roles.delete',['rol'=>$rol])
+						</div>
+					</div>
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
-		<div class="floating">
-			<a href="{{url('/roles/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
-			</a>
-		</div>
 	</div>
+</div>
+<div style="float:top; text-align:right;">
+	<a href="{{url('/roles/create')}}" class="btn btn-primary btn-fab">
+		<i class="glyphicon glyphicon-plus"></i>
+	</a>
 </div>
 @endsection

@@ -15,21 +15,28 @@
 					@foreach($semestres as $semestre)
 						<tr>
 							<td>{{ $semestre->nombre }}</td>
-							<td> 
+							<td>
+								<div class="row">
+									<div class="col-xs-1">
 								<a href="{{url('/semestres/'.$semestre->id.'/edit')}}">
-								Editar</a>
+									<i class="material-icons">mode_edit</i></a>
+								</a>
+							</div>
+							<div class="col-xs-6">
 								@include('semesters.delete',['semestre'=>$semestre])
+							</div>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
 		</div>
-		<div class="floating">
+    </div>
+		<div style="float:top; text-align:right;">
 			<a href="{{url('/semestres/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
+				<i class="glyphicon glyphicon-plus"></i>
 			</a>
 		</div>
-    </div>
-</div>	
+</div>
+
 @endsection

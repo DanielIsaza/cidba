@@ -11,7 +11,7 @@
 			{!! Field::select('academicprogram_id') !!}
 
 		{!! Form::close() !!}
-		
+
 		<table id="tabla" class="table table-bordered">
 			<thead>
 				<tr>
@@ -21,15 +21,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 			</tbody>
 		</table>
-		<div class="floating">
-			<a href="{{url('/planesacademicos/create')}}" class="btn btn-primary btn-fab">
-				<i class="material-icons">add</i>
-			</a>
-		</div>
 	</div>
+</div>
+<div style="float:top; text-align:right;">
+	<a href="{{url('/planesacademicos/create')}}" class="btn btn-primary btn-fab">
+		<i class="glyphicon glyphicon-plus"></i>
+	</a>
 </div>
 @endsection
 
@@ -42,13 +42,15 @@
                 	rows += '<tr>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td>'+row.estado+'</td>'
-                    rows += '<td>'+"<a href='{{ URL::asset('planesacademicos') }}/"+row.value+"/edit'>Editar </a>";
-                    rows += "<form action='{{ URL::asset('planesacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
+                    rows += '<td><div class="row"><div class="col-xs-1">';
+										rows += "<a href='{{ URL::asset('planesacademicos') }}/"+row.value+"/edit'><i class='material-icons'>mode_edit</i> </a>";
+										rows += '</div>	<div class="col-xs-6">';
+										rows += "<form action='{{ URL::asset('planesacademicos') }}/"+row.value+"' method='POST' class='inline-block'>"+
                     "<input name='_method' type='hidden' value='DELETE'>"+
                     "<input name='_token' type='hidden' value='{{ csrf_token() }}'>"+
-                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'>Eliminar</button>"+"</form>";
+                    "<button type='submit' class='btn btn-link red-text no-padding no-margin no-transform'><i class='material-icons'>delete_sweep</i></button>"+"</form>";
+										rows += '</div></div></td></tr>';
                 });
-                rows += '</tr>';
                 rows += '</tbody>';
                 $(this).append(rows);
             }

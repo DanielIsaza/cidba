@@ -15,19 +15,27 @@
 				@foreach($actividades as $actividad)
 					<tr>
 						<td>{{ $actividad->nombre }}</td>
-						<td> 
+						<td>
+							<div class="row">
+								<div class="col-xs-1">
 							<a href="{{url('/actividadesacademicas/'.$actividad->id.'/edit')}}">
-							Editar</a>
+							<i class="material-icons">mode_edit</i></a>
+						</div>
+						<div class="col-xs-6">
 							@include('activityacademics.delete',['actividad'=>$actividad])
+						</div>
+					</div>
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
 	</div>
-	<div class="floating">
+</div>
+	
+	<div style="float:top; text-align:right;">
 		<a href="{{url('/actividadesacademicas/create')}}" class="btn btn-primary btn-fab">
-			<i class="material-icons">add</i>
+			<i class="glyphicon glyphicon-plus"></i>
 		</a>
 	</div>
 @endsection

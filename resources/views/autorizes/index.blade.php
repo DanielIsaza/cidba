@@ -6,16 +6,16 @@
     <div class="panel-body">
     {!! Form::open(['url'=>'/autoriza/','method'=> 'POST']) !!}
 	    <div class="row">
-		    <div class="col-md-4">
+		    <div class="col-xs-4">
 		    	{!! Field::select('user_id',$usuarios,null) !!}
 		    </div>
-		    <div class="col-md-4">
+		    <div class="col-xs-4">
 		    	{!! Field::select('academicprogram_id',$programas,null) !!}
 		    </div>
-		    <div class="col-md-2">
+		    <div class="col-xs-2">
 		    	{!! Field::select('rol_id',$roles,null) !!}
 		    </div>
-		    <div class="col-md-2">
+		    <div class="col-xs-2">
 		    	<input type="submit" value="Asignar" class="btn btn-success">
 		    </div>
 	    </div>
@@ -38,7 +38,7 @@
 	    				<td>{{ $permiso->rol }}</td>
 	    				<td>@include('autorizes.delete',['permiso'=>$permiso])</td>
 	    			</tr>
-	    		@endforeach 
+	    		@endforeach
 	    		</tbody>
 	    	</table>
 
