@@ -102,7 +102,7 @@ class SemestersController extends Controller
     public function destroy($id)
     {
         $espacios = Semester::find($id)->academicspaces; 
-        if(empty($espacios)){
+        if(count($espacios) == 0){
             Semester::destroy($id);
             \Alert::message('Semestre eliminado correctamente', 'success');
             return redirect('/semestres');

@@ -101,8 +101,14 @@ class TypeevaluationsController extends Controller
      */
     public function destroy($id)
     {
-        Typeevaluation::destroy($id);
-        \Alert::message('Tipo de evaluación eliminada correctamente', 'success');
-        return redirect('/tiposevaluaciones');
+        $espacios = Typeevaluation::find($id)->academicspace;
+        if(count($esacios) == 0){
+            Typeevaluation::destroy($id);
+            \Alert::message('Tipo de evaluación eliminada correctamente', 'success');
+            return redirect('/tiposevaluaciones');
+        }else{
+            \Alert::message('No se puede eliminar el tipo de evaluación', 'danger');
+            return redirect('/tiposevaluaciones');
+        }
     }
 }

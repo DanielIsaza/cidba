@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Planea CIDBA',
+    'title' => 'CIDBA',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => 'Planea CIDBA',
+    'logo' => 'CIDBA',
 
-    'logo_mini' => '<b>P</b>CIDBA',
+    'logo_mini' => 'CIDBA',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'fixed',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,116 +110,93 @@ return [
     'menu' => [
         '',
         [
-            'text'    => 'Información universidad',
+            'text'    => 'Universidad',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'Gestión universidades',
+                    'text' => 'Universidades',
                     'url'  => '/universidades',
                 ],
                 [
-                    'text' => 'Gestión facultades',
+                    'text' => 'Facultades',
                     'url'  => '/facultades',
                 ],
                 [
-                    'text' => 'Gestión programas académicos',
+                    'text' => 'Programas académicos',
                     'url'  => '/programasacademicos',
                 ],
             ],
         ],
         '',
         [
-            'text'    => 'Información programa',
+            'text'    => 'Programa',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'Gestión semestres',
+                    'text' => 'Semestres',
                     'url'  => '/semestres',
                 ],
                 [
-                    'text' => 'Gestión estados',
+                    'text' => 'Estados',
                     'url'  => '/estados',
                 ],
                 [
-                    'text' => 'Gestión planes académicos',
+                    'text' => 'Planes académicos',
                     'url'  => '/planesacademicos',
                 ],
             ],
         ],
         '',
         [
-            'text'    => 'Información materias',
+            'text'    => 'Materias',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'Gestión tipos de naturalezas',
+                    'text' => 'Naturalezas',
                     'url'  => '/naturaleza',
                 ],
                 [
-                    'text' => 'Gestión tipos de metodologías',
+                    'text' => 'Metodologías',
                     'url'  => '/tiposmetodologias',
                 ],
                 [
-                    'text' => 'Gestión tipos de evaluación',
+                    'text' => 'Evaluación',
                     'url'  => '/tiposevaluaciones',
                 ],
                 [
-                    'text' => 'Gestión áreas de conocimiento',
+                    'text' => 'Áreas de conocimiento',
                     'url' => '/areasconocimiento'
                 ],
                 [
-                    'text' => 'Gestión actividades académicas',
+                    'text' => 'Actividades académicas',
                     'url' => '/actividadesacademicas'
                 ],
                 [
-                    'text' => 'Gestión espacios académicos',
+                    'text' => 'Espacios académicos',
                     'url' => '/espaciosacademicos'
                 ]
             ],
         ],
         '',
         [
-          'text'    => 'Información usuarios',
+          'text'    => 'Habilidades',
           'icon'    => 'share',
           'submenu' => [
               [
-                  'text' => 'Gestión usuarios',
-                  'url'  => '/register',
-              ],
-              [
-                  'text' => 'Gestión roles',
-                  'url'  => '/roles',
-              ],
-              [
-                  'text' => 'Gestión permisos',
-                  'url'  => '/autoriza',
-              ]
-            ],
-        ],
-        '',
-        [
-          'text'    => 'Información habilidades',
-          'icon'    => 'share',
-          'submenu' => [
-              [
-                  'text' => 'Gestión tipos habilidad',
+                  'text' => 'Tipos habilidad',
                   'url'  => '/tiposhabilidad',
               ],
               [
-                  'text' => 'Gestión habilidades',
+                  'text' => 'Habilidades',
                   'url'  => '/habilidades',
               ],
               [
-                  'text' => 'Gestión objetivos',
+                  'text' => 'Objetivos',
                   'url'  => '/objetivos',
               ],
               [
                   'text' => 'Asignar pesos',
                   'url'  => '/asignacion',
-              ],
-              [
-                  'text' => 'Asignar pesos teóricos',
-                  'url'  => '/asignacionTeorica',
               ]
             ],
         ],
@@ -237,7 +214,26 @@ return [
                   'url'  => '/estadistica',
               ],
             ],
-        ]
+        ],
+        '',
+        [
+          'text'    => ' usuarios',
+          'icon'    => 'share',
+          'submenu' => [
+              [
+                  'text' => ' usuarios',
+                  'url'  => '/register',
+              ],
+              [
+                  'text' => ' roles',
+                  'url'  => '/roles',
+              ],
+              [
+                  'text' => ' permisos',
+                  'url'  => '/autoriza',
+              ]
+            ],
+        ],
     ],
 
     /*

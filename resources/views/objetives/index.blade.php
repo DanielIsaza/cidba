@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Objetivos</div>
+	<div class="panel-heading">Lista de objetivos</div>
     <div class="panel-body">
 		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 

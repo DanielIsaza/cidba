@@ -137,9 +137,12 @@ class ObjectivespacesController extends Controller
     public function destroy($id)
     {
         $peso = Weight::where('Objectiveespace_id',$id);
-        $peso->delete();
-        Objectiveespace::destroy($id);
-        \Alert::message('Asignación eliminada correctamente', 'success');
-        return redirect('/asignacion');
+        if($peso->delete() && Objectiveespace::destroy($id)){
+            \Alert::message('Asignación eliminada correctamente', 'success');
+            return redirect('/asignacion');
+        }else{
+            \Alert::message('No se puede eliminar la asignación', 'danger');
+            return redirect('/asignacion');
+        }
     }
 }

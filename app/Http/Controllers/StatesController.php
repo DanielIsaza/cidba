@@ -101,8 +101,14 @@ class StatesController extends Controller
      */
     public function destroy($id)
     {
-        State::destroy($id);
-        \Alert::message('Estado eliminado correctamente', 'success');
-        return redirect('/estados');
+        $planes = Academicplan::find($id)->academicplans;
+        if(count($planes) == 0 ){
+            State::destroy($id);
+            \Alert::message('Estado eliminado correctamente', 'success');
+            return redirect('/estados');            
+        }else{
+            \Alert::message('No se puede eliminar el estado', 'danger');
+            return redirect('/estados');
+        }
     }
 }

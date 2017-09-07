@@ -15,8 +15,8 @@ class FacultiesController extends Controller
      */
     public function index()
     {
-        $facultades = Faculty::all();
-        return view("faculties.index",["facultades"=>$facultades]);
+        $universidades = University::pluck('nombre','id')->toArray();
+        return view("faculties.index",["universidades"=>$universidades]);
     }
 
     /**
@@ -105,7 +105,7 @@ class FacultiesController extends Controller
     public function destroy($id)
     {
         $programas = Faculty::find($id)->academicprograms;
-        if(empty($programas)){
+        if(count($programas) == 0){
             Faculty::destroy($id);
             \Alert::message('Facultad eliminada correctamente', 'success');
             return redirect('/facultades');

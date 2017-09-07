@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Espacios académicos</div>
+	<div class="panel-heading">Lista de espacios académicos</div>
     <div class="panel-body">
 		<div class="row">
 			<div class="col-md-4">{!! Field::select('university_id',$universidades,null) !!}</div>

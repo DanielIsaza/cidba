@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Roles</div>
+	<div class="panel-heading">Lista de roles</div>
     <div class="panel-body">
 		<table class="table table-bordered">
 			<thead>

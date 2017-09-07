@@ -27,4 +27,11 @@ class Academicplan extends Model
     {
         return $this->hasMany('App\Ability');
     }
+    /**
+    * obtiene las habilidades del plan academico 
+    */
+    public function academicspace()
+    {
+        return $this->hasMany('App\Academicspace');
+    }
 }

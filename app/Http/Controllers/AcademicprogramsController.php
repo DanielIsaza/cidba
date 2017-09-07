@@ -108,7 +108,7 @@ class AcademicprogramsController extends Controller
     public function destroy($id)
     {
         $planes = Academicprogram::find($id)->academicplans;
-        if(empty($planes)){
+        if(count($planes)==0){
             Academicprogram::destroy($id);
             \Alert::message('Programa académico eliminado correctamente', 'success');
             return redirect('/programasacademicos');

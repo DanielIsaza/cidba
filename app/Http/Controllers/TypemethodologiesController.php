@@ -101,8 +101,14 @@ class TypemethodologiesController extends Controller
      */
     public function destroy($id)
     {
-        Typemethodology::destroy($id);
-        \Alert::message('Tipo de metodología eliminada correctamente', 'success');
-        return redirect('/tiposmetodologias');
+        $espacios = typemethodology::find($id)->academicspace;
+        if(count($espacios)==0){
+            Typemethodology::destroy($id);
+            \Alert::message('Tipo de metodología eliminada correctamente', 'success');
+            return redirect('/tiposmetodologias');
+        }else{
+            \Alert::message('No se puede eliminar el tipo de metodología', 'danger');
+            return redirect('/tiposmetodologias');
+        }
     }
 }

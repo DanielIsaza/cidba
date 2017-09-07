@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Programas académicos</div>
+	<div class="panel-heading">Lista de programas académicos</div>
     <div class="panel-body">
 		{!! Field::select('university_id',$universidades,null) !!}
 		{!! Field::select('faculty_id') !!}

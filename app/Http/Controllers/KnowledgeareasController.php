@@ -101,8 +101,14 @@ class KnowledgeareasController extends Controller
      */
     public function destroy($id)
     {
-        Knowledgearea::destroy($id);
-        \Alert::message('Área de conocimiento eliminada correctamente', 'success');
-        return redirect('/areasconocimiento');
+        $espacio = Knowledgearea::find($id)->academicspace;
+        if(count($espacio)==0){
+            Knowledgearea::destroy($id);
+            \Alert::message('Área de conocimiento eliminada correctamente', 'success');
+            return redirect('/areasconocimiento');
+        }else{
+            \Alert::message('No se puede eliminar el área de conocimiento', 'danger');
+            return redirect('/areasconocimiento');
+        }
     }
 }

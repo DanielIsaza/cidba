@@ -213,8 +213,14 @@ class AcademicspacesController extends Controller
      */
     public function destroy($id)
     {
-        Academicspace::destroy($id);
-        \Alert::message('Espacio académico eliminado correctamente', 'success');
-        return redirect('/espaciosacademicos');
+        $objetivos = Academicspace::find($id)->objective;
+        if(count($objetivos) == 0){
+            Academicspace::destroy($id);
+            \Alert::message('Espacio académico eliminado correctamente', 'success');
+            return redirect('/espaciosacademicos');
+        }else{
+            \Alert::message('Espacio académico eliminado correctamente', 'success');
+            return redirect('/espaciosacademicos');
+        }
     }
 }

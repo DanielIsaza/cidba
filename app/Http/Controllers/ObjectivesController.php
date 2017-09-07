@@ -122,8 +122,14 @@ class ObjectivesController extends Controller
      */
     public function destroy($id)
     {
-        Objective::destroy($id);
-        \Alert::message('Objetivo eliminado correctamente', 'success');
-        return redirect('/objetivos');
+        $objetvos = Objective::find($id)->objectivespace;
+        if(count($objetvos) == 0){
+            Objective::destroy($id);
+            \Alert::message('Objetivo eliminado correctamente', 'success');
+            return redirect('/objetivos');
+        }else{
+            \Alert::message('No se puede eliminar el objetivo', 'danger');
+            return redirect('/objetivos');
+        }
     }
 }

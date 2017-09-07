@@ -102,7 +102,8 @@ class UniversitiesController extends Controller
     public function destroy($id)
     {
         $facultades = University::find($id)->faculties;
-        if(empty($facultades)){
+        
+        if(count($facultades) == 0){
             University::destroy($id);
             \Alert::message('Universidad eliminada correctamente', 'success');
             return redirect('/universidades');

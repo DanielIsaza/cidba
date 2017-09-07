@@ -101,8 +101,14 @@ class ActivityacademicsController extends Controller
      */
     public function destroy($id)
     {
-        Activityacademic::destroy($id);
-        \Alert::message('Actividad académica eliminada correctamente', 'success');
-        return redirect('/actividadesacademicas');
+        $espacios = Activityacademic::find($id)->academicspace;
+        if (count($espacios) == 0) {
+            Activityacademic::destroy($id);
+            \Alert::message('Actividad académica eliminada correctamente', 'success');
+            return redirect('/actividadesacademicas');
+        }else{
+            \Alert::message('No se puede eliminar la actividad académica', 'danger');
+            return redirect('/actividadesacademicas');
+        }
     }
 }

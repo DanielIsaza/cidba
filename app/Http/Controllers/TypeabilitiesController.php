@@ -102,7 +102,7 @@ class TypeabilitiesController extends Controller
     public function destroy($id)
     {
         $habilidad = Typeability::find($id)->abilities;
-        if(empty($habilidad)){
+        if(count($habilidad) == 0){
             Typeability::destroy($id);
             \Alert::message('Tipo de habilidad eliminada correctamente', 'success');
             return redirect('/tiposhabilidad');

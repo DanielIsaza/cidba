@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-		<div class="panel-heading">Tipos de habilidad</div>
+		<div class="panel-heading">Lista de tipos de habilidad</div>
         <div class="panel-body">
 			<table class="table table-bordered">
 				<thead>

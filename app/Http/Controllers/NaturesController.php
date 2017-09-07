@@ -101,8 +101,14 @@ class NaturesController extends Controller
      */
     public function destroy($id)
     {
-        Nature::destroy($id);
-        \Alert::message('Naturaleza eliminada correctamente', 'success');
-        return redirect('/naturaleza');
+        $espacio = Nature::find($id)->academicspace;
+        if(count($espacio) == 0){
+            Nature::destroy($id);
+            \Alert::message('Naturaleza eliminada correctamente', 'success');
+            return redirect('/naturaleza');
+        }else{
+            \Alert::message('No se puede eliminar la naturaleza', 'danger');
+            return redirect('/naturaleza');
+        }
     }
 }

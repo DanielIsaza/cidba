@@ -120,8 +120,14 @@ class AcademicplansController extends Controller
      */
     public function destroy($id)
     {
-        Academicplan::destroy($id);
-        \Alert::message('Plan académico eliminado correctamente', 'success');
-        return redirect('/planesacademicos');
+        $habilidades = Academicplan::find($id)->abilities;
+        if(count($habilidades) == 0){
+            Academicplan::destroy($id);
+            \Alert::message('Plan académico eliminado correctamente', 'success');
+            return redirect('/planesacademicos');
+        }else{
+            \Alert::message('No sé puede eliminar el plan académico', 'danger');
+            return redirect('/planesacademicos');
+        }
     }
 }

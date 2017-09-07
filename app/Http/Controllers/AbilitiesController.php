@@ -122,7 +122,7 @@ class AbilitiesController extends Controller
     public function destroy($id)
     {
         $objetivos = Ability::find($id)->objective;
-        if(empty($objectivos)){
+        if(count($objectivos) == 0){
             Ability::destroy($id);
             \Alert::message('Habilidad eliminada correctamente', 'success');
             return redirect('/habilidades');    

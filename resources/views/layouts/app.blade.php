@@ -42,9 +42,15 @@
                   $('#faculty_id').empty().change();
                   $('#academicprogram_id').empty().change();
               }else{
-                  $.getJSON('{{ route('facultad/' )}}/'+universidad,null,function(values){
+                if($('#faculty_id').length){
+                      $.getJSON('{{ route('facultad/' )}}/'+universidad,null,function(values){
                       $('#faculty_id').populateSelect(values);
                   });
+                }else{
+                    $.getJSON('{{ route('facultad/' )}}/'+universidad,null,function(values){
+                      $('#tabla').populateTable(values);
+                  });
+                }
               }
           });
           $('#faculty_id').change(function(){

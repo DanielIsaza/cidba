@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Estados planes académicos</div>
+	<div class="panel-heading">Lita de estados planes académicos</div>
     <div class="panel-body">
 
 		<table class="table table-bordered">

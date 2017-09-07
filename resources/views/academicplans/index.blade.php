@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Planes académicos</div>
+	<div class="panel-heading">Lista de planes académicos</div>
     <div class="panel-body">
 		{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 

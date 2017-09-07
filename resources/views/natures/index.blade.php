@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Naturaleza de los espacios académicos</div>
+	<div class="panel-heading">Lista de naturalezas de los espacios académicos</div>
     <div class="panel-body">
 		<table class="table table-bordered">
 			<thead>

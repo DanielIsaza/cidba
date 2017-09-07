@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="panel panel-default">
-	<div class="panel-heading">Habilidades</div>
+	<div class="panel-heading">Lista de habilidades</div>
     <div class="panel-body">
 	{!! Form::model(['method'=>'POST','class'=>'form']) !!}
 
