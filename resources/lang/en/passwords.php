@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'password' => 'La contraseña debe tenet al menos seis caracteres'
+    'password' => 'La contraseña debe tenet al menos seis caracteres',
     'reset' => 'Your password has been reset!',
     'sent' => 'We have e-mailed your password reset link!',
     'token' => 'This password reset token is invalid.',

@@ -15,9 +15,9 @@ return [
 
     'title' => 'CIDBA',
 
-    'title_prefix' => '',
+    'title_prefix' => 'CIDBA',
 
-    'title_postfix' => '',
+    'title_postfix' => 'CIDBA',
 
     /*
     |--------------------------------------------------------------------------

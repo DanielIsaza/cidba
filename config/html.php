@@ -29,7 +29,7 @@ return [
      * to search for attribute names and other texts,
      * regardless of this configuration value.
      */
-    'translate_texts' => true,
+    'translate_texts' => false,
 
     /*
      * Set to true to deactivate HTML5 form validation
