@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Academicspace;
+use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class PdfController extends Controller
 {
@@ -22,6 +24,15 @@ class PdfController extends Controller
       return $pdf->stream('');
     }
 
+    public function descarga1($id){
+        $templateword = new TemplateProcessor("syllabus.docx");
+        $nombre = "Este es un nombre";
+        $templateword->setValue('nombre',$nombre);
+        $templateword->saveAs("prueba.docx");
+
+        return response()->download("prueba.docx")->deleteFileAfterSend(true);
+    }
+
     public function prueba(){
       $data = $this->getData();
       $date = date('Y-m-d');
@@ -32,6 +43,8 @@ class PdfController extends Controller
       //return $pdf->stream('invoice'); mostrar
       //return $pdf->download('invoice.pdf'); descargar
     }
+
+
 
 
     public function getData()
