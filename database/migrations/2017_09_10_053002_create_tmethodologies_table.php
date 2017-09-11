@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlanesaTable extends Migration
+class CreateTmethodologiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreatePlanesaTable extends Migration
      */
     public function up()
     {
-        Schema::create('academicplans', function (Blueprint $table) {
+        Schema::create('typemethodologies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('academicprogram_id')->unsigned();
-            $table->integer('state_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('academicprogram_id')->references('id')->on('academicprograms');
-            $table->foreign('state_id')->references('id')->on('state');
-
         });
     }
 
@@ -33,6 +27,6 @@ class CreatePlanesaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academicplans');
+        Schema::dropIfExists('typemethodologies');
     }
 }

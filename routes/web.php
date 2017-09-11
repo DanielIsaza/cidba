@@ -120,7 +120,7 @@ Route::get('objetivosteo/{ability_id?}',["as"=>"objetivosteo",function($ability_
 	->join('objectiveespaces','objectiveespaces.id','=','weights.objectiveEspace_id')
 	->join('objectives','objectives.id','=','objectiveespaces.objective_id')
 	->join('academicspaces','academicspaces.id','=','objectiveespaces.academicspace_id')
-	->where([['abilities.id','=',$ability_id],['weights.tipo','=','0']])->select('objectiveespaces.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
+	->where('abilities.id','=',$ability_id)->select('objectiveespaces.id as value','academicspaces.nombre as text','weights.peso','objectives.nombre as objetivos','objectives.peso as pesohabilidad')->get();
 }]);
 // Ruta que retorna la información estadistica de las habilidades
 Route::get('estadisticah/{plan_id?}/{tipo?}',["as"=>"estadisticah",function($plan_id,$tipo){

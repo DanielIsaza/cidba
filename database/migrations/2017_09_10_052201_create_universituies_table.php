@@ -4,11 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNatuTable extends Migration
+class CreateUniversituiesTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('natures', function (Blueprint $table) {
+        Schema::create('universities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
@@ -22,6 +27,6 @@ class CreateNatuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('natures');
+        Schema::dropIfExists('universities');
     }
 }

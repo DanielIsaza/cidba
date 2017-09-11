@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThabilidadTable extends Migration
+class CreateSemestersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateThabilidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeabilities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
-            $table->timestamps();
-        });
+      Schema::create('semesters', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('nombre');
+          $table->timestamps();
+      });
     }
 
     /**
@@ -27,6 +27,6 @@ class CreateThabilidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeabilities');
+      Schema::dropIfExists('semesters');
     }
 }

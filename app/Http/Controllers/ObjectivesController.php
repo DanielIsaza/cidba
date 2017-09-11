@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Academicprogram;
 use App\Academicplan;
-use App\Ability;    
+use App\Ability;
 use App\Objective;
 use App\Typeability;
 use App\University;
@@ -47,6 +47,7 @@ class ObjectivesController extends Controller
         $objetivo = new Objective;
         $objetivo->nombre = $request->nombre;
         $objetivo->peso = $request->peso;
+        $objetivo->descripcion = $request->descripcion;
         $objetivo->ability_id = $request->ability_id;
 
         if($objetivo->save()){
@@ -104,8 +105,9 @@ class ObjectivesController extends Controller
         $objetivo = Objective::find($id);
         $objetivo->nombre = $request->nombre;
         $objetivo->peso = $request->peso;
+        $objetivo->descripcion = $request->descripcion;
         $objetivo->ability_id = $request->ability_id;
-       
+
         if($objetivo->save()){
             \Alert::message('Objetivo actualizado correctamente', 'success');
             return redirect("/objetivos");

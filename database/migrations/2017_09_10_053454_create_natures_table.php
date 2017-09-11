@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTmetodologiaTable extends Migration
+class CreateNaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTmetodologiaTable extends Migration
      */
     public function up()
     {
-        Schema::create('typemethodologies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
-            $table->timestamps();
-        });
+      Schema::create('natures', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('nombre');
+          $table->timestamps();
+      });
     }
 
     /**
@@ -27,6 +27,6 @@ class CreateTmetodologiaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typemethodologies');
+      Schema::dropIfExists('natures');
     }
 }

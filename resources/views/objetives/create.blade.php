@@ -27,6 +27,14 @@
 							'placeholder'=>'Peso del objetivo sobre la habilidad']) }}
 				</div>
 			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-10">
+					{{ Form::label('Descripción') }}
+					{{ Form::textarea('descripcion',null,['class'=>'form-control',
+						'placeholder'=>'Descripción del objetivo']) }}
+				</div>
+			</div>
 			<div class="form-group text-	">
 				<a href="{{url('/objetivos')}}">Regresar al listado de objetivos</a>
 				<input type="submit" value="Guardar" class="btn btn-success">

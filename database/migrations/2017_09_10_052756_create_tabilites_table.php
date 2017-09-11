@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateObjetivosTable extends Migration
+class CreateTabilitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateObjetivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('objectives', function (Blueprint $table) {
+        Schema::create('typeabilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('peso')->unsigned();
-            $table->integer('ability_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('ability_id')->references('id')->on('abilities');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateObjetivosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objectives');
+        Schema::dropIfExists('typeabilities');
     }
 }
