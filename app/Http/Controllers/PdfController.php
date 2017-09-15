@@ -25,6 +25,7 @@ class PdfController extends Controller
     }
 
     public function descarga1($id){
+
         $templateword = new TemplateProcessor("syllabus.docx");
         $nombre = "Este es un nombre";
         $templateword->setValue('nombre',$nombre);
@@ -44,7 +45,22 @@ class PdfController extends Controller
       //return $pdf->download('invoice.pdf'); descargar
     }
 
+    public function formulario(){
+      return view("pdf.formulario");
+    }
 
+    public function subir(Request $request){
+      //obtenemos el campo file definido en el formulario
+       $file = $request->file('file');
+
+       //obtenemos el nombre del archivo
+       $nombre = $file->getClientOriginalName();
+
+       //indicamos que queremos guardar un nuevo archivo en el disco local
+       \Storage::disk('local')->put($nombre,  \File::get($file));
+
+       return "archivo guardado";
+    }
 
 
     public function getData()

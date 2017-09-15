@@ -65,6 +65,10 @@ Route::get('estadisticaAreaConocimiento','StatisticsController@indexA');
 Route::get('tablaResumen','StatisticsController@indexT');
 // permite realizar la descarga del syllabus de un espacio académico
 Route::get('descarga/{espacio_id?}','PdfController@descarga1');
+//
+Route::get('formulario','PdfController@formulario');
+Route::post('subir','PdfController@subir');
+
 //Ruta que retorna todas las facultades
 Route::get('facultad/{university_id?}',["as" => "facultad/",function($university_id){
 	return App\Faculty::where('university_id',$university_id)
