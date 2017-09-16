@@ -57,7 +57,7 @@ class PdfController extends Controller
        $nombre = $file->getClientOriginalName();
 
        //indicamos que queremos guardar un nuevo archivo en el disco local
-       \Storage::disk('local')->put($nombre,  \File::get($file));
+       \Storage::disk()->put($nombre,  \File::get($file));
 
        return "archivo guardado";
     }

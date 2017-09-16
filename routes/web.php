@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'],function(){
 	//Ruta para el home de la aplicacion
 Route::get('/', 'HomeController@index');
 //'MainController@home');
-
+Route::get('import','FacultiesController@import');
 	//Rutas para el CRUD de Estados
 Route::resource('estados','StatesController');
 //Rutas para el CRUD de Tipos de habilidad

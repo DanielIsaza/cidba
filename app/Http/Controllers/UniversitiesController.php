@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\University;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UniversitiesController extends Controller
 {
@@ -102,7 +103,7 @@ class UniversitiesController extends Controller
     public function destroy($id)
     {
         $facultades = University::find($id)->faculties;
-        
+
         if(count($facultades) == 0){
             University::destroy($id);
             \Alert::message('Universidad eliminada correctamente', 'success');
@@ -112,4 +113,18 @@ class UniversitiesController extends Controller
             return redirect('/universidades');
         }
     }
+
+    public function import(){
+      //dd(public_path( ));
+      Excel::load('public/storage/book.csv', function($reader) {
+
+        foreach ($reader->get() as $book) {
+         			$u = new University();
+              $u->nombre = $book->nombre;
+              $u->save();
+          		}
+
+});
+    }
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Faculty;
 use App\University;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class FacultiesController extends Controller
 {
@@ -113,5 +115,19 @@ class FacultiesController extends Controller
             \Alert::message('No se puede eliminar la facultad', 'danger');
             return redirect('/facultades');
         }
+    }
+
+    public function import(){
+      Excel::load('public/storage/book2.csv', function($reader) {
+
+        foreach ($reader->get() as $book) {
+          //    dd($book);
+              $u = new Faculty();
+              $u->nombre = $book->nombre;
+              $u->university_id = $book->university_id;
+              $u->save();
+              }
+
+});
     }
 }
