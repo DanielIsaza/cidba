@@ -15,9 +15,9 @@ return [
 
     'title' => 'CIDBA',
 
-    'title_prefix' => 'CIDBA',
+    'title_prefix' => '',
 
-    'title_postfix' => 'CIDBA',
+    'title_postfix' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
         '',
         [
             'text'    => 'Universidad',
-            'icon'    => 'share',
+            'icon'    => 'file',
             'submenu' => [
                 [
                     'text' => 'Universidades',
@@ -130,7 +130,7 @@ return [
         '',
         [
             'text'    => 'Programa',
-            'icon'    => 'share',
+            'icon'    => 'file',
             'submenu' => [
                 [
                     'text' => 'Semestres',
@@ -149,7 +149,7 @@ return [
         '',
         [
             'text'    => 'Materias',
-            'icon'    => 'share',
+            'icon'    => 'file',
             'submenu' => [
                 [
                     'text' => 'Naturalezas',
@@ -180,7 +180,7 @@ return [
         '',
         [
           'text'    => 'Habilidades',
-          'icon'    => 'share',
+          'icon'    => 'file',
           'submenu' => [
               [
                   'text' => 'Tipos habilidad',
@@ -203,7 +203,7 @@ return [
         '',
         [
           'text'    => 'Estadísticas',
-          'icon'    => 'share',
+          'icon'    => 'file',
           'submenu' => [
               [
                   'text' => 'Gráfica área de conocimiento',
@@ -218,7 +218,7 @@ return [
         '',
         [
           'text'    => ' usuarios',
-          'icon'    => 'share',
+          'icon'    => 'user',
           'submenu' => [
               [
                   'text' => ' usuarios',
@@ -234,6 +234,12 @@ return [
               ]
             ],
         ],
+        '',
+        [
+          'text' => 'Subir archivos',
+          'icon' => 'file-text',
+          'url' => '/formulario'
+        ]
     ],
 
     /*
