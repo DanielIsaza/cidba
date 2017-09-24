@@ -40,7 +40,7 @@
                 	rows += '<tr>';
                     rows += '<td>'+row.text+'</td>';
                     rows += '<td> <div class"row"> <div class="col-xs-1">';
-										rows += "<a href='{{ URL::asset('descargar') }}/"+row.values+"'><i class='material-icons'>get_app</i>  </a>";
+										rows += "<a href='{{ URL::asset('descarga') }}/"+row.value+"'><i class='material-icons'>get_app</i>  </a>";
 										rows += '</div> <div class="col-xs-1">';
 										rows += "<a href='{{ URL::asset('espaciosacademicos') }}/"+row.value+"/edit'><i class='material-icons'>mode_edit</i></a>";
 										rows += '</div> <div class="col-xs-1">';

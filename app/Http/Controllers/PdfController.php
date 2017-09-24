@@ -25,8 +25,8 @@ class PdfController extends Controller
     }
 
     public function descarga1($id){
-
-        $templateword = new TemplateProcessor("syllabus.docx");
+        dd(Settings::getTempDir());
+        $templateword = new TemplateProcessor("");
         $nombre = "Este es un nombre";
         $templateword->setValue('nombre',$nombre);
         $templateword->saveAs("prueba.docx");
