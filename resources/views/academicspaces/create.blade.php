@@ -25,67 +25,73 @@
 		  		<div class="col-md-3">
 		  			{{ Form::label('Código')}}
 						{{ Form::text('codigo',null,['class' => 'form-control',
-							'placeholder'=>'Código del espacio académico']) }}
+							'placeholder'=>'Código']) }}
 		  		</div>
 		  		<div class="col-md-6">
 		  			{{ Form::label('Nombre')}}
 						{{ Form::text('nombre',null,['class' => 'form-control',
-							'placeholder'=>'Nombre del espacio académico']) }}
+							'placeholder'=>'Nombre']) }}
 		  		</div>
 		  		<div class="col-md-3">
 		  			{{ Form::label('Número de creditos')}}
 						{{ Form::text('numeroCreditos',null,['class' => 'form-control',
-							'placeholder'=>'Número de creditos del espacio académico']) }}
+							'placeholder'=>'Número de creditos']) }}
 		  		</div>
 		  	</div>
 		  	<div class="row">
 		  		<div class="col-md-3">
 		  			{{ Form::label('Horas teóricas')}}
 						{{ Form::text('horasTeoricas',null,['class' => 'form-control',
-							'placeholder'=>'Horas teóricas del espacio académico']) }}
+							'placeholder'=>'Horas teóricas']) }}
 		  		</div>
 		  		<div class="col-md-3">
 		  			{{ Form::label('Horas prácticas')}}
 						{{ Form::text('horasPracticas',null,['class' => 'form-control',
-							'placeholder'=>'Horas prácticas del espacio académico']) }}
+							'placeholder'=>'Horas prácticas']) }}
 		  		</div>
 		  		<div class="col-md-3">
 		  			{{ Form::label('Horas teórico prácticas')}}
 						{{ Form::text('horasTeoPract',null,['class' => 'form-control',
-							'placeholder'=>'Horas teórico-prácticas del espacio académico']) }}
+							'placeholder'=>'Horas teórico-prácticas']) }}
 		  		</div>
 		  		<div class="col-md-3">
 		  			{{ Form::label('Horas asesoría')}}
 						{{ Form::text('horasAsesorias',null,['class' => 'form-control',
-							'placeholder'=>'Horas de asesoría del espacio académico']) }}
+							'placeholder'=>'Horas de asesoría']) }}
 		  		</div>
 		  	</div>
 
-			<div class="row">
+			<div class="row" style="">
 				<div class="col-md-3">
 		  			{{ Form::label('Horas independiente')}}
 						{{ Form::text('horasIndependiente',null,['class' => 'form-control',
-							'placeholder'=>'Horas independiente del espacio académico']) }}
+							'placeholder'=>'Horas independiente']) }}
 		  		</div>
-		  		<div class="col-md-3">
+		  		<div class="col-md-3" style="margin-top: 2%">
 		  			{{ Form::label('Habilitable?')}}
 					{{ Form::checkbox('habilitable') }}
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3" style="margin-top: 2%">
 		  			{{ Form::label('Validable?')}}
 					{{ Form::checkbox('validable') }}
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3" style="margin-top: 2%">
 		  			{{ Form::label('Homologable')}}
 					{{ Form::checkbox('homologable') }}
 				</div>
 		  	</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6" id="drequisitos">
 					{{Form::label('Requisitos')}}
+					<a id="requisito">
+						<i class="material-icons" style="font-size: 1,5em">add_circle</i>
+					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6" id="dcorequisito">
 					{{Form::label('Co-Requisitos')}}
+					<a id="corequisito">
+						<i class="material-icons" style="font-size: 1,5em">add_circle</i>
+					</a>
 				</div>
 			</div>
 			<div class="row">
@@ -165,4 +171,24 @@
 	<input type="submit" value="Guardar" class="btn btn-success">
 </div>
 {!! Form::close() !!}
+@endsection
+@section("tabla")
+	<script type="text/javascript">
+		$('#requisito').click(function (){
+			var plan = $('#academicplan_id').val();
+			if(plan > -1 && plan != null){
+				$('#drequisitos').append('<div class="controls"><select class="form-control" id="a" name="university_id"><option value="" selected="selected"></option><option value="1">Universidad del Quindío</option></select> </div>');
+
+			}else {
+				alert('Primero seleccione un plan académico');
+			}
+		});
+
+		$('#corequisito').click(function (){
+			var plan = $('#academicplan_id').val();
+			if(plan > -1 && plan != null){
+				$('#dcorequisito').append('<div class="controls"><select class="form-control" id="university_id" name="university_id"><option value="" selected="selected"></option><option value="1">Universidad del Quindío</option></select>         </div>');
+			}
+		});
+	</script>
 @endsection

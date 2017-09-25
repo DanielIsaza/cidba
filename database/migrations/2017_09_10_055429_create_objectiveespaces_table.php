@@ -13,7 +13,7 @@ class CreateObjectiveespacesTable extends Migration
      */
     public function up()
     {
-      Schema::create('objectiveEspaces', function (Blueprint $table) {
+      Schema::create('objectiveespaces', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('academicspace_id')->unsigned();
           $table->integer('objective_id')->unsigned();

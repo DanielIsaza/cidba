@@ -106,14 +106,14 @@ class DatabaseSeeder extends Seeder
         'ability_id'=>2
         ]]);
 
-        DB::tables('typemethodologies')->insert([
+        DB::table('typemethodologies')->insert([
           'nombre'=>'Esta es la metodologia 1',
         ]);
 
         DB::table('academicspaces')->insert([[
           'codigo'=>'1234',
           'nombre'=>'materia 1',
-          'numCreditos'=>'2',
+          'numeroCreditos'=>'2',
           'horasTeoricas'=>'12',
           'horasPracticas'=>'10',
           'horasTeoPract'=>'8',
@@ -121,6 +121,7 @@ class DatabaseSeeder extends Seeder
           'horasIndependiente'=>'9',
           'habilitable'=>1,
           'homologable'=>0,
+          'validable' => 1,
           'nucleoTematico'=>'este es el nucleo tematico',
           'justificacion'=>'esta es la justificacion',
           'metodologia'=>'esta es la metodologia',
@@ -141,7 +142,7 @@ class DatabaseSeeder extends Seeder
         ],[
           'codigo'=>'4321',
           'nombre'=>'materia 2',
-          'numCreditos'=>'2',
+          'numeroCreditos'=>'2',
           'horasTeoricas'=>'12',
           'horasPracticas'=>'10',
           'horasTeoPract'=>'8',
@@ -149,6 +150,7 @@ class DatabaseSeeder extends Seeder
           'horasIndependiente'=>'9',
           'habilitable'=>1,
           'homologable'=>0,
+          'validable'=>1,
           'nucleoTematico'=>'este es el nucleo tematico',
           'justificacion'=>'esta es la justificacion',
           'metodologia'=>'esta es la metodologia',
@@ -168,7 +170,7 @@ class DatabaseSeeder extends Seeder
           'knowledgearea_id'=>1,
           ]]);
 
-      DB::table('objectiveEspace')->insert([
+      DB::table('objectiveespaces')->insert([
         [
           'academicspace_id'=>1,
           'objective_id'=>1,

@@ -17,6 +17,12 @@
       ]); ?>
   </script>
 
+  <style type="text/css"> 
+  div { 
+      margin-bottom: 1%;
+      } 
+  </style> 
+
 @endsection
 
 @section('selects')

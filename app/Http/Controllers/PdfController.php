@@ -25,8 +25,16 @@ class PdfController extends Controller
     }
 
     public function descarga1($id){
-        dd(Settings::getTempDir());
-        $templateword = new TemplateProcessor("");
+        
+      $tmpfname = tempnam('/var/folders/rb/5hkb03z17mv55gtk61wkzmv00000gn/T', 'PhpWord');
+
+      $handle = fopen($tmpfname, "w");
+      fwrite($handle, "writing to tempfile");
+      fclose($handle);
+
+      dd($tmpfname);  
+
+        $templateword = new TemplateProcessor("syllabus.docx");
         $nombre = "Este es un nombre";
         $templateword->setValue('nombre',$nombre);
         $templateword->saveAs("prueba.docx");
